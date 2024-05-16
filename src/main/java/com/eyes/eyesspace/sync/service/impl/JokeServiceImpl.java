@@ -44,14 +44,8 @@ import org.springframework.web.multipart.MultipartFile;
 public class JokeServiceImpl implements JokeService {
   private static final List<Integer> JOKE_NOTICE_ID = Collections.singletonList(11);
 
-  @Value("${path.url.site}")
-  private String siteUrl;
-
   @Value("${path.folder.joke}")
   private String jokePath;
-
-  @Value("${business.notice-switch.joke:false}")
-  private Boolean jokeNoticeSwitch;
 
   private final TrackMapper trackMapper;
 

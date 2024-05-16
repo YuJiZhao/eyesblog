@@ -54,7 +54,7 @@ public interface BlogMapper {
     @Select("select bl.label from blog b, blog_label bl, blog_label_id bli where b.id = #{id} and bli.blog_id = b.id and bli.label_id = bl.id;")
     List<String> getLabelsById(Integer id);
 
-    @Select("select bc.category, count(*) num from blog b, blog_category bc where ${statusCondition} and bc.id = b.category_id group by bc.category")
+    @Select("select bc.category, count(*) num from blog b, blog_category bc where ${statusCondition} and bc.id = b.category_id group by bc.category order by num desc")
     List<BlogCategoryDTO> getBlogCategory(String statusCondition);
 
     @Select("select bl.label, count(*) num from blog b, blog_label bl, blog_label_id bli "
