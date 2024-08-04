@@ -22,4 +22,6 @@ public class FileOperationLogConstant {
   public static final int ANIME = 7;
 
   public static final int JOKE = 8;
+
+  public static final int TRAVEL = 9;
 }

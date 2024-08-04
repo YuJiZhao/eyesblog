@@ -16,7 +16,11 @@ public enum CommentEnum {
 
     MESSAGE(4,  "全站留言"),
 
-    ANIME(5, "动漫评论");
+    ANIME(5, "动漫评论"),
+
+    BOOK(6, "小说评论"),
+
+    TRAVEL(7, "旅行评论");
 
     private final Integer type;
 
