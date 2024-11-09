@@ -1,14 +1,16 @@
 spring:
   cloud:
     nacos:
+      username: nacos
+      password: nacos
       config:
-        server-addr: 192.168.106.128:15010
-        namespace: 2a019dea-29c3-404f-9ef1-c81da8159b5f
+        server-addr: 192.168.118.128:15030
+        namespace: 3fa9923d-943f-48b0-81ae-1b1c4c44ad1c
         file-extension: yaml
         shared-configs:
-          - dataID: program.yaml
-            group: dev
+          - data-id: program.yaml
+            group: DEFAULT_GROUP
             refresh: true
-          - dataID: context.yaml
-            group: dev
+          - data-id: context.yaml
+            group: DEFAULT_GROUP
             refresh: true

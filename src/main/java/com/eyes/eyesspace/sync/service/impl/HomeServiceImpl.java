@@ -4,6 +4,8 @@ import com.eyes.eyesAuth.context.UserInfoHolder;
 import com.eyes.eyesTools.common.exception.CustomException;
 import com.eyes.eyesTools.utils.PageBind;
 import com.eyes.eyesspace.constant.HomeTypeEnum;
+import com.eyes.eyesspace.constant.TrackPointFieldEnum;
+import com.eyes.eyesspace.constant.TrackPointTitleEnum;
 import com.eyes.eyesspace.persistent.dto.BlogListDTO;
 import com.eyes.eyesspace.persistent.mapper.HomeMapper;
 import com.eyes.eyesspace.persistent.mapper.TrackMapper;
@@ -128,8 +130,8 @@ public class HomeServiceImpl implements HomeService {
   @Override
   public SiteDataVO getSiteData() {
     return new SiteDataVO(
-        trackMapper.getVisitNumByTime(null, null),
-        trackMapper.getVisitorNumByTime(null, null)
+        trackMapper.getTitleNum(null, null, TrackPointTitleEnum.VISIT.getTitle()),
+        trackMapper.getFieldDistinctNum(null, null, TrackPointFieldEnum.BROWSER_ID.getField())
     );
   }
 }

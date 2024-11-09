@@ -14,8 +14,8 @@ import lombok.Data;
 @ApiModel
 public class SiteDataVO {
   @ApiModelProperty("网站访问量")
-  private Integer visitNum;
+  private Long visitNum;
 
   @ApiModelProperty("网站访客数")
-  private Integer visitorNum;
+  private Long visitorNum;
 }

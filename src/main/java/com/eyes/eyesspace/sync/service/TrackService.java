@@ -1,6 +1,7 @@
 package com.eyes.eyesspace.sync.service;
 
 import com.eyes.eyesTools.common.exception.CustomException;
+import com.eyes.eyesspace.sync.model.request.TrackPointAddRequest;
 import com.eyes.eyesspace.sync.model.request.TrackVisitAddRequest;
 
 /**
@@ -9,7 +10,5 @@ import com.eyes.eyesspace.sync.model.request.TrackVisitAddRequest;
  */
 
 public interface TrackService {
-  void addSpaceVisit(TrackVisitAddRequest trackVisitAddRequest) throws CustomException;
-
-  void addJokeVisit(Long id);
+  void addTrackPoint(TrackPointAddRequest trackPointAddRequest);
 }

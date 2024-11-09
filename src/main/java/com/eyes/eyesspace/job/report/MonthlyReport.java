@@ -2,6 +2,8 @@ package com.eyes.eyesspace.job.report;
 
 import com.eyes.eyesspace.async.asynchronist.asyncRestrict.ReportAsyncRestrict;
 import com.eyes.eyesspace.async.model.MonthlyReportModel;
+import com.eyes.eyesspace.constant.TrackPointFieldEnum;
+import com.eyes.eyesspace.constant.TrackPointTitleEnum;
 import com.eyes.eyesspace.persistent.mapper.CommentMapper;
 import com.eyes.eyesspace.persistent.mapper.TrackMapper;
 import java.time.LocalDateTime;
@@ -54,8 +56,8 @@ public class MonthlyReport {
     // 邮件通知
     reportActuator.sendMonthlyReport(new MonthlyReportModel(
         SUBJECT,
-        trackMapper.getVisitNumByTime(lastFirstDayStr, currentFirstDayStr),
-        trackMapper.getVisitorNumByTime(lastFirstDayStr, currentFirstDayStr),
+        trackMapper.getTitleNum(lastFirstDayStr, currentFirstDayStr, TrackPointTitleEnum.VISIT.getTitle()),
+        trackMapper.getFieldDistinctNum(lastFirstDayStr, currentFirstDayStr, TrackPointFieldEnum.BROWSER_ID.getField()),
         commentMapper.getCommentNumByTime(lastFirstDayStr, currentFirstDayStr),
         commentMapper.getLeaveMsgNumByTime(lastFirstDayStr, currentFirstDayStr)
     ));

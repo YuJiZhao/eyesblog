@@ -6,6 +6,7 @@ import com.eyes.eyesTools.utils.IpUtils;
 import com.eyes.eyesTools.utils.OSUtils;
 import com.eyes.eyesTools.utils.WebUtils;
 import com.eyes.eyesspace.persistent.mapper.TrackMapper;
+import com.eyes.eyesspace.sync.model.request.TrackPointAddRequest;
 import com.eyes.eyesspace.sync.service.TrackService;
 import com.eyes.eyesspace.sync.model.request.TrackVisitAddRequest;
 import javax.servlet.http.HttpServletRequest;
@@ -26,28 +27,15 @@ public class TrackServiceImpl implements TrackService {
   }
 
   @Override
-  public void addSpaceVisit(TrackVisitAddRequest trackVisitAddRequest) {
+  public void addTrackPoint(TrackPointAddRequest trackPointAddRequest) {
     HttpServletRequest request = WebUtils.getRequest();
-
-    if (!trackMapper.addVisitLog(
-        UserInfoHolder.getUid(),
-        IpUtils.getIpAddr(request),
-        OSUtils.osName(request),
-        BrowserUtils.browserName(request),
-        trackVisitAddRequest.getPath()
-    )) { log.error("Website access data addition error"); }
-  }
-
-  @Override
-  public void addJokeVisit(Long id) {
-    HttpServletRequest request = WebUtils.getRequest();
-
-    if (!trackMapper.addJokeLog(
-        id,
-        UserInfoHolder.getUid(),
-        IpUtils.getIpAddr(request),
-        OSUtils.osName(request),
-        BrowserUtils.browserName(request)
-    )) { log.error("joke visit data addition error"); }
+    if (!trackMapper.addTrackPoint(
+            UserInfoHolder.getUid(),
+            IpUtils.getIpAddr(request),
+            OSUtils.osName(request),
+            BrowserUtils.browserName(request),
+            trackPointAddRequest)) {
+        log.error("joke visit data addition error, trackPointAddRequest: {}", trackPointAddRequest);
+    }
   }
 }

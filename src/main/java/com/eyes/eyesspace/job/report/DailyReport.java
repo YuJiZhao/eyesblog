@@ -1,6 +1,8 @@
 package com.eyes.eyesspace.job.report;
 
 import com.eyes.eyesspace.async.asynchronist.asyncRestrict.ReportAsyncRestrict;
+import com.eyes.eyesspace.constant.TrackPointFieldEnum;
+import com.eyes.eyesspace.constant.TrackPointTitleEnum;
 import com.eyes.eyesspace.persistent.mapper.CommentMapper;
 import com.eyes.eyesspace.persistent.mapper.TrackMapper;
 import com.eyes.eyesspace.async.model.DailyReportModel;
@@ -49,8 +51,8 @@ public class DailyReport {
     // 邮件通知
     reportActuator.sendDailyReport(new DailyReportModel(
         SUBJECT,
-        trackMapper.getVisitNumByTime(yesterday, today),
-        trackMapper.getVisitorNumByTime(yesterday, today),
+        trackMapper.getTitleNum(yesterday, today, TrackPointTitleEnum.VISIT.getTitle()),
+        trackMapper.getFieldDistinctNum(yesterday, today, TrackPointFieldEnum.BROWSER_ID.getField()),
         commentMapper.getCommentNumByTime(yesterday, today),
         commentMapper.getLeaveMsgNumByTime(yesterday, today)
     ));

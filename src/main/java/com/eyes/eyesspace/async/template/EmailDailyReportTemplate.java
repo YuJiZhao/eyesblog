@@ -14,8 +14,8 @@ public class EmailDailyReportTemplate {
   private final String title;
   private final String name;
 
-  private final Integer visitNum;
-  private final Integer visitorNum;
+  private final Long visitNum;
+  private final Long visitorNum;
   private final Integer commentNum;
   private final Integer leaveMsgNum;
 

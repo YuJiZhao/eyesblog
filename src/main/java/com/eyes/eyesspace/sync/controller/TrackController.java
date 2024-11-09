@@ -2,6 +2,7 @@ package com.eyes.eyesspace.sync.controller;
 
 import com.eyes.eyesAuth.permission.Permission;
 import com.eyes.eyesTools.common.exception.CustomException;
+import com.eyes.eyesspace.sync.model.request.TrackPointAddRequest;
 import com.eyes.eyesspace.sync.model.request.TrackVisitAddRequest;
 import com.eyes.eyesspace.sync.service.TrackService;
 import io.swagger.annotations.Api;
@@ -28,17 +29,10 @@ public class TrackController {
     this.trackService = trackService;
   }
 
-  @ApiOperation("进站埋点")
+  @ApiOperation("添加埋点")
   @Permission
-  @PostMapping("/visitAdd")
-  public void spaceVisit(@Validated @RequestBody TrackVisitAddRequest trackVisitAddRequest) throws CustomException {
-    trackService.addSpaceVisit(trackVisitAddRequest);
-  }
-
-  @ApiOperation("查看梗图埋点")
-  @Permission
-  @GetMapping("/jokeVisit")
-  public void jokeVisit(Long id) throws CustomException {
-    trackService.addJokeVisit(id);
+  @GetMapping("/addTrackPoint")
+  public void addTrackPoint(TrackPointAddRequest request) {
+    trackService.addTrackPoint(request);
   }
 }

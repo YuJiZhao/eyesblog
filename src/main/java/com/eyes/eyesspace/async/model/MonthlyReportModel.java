@@ -15,9 +15,9 @@ import lombok.NoArgsConstructor;
 public class MonthlyReportModel implements Serializable {
   private String subject;
 
-  private Integer visitNum;
+  private Long visitNum;
 
-  private Integer visitorNum;
+  private Long visitorNum;
 
   private Integer commentNum;
 
