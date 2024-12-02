@@ -4,19 +4,19 @@ import lombok.Data;
 
 @Data
 public class CommentChildPO {
-    private Integer id;
+	private Integer id;
 
-    private Long uid;
+	private Long uid;
 
-    private Integer landlord;
+	private Integer landlord;
 
-    private Integer replyId;
+	private Integer replyId;
 
-    private String comment;
+	private String comment;
 
-    private Integer comments;
+	private Integer comments;
 
-    private String createTime;
+	private String createTime;
 
-    private Integer status;
+	private Integer status;
 }

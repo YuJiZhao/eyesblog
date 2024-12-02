@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class BlogAddLabelPO {
-    private Integer id;
+	private Integer id;
 
-    private String label;
+	private String label;
 }

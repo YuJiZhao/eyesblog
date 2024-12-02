@@ -4,13 +4,14 @@ import lombok.Data;
 
 /**
  * @author eyesYeager
- * @date 2023/9/25 11:30
+ * date 2023/9/25 11:30
  */
+
 @Data
 public class JokeListPO {
-  private Long id;
+	private Long id;
 
-  private String category;
+	private String category;
 
-  private String urlList;
+	private String urlList;
 }

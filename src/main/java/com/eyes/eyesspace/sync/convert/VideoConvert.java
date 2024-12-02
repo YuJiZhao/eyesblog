@@ -10,11 +10,11 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper
 public interface VideoConvert {
-    VideoConvert INSTANCE = Mappers.getMapper(VideoConvert.class);
+	VideoConvert INSTANCE = Mappers.getMapper(VideoConvert.class);
 
-    @Mapping(target = "id", ignore = true)
-    UserVideoInfoVO userVideoPo2InfoDto(UserVideoPO userVideoPo);
+	@Mapping(target = "id", ignore = true)
+	UserVideoInfoVO userVideoPo2InfoDto(UserVideoPO userVideoPo);
 
-    @Mapping(target = "originalAuthor", source = "name")
-    VideoAddRequest BatchBiliAdd2RequestAdd(VideoAddBatchBiliRequest videoAddBatchBiliRequest);
+	@Mapping(target = "originalAuthor", source = "name")
+	VideoAddRequest BatchBiliAdd2RequestAdd(VideoAddBatchBiliRequest videoAddBatchBiliRequest);
 }

@@ -4,9 +4,9 @@ import lombok.Data;
 
 @Data
 public class CommentDelInfoPO {
-    private Integer type;
+	private Integer type;
 
-    private Integer objectId;
+	private Integer objectId;
 
-    private Integer status;
+	private Integer status;
 }

@@ -6,15 +6,15 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum HomeTypeEnum {
-    BLOG(0, "博客"),
+	BLOG(0, "博客"),
 
-    SHUOSHUO(1, "说说"),
+	SHUOSHUO(1, "说说"),
 
-    VERSION(2, "版本"),
+	VERSION(2, "版本"),
 
-    ANIME(3, "动漫");
+	ANIME(3, "动漫");
 
-    private final Integer type;
+	private final Integer type;
 
-    private final String description;
+	private final String description;
 }

@@ -8,9 +8,9 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class UserMusicKeyBean {
-    private List<Integer> musicList;
+	private List<Integer> musicList;
 
-    private String time;
+	private String time;
 
-    private Integer num;
+	private Integer num;
 }

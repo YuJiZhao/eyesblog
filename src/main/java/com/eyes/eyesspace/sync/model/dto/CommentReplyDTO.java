@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class CommentReplyDTO {
-    private Integer start;
+	private Integer start;
 
-    private Integer target;
+	private Integer target;
 }

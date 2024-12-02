@@ -8,8 +8,8 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper
 public interface MusicConvert {
-    MusicConvert INSTANCE = Mappers.getMapper(MusicConvert.class);
+	MusicConvert INSTANCE = Mappers.getMapper(MusicConvert.class);
 
-    @Mapping(target = "id", ignore = true)
-    UserMusicInfoVO userMusicPo2InfoDto(UserMusicPO userMusicPo);
+	@Mapping(target = "id", ignore = true)
+	UserMusicInfoVO userMusicPo2InfoDto(UserMusicPO userMusicPo);
 }

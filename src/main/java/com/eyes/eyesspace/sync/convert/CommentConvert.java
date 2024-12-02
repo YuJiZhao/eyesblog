@@ -9,10 +9,10 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper
 public interface CommentConvert {
-    CommentConvert INSTANCE = Mappers.getMapper(CommentConvert.class);
+	CommentConvert INSTANCE = Mappers.getMapper(CommentConvert.class);
 
-    CommentListVO commentListPo2Dto(CommentListPO commentListPo);
+	CommentListVO commentListPo2Dto(CommentListPO commentListPo);
 
-    CommentChildDTO commentChildPo2Dto(CommentChildPO commentChildPo);
+	CommentChildDTO commentChildPo2Dto(CommentChildPO commentChildPo);
 
 }

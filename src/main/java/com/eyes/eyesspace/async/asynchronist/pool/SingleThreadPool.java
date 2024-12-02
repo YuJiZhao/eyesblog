@@ -5,13 +5,13 @@ import java.util.concurrent.Executors;
 
 /**
  * @author eyesYeager
- * @date 2023/7/1 17:38
+ * date 2023/7/1 17:38
  */
 
 public class SingleThreadPool {
-  private final static ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();
+	private final static ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();
 
-  public static ExecutorService getExecutor() {
-    return singleThreadExecutor;
-  }
+	public static ExecutorService getExecutor() {
+		return singleThreadExecutor;
+	}
 }

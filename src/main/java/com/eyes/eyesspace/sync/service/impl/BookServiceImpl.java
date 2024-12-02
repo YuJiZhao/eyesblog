@@ -1,6 +1,6 @@
 package com.eyes.eyesspace.sync.service.impl;
 
-import com.eyes.eyesTools.common.exception.CustomException;
+import com.eyes.eyesspace.sync.common.exception.CustomException;
 import com.eyes.eyesspace.persistent.mapper.BookMapper;
 import com.eyes.eyesspace.persistent.mapper.ContextMapper;
 import com.eyes.eyesspace.persistent.po.ContextPO;
@@ -9,17 +9,19 @@ import com.eyes.eyesspace.sync.model.request.CommentAddRequest;
 import com.eyes.eyesspace.sync.model.vo.*;
 import com.eyes.eyesspace.sync.service.BookService;
 import com.eyes.eyesspace.sync.service.CommentService;
+import com.eyes.eyesspace.utils.FileUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.Collections;
 import java.util.List;
 
 /**
  * @author artonyu
- * @date 2024-08-01 09:38
+ * date 2024-08-01 09:38
  */
 
 @Slf4j
@@ -27,57 +29,57 @@ import java.util.List;
 @RefreshScope
 public class BookServiceImpl implements BookService {
 
-    private static final List<Integer> BOOK_NOTICE_ID = Collections.singletonList(10);
+	private static final List<Integer> BOOK_NOTICE_ID = Collections.singletonList(10);
 
-    @Value("${path.url.site}")
-    private String siteUrl;
+	@Value("${path.url.site}")
+	private String siteUrl;
 
-    @Value("${path.url.book-details}")
-    private String bookDetailsPath;
+	@Value("${path.url.book-details}")
+	private String bookDetailsPath;
 
-    @Value("${business.notice-switch.book:false}")
-    private Boolean bookNoticeSwitch;
+	@Value("${business.notice-switch.book:false}")
+	private Boolean bookNoticeSwitch;
 
-    private final ContextMapper contextMapper;
+	@Resource
+	private ContextMapper contextMapper;
 
-    private final BookMapper bookMapper;
+	@Resource
+	private BookMapper bookMapper;
 
-    private final CommentService commentService;
+	@Resource
+	private CommentService commentService;
 
-    public BookServiceImpl(ContextMapper contextMapper, BookMapper bookMapper, CommentService commentService) {
-        this.contextMapper = contextMapper;
-        this.bookMapper = bookMapper;
-        this.commentService = commentService;
-    }
+	@Resource
+	private FileUtils fileUtils;
 
-    @Override
-    public BookNoticeVO getBookNotice() {
-        List<ContextPO> context = contextMapper.getContext(BOOK_NOTICE_ID);
-        return new BookNoticeVO(context.get(0).getValue());
-    }
+	@Override
+	public BookNoticeVO getBookNotice() {
+		List<ContextPO> context = contextMapper.getContext(BOOK_NOTICE_ID);
+		return new BookNoticeVO(context.get(0).getValue());
+	}
 
-    @Override
-    public BookListInfoVO getBookListInfo() {
-        return null;
-    }
+	@Override
+	public BookListInfoVO getBookListInfo() {
+		return null;
+	}
 
-    @Override
-    public BookListVO getBookList(Integer page, Integer pageSize) {
-        return null;
-    }
+	@Override
+	public BookListVO getBookList(Integer page, Integer pageSize) {
+		return null;
+	}
 
-    @Override
-    public BookInfoVO getBookInfo(Integer id) throws CustomException {
-        return null;
-    }
+	@Override
+	public BookInfoVO getBookInfo(Integer id) throws CustomException {
+		return null;
+	}
 
-    @Override
-    public List<BookListDTO> getBookListByIds(List<Integer> ids) {
-        return null;
-    }
+	@Override
+	public List<BookListDTO> getBookListByIds(List<Integer> ids) {
+		return null;
+	}
 
-    @Override
-    public void doBookComment(CommentAddRequest commentAddRequest) throws CustomException {
+	@Override
+	public void doBookComment(CommentAddRequest commentAddRequest) throws CustomException {
 //        // 校验可行性
 //        String role = UserInfoHolder.getRole();
 //        String statusCondition = AuthUtils.statusSqlCondition(role);
@@ -94,10 +96,10 @@ public class BookServiceImpl implements BookService {
 //        if (!bookMapper.updateBookComments(commentAddRequest.getObjectId(), 1)) {
 //            throw new CustomException("评论数据更新失败");
 //        }
-    }
+	}
 
-    @Override
-    public List<CommentListVO> getBookCommentList(Integer id, Integer page, Integer pageSize) throws CustomException {
+	@Override
+	public List<CommentListVO> getBookCommentList(Integer id, Integer page, Integer pageSize) throws CustomException {
 //        // 校验可行性
 //        String role = UserInfoHolder.getRole();
 //        String statusCondition = AuthUtils.statusSqlCondition(role);
@@ -109,11 +111,11 @@ public class BookServiceImpl implements BookService {
 //        // 执行业务
 //        Long uid = UserInfoHolder.getUid();
 //        return commentService.getCommentList(id, CommentEnum.BOOK.getType(), uid, page, pageSize);
-        return null;
-    }
+		return null;
+	}
 
-    @Override
-    public void delBookComment(Integer id) throws CustomException {
+	@Override
+	public void delBookComment(Integer id) throws CustomException {
 //        String role = UserInfoHolder.getRole();
 //        // 可行性检查
 //        CommentDelInfoPO commentDelInfoPo = bookMapper.getBookCommentInfo(id);
@@ -130,5 +132,5 @@ public class BookServiceImpl implements BookService {
 //        if (!bookMapper.updateBookComments(commentDelInfoPo.getObjectId(), -1)) {
 //            throw new CustomException("评论数据更新失败");
 //        }
-    }
+	}
 }

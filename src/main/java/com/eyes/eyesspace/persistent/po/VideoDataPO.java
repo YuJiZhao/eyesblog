@@ -4,9 +4,9 @@ import lombok.Data;
 
 @Data
 public class VideoDataPO {
-    private Integer viewsNum;
+	private Integer viewsNum;
 
-    private Integer likesNum;
+	private Integer likesNum;
 
-    private Integer commentsNum;
+	private Integer commentsNum;
 }

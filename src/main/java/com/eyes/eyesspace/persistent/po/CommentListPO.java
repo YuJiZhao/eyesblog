@@ -4,17 +4,17 @@ import lombok.Data;
 
 @Data
 public class CommentListPO {
-    private Integer id;
+	private Integer id;
 
-    private Long uid;
+	private Long uid;
 
-    private String comment;
+	private String comment;
 
-    private String createTime;
+	private String createTime;
 
-    private Integer comments;
+	private Integer comments;
 
-    private String replyList;
+	private String replyList;
 
-    private Integer status;
+	private Integer status;
 }

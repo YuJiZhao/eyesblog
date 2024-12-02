@@ -4,19 +4,19 @@ import lombok.Data;
 
 @Data
 public class UserMusicPO {
-    private Integer id;
+	private Integer id;
 
-    private String title;
+	private String title;
 
-    private String author;
+	private String author;
 
-    private String url;
+	private String url;
 
-    private String pic;
+	private String pic;
 
-    private Integer views;
+	private Integer views;
 
-    private Integer likes;
+	private Integer likes;
 
-    private Integer comments;
+	private Integer comments;
 }

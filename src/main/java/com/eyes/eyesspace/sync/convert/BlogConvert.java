@@ -8,8 +8,8 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper
 public interface BlogConvert {
-    BlogConvert INSTANCE = Mappers.getMapper(BlogConvert.class);
+	BlogConvert INSTANCE = Mappers.getMapper(BlogConvert.class);
 
-    @Mapping(source = "category", target = "category", ignore = true)
-    BlogAddBO BlogAddVo2Bo(BlogAddRequest blogAddRequest);
+	@Mapping(source = "category", target = "category", ignore = true)
+	BlogAddBO BlogAddVo2Bo(BlogAddRequest blogAddRequest);
 }

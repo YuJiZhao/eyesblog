@@ -4,11 +4,11 @@ import lombok.Data;
 
 @Data
 public class ShuoDataPO {
-    private Integer viewsNum;
+	private Integer viewsNum;
 
-    private Integer likesNum;
+	private Integer likesNum;
 
-    private Integer collectionsNum;
+	private Integer collectionsNum;
 
-    private Integer commentsNum;
+	private Integer commentsNum;
 }

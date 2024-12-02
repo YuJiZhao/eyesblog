@@ -6,25 +6,25 @@ import java.util.Date;
 
 @Data
 public class UserVideoPO {
-    private Integer id;
+	private Integer id;
 
-    private String title;
+	private String title;
 
-    private String originalAuthor;
+	private String originalAuthor;
 
-    private String pictureUrl;
+	private String pictureUrl;
 
-    private String originalUrl;
+	private String originalUrl;
 
-    private String ownerComment;
+	private String ownerComment;
 
-    private String videoUrl;
+	private String videoUrl;
 
-    private Integer views;
+	private Integer views;
 
-    private Integer likes;
+	private Integer likes;
 
-    private Integer comments;
+	private Integer comments;
 
-    private Date createTime;
+	private Date createTime;
 }

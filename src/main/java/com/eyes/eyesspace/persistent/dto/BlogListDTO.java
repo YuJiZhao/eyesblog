@@ -2,39 +2,28 @@ package com.eyes.eyesspace.persistent.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import com.eyes.eyesspace.sync.model.bean.HomeListBean;
 
 import java.util.Date;
 
 @Data
-@ApiModel
 public class BlogListDTO implements HomeListBean {
-    @ApiModelProperty("id")
-    private Integer id;
+	private Integer id;
 
-    @ApiModelProperty("博客标题")
-    private String title;
+	private String title;
 
-    @ApiModelProperty("博客摘要")
-    private String summary;
+	private String summary;
 
-    @ApiModelProperty("博客分类")
-    private String category;
+	private String category;
 
-    @ApiModelProperty("浏览量")
-    private Integer views;
+	private Integer views;
 
-    @ApiModelProperty("博客字数")
-    private Integer words;
+	private Integer words;
 
-    @ApiModelProperty("博客状态")
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private Integer status;
+	@JsonInclude(JsonInclude.Include.NON_NULL)
+	private Integer status;
 
-    @ApiModelProperty("创建时间")
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date createTime;
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private Date createTime;
 }

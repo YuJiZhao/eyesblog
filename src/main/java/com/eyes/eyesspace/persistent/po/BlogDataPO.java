@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class BlogDataPO {
-    private Integer viewsNum;
+	private Integer viewsNum;
 
-    private Integer commentsNum;
+	private Integer commentsNum;
 }

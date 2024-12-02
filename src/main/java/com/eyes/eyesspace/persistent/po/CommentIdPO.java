@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class CommentIdPO {
-    private Integer replyId;
+	private Integer replyId;
 
-    private Integer landlord;
+	private Integer landlord;
 }

@@ -7,11 +7,12 @@ import org.mapstruct.factory.Mappers;
 
 /**
  * @author eyesYeager
- * @date 2023/6/1 9:36
+ * date 2023/6/1 9:36
  */
+
 @Mapper
 public interface FriendConvert {
-  FriendConvert INSTANCE = Mappers.getMapper(FriendConvert.class);
+	FriendConvert INSTANCE = Mappers.getMapper(FriendConvert.class);
 
-  FriendChainApplyDTO friendChainApplyRequest2DTO(FriendChainApplyRequest friendChainApplyRequest);
+	FriendChainApplyDTO friendChainApplyRequest2DTO(FriendChainApplyRequest friendChainApplyRequest);
 }

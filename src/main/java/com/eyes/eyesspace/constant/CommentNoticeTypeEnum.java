@@ -6,11 +6,11 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum CommentNoticeTypeEnum {
-    COMMENT(0, "评论"),
+	COMMENT(0, "评论"),
 
-    REPLY(1, "回复");
+	REPLY(1, "回复");
 
-    private final Integer type;
+	private final Integer type;
 
-    private final String description;
+	private final String description;
 }

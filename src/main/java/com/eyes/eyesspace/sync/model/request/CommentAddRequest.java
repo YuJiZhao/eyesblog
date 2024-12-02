@@ -1,41 +1,30 @@
 package com.eyes.eyesspace.sync.model.request;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 
 @Data
-@ApiModel
 public class CommentAddRequest {
-    @ApiModelProperty(hidden = true)
-    @JsonIgnore
-    private Integer id;
+	@JsonIgnore
+	private Integer id;
 
-    @ApiModelProperty(hidden = true)
-    private Long uid;
+	private Long uid;
 
-    @ApiModelProperty("对象id")
-    @NotNull(message = "对象内容id不能为空")
-    private Integer objectId;
+	@NotNull(message = "对象内容id不能为空")
+	private Integer objectId;
 
-    @ApiModelProperty("楼主帖子id")
-    private Integer landlord;
+	private Integer landlord;
 
-    @ApiModelProperty("回复对象帖子id")
-    private Integer replyId;
+	private Integer replyId;
 
-    @ApiModelProperty("原始评论内容")
-    @NotNull(message = "原始评论内容不能为空")
-    private String originalComment;
+	@NotNull(message = "原始评论内容不能为空")
+	private String originalComment;
 
-    @ApiModelProperty("处理后的评论内容")
-    @NotNull(message = "评论内容不能为空")
-    private String comment;
+	@NotNull(message = "评论内容不能为空")
+	private String comment;
 
-    @ApiModelProperty(hidden = true)
-    @JsonIgnore
-    private String url;
+	@JsonIgnore
+	private String url;
 }

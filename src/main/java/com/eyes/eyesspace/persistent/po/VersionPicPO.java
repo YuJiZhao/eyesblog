@@ -4,11 +4,12 @@ import lombok.Data;
 
 /**
  * @author eyesYeager
- * @date 2023/5/20 20:06
+ * date 2023/5/20 20:06
  */
+
 @Data
 public class VersionPicPO {
-  private Integer versionId;
+	private Integer versionId;
 
-  private String url;
+	private String url;
 }

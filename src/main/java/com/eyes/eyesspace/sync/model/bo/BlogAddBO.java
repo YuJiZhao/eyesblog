@@ -6,19 +6,19 @@ import java.util.List;
 
 @Data
 public class BlogAddBO {
-    private Integer id;
+	private Integer id;
 
-    private String title;
+	private String title;
 
-    private String content;
+	private String content;
 
-    private String summary;
+	private String summary;
 
-    private Integer words;
+	private Integer words;
 
-    private Integer status;
+	private Integer status;
 
-    private List<String> labels;
+	private List<String> labels;
 
-    private Integer category;
+	private Integer category;
 }

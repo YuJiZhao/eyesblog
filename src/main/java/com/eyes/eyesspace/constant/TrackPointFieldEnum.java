@@ -5,31 +5,31 @@ import lombok.Getter;
 
 /**
  * @author eyesYeager
- * @date 2024/9/22 14:26
+ * date 2024/9/22 14:26
  */
 
 @Getter
 @AllArgsConstructor
 public enum TrackPointFieldEnum {
-    ID("id"),
+	ID("id"),
 
-    UID("uid"),
+	UID("uid"),
 
-    BROWSER_ID("browser_id"),
+	BROWSER_ID("browser_id"),
 
-    SESSION_ID("session_id"),
+	SESSION_ID("session_id"),
 
-    TITLE("title"),
+	TITLE("title"),
 
-    CONTENT("content"),
+	CONTENT("content"),
 
-    PATH("path"),
+	PATH("path"),
 
-    IP("ip"),
+	IP("ip"),
 
-    OS("os"),
+	OS("os"),
 
-    BROWSER("browser");
+	BROWSER("browser");
 
-    private final String field;
+	private final String field;
 }

@@ -6,9 +6,9 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class MusicDataPO {
-    private Integer viewsNum;
+	private Integer viewsNum;
 
-    private Integer likesNum;
+	private Integer likesNum;
 
-    private Integer commentsNum;
+	private Integer commentsNum;
 }

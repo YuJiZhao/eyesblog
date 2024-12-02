@@ -1,6 +1,6 @@
 package com.eyes.eyesspace.sync.service;
 
-import com.eyes.eyesTools.common.exception.CustomException;
+import com.eyes.eyesspace.sync.common.exception.CustomException;
 import com.eyes.eyesspace.sync.model.vo.FileUploadVO;
 import com.eyes.eyesspace.sync.model.vo.MusicAddVO;
 import com.eyes.eyesspace.persistent.dto.MusicInfoDTO;
@@ -13,21 +13,21 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 public interface MusicService {
-    MusicAddVO addMusic(MusicAddRequest musicAddRequest) throws CustomException;
+	MusicAddVO addMusic(MusicAddRequest musicAddRequest) throws CustomException;
 
-    FileUploadVO addMusicCover(MultipartFile multipartFile) throws CustomException;
+	FileUploadVO addMusicCover(MultipartFile multipartFile) throws CustomException;
 
-    FileUploadVO addMusicFile(MultipartFile multipartFile) throws CustomException;
+	FileUploadVO addMusicFile(MultipartFile multipartFile) throws CustomException;
 
-    List<MusicListDTO> getMusicList(Integer page, Integer pageSize);
+	List<MusicListDTO> getMusicList(Integer page, Integer pageSize);
 
-    MusicListInfoVO getMusicListInfo();
+	MusicListInfoVO getMusicListInfo();
 
-    MusicInfoDTO getMusicInfo(Integer id);
+	MusicInfoDTO getMusicInfo(Integer id);
 
-    String getMusicLrc(String id) throws CustomException;
+	String getMusicLrc(String id) throws CustomException;
 
-    UserMusicInfoVO getMusicInfoByUser() throws CustomException;
+	UserMusicInfoVO getMusicInfoByUser() throws CustomException;
 
-    void doUserLike(String id) throws CustomException;
+	void doUserLike(String id) throws CustomException;
 }

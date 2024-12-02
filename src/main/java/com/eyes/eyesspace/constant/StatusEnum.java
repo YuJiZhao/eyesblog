@@ -6,13 +6,13 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum StatusEnum {
-    PUBLIC(0, "公开"),
+	PUBLIC(0, "公开"),
 
-    PRIVATE(1, "私有"),
+	PRIVATE(1, "私有"),
 
-    DELETE(2, "删除");
+	DELETE(2, "删除");
 
-    private final Integer status;
+	private final Integer status;
 
-    private final String description;
+	private final String description;
 }

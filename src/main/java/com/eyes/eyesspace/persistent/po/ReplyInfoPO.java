@@ -4,11 +4,12 @@ import lombok.Data;
 
 /**
  * @author eyesYeager
- * @date 2023/2/9 10:30
+ * date 2023/2/9 10:30
  */
+
 @Data
 public class ReplyInfoPO {
-  private Long uid;
+	private Long uid;
 
-  private String content;
+	private String content;
 }

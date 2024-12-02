@@ -6,17 +6,17 @@ import java.util.List;
 
 @Data
 public class ShuoInfoDTO {
-    private Integer id;
+	private Integer id;
 
-    private String content;
+	private String content;
 
-    private List<String> picList;
+	private List<String> picList;
 
-    private Integer views;
+	private Integer views;
 
-    private Integer comments;
+	private Integer comments;
 
-    private Integer status;
+	private Integer status;
 
-    private String createTime;
+	private String createTime;
 }

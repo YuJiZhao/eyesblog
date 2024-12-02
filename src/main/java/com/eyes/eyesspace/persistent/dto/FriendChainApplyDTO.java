@@ -4,19 +4,20 @@ import lombok.Data;
 
 /**
  * @author eyesYeager
- * @date 2023/6/1 9:34
+ * date 2023/6/1 9:34
  */
+
 @Data
 public class FriendChainApplyDTO {
-  private Long uid;
+	private Long uid;
 
-  private String email;
+	private String email;
 
-  private String name;
+	private String name;
 
-  private String introduce;
+	private String introduce;
 
-  private String avatar;
+	private String avatar;
 
-  private String address;
+	private String address;
 }

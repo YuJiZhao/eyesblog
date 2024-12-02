@@ -5,13 +5,13 @@ import lombok.Getter;
 
 /**
  * @author artonyu
- * @date 2024-08-05 10:40
+ * date 2024-08-05 10:40
  */
 
 @Getter
 @AllArgsConstructor
 public enum TrackPointTitleEnum {
-    VISIT("访问网站");
+	VISIT("visitSpace");
 
-    private final String title;
+	private final String title;
 }

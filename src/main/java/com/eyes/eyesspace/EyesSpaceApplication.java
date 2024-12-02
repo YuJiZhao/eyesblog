@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @SpringBootApplication
 public class EyesSpaceApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(EyesSpaceApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(EyesSpaceApplication.class, args);
+	}
 }

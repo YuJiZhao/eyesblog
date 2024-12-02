@@ -6,27 +6,30 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.12.RELEASE</version>
+        <version>2.6.15</version>
         <relativePath/>
     </parent>
 
     <groupId>com.eyes</groupId>
     <artifactId>eyesSpace</artifactId>
-    <version>2.6.0</version>
+    <version>2.7.0</version>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>17</java.version>
+        <spring-cloud-starter-bootstrap.version>3.1.5</spring-cloud-starter-bootstrap.version>
+        <eyesAuth-spring-boot-starter.version>1.0.0</eyesAuth-spring-boot-starter.version>
+        <eyesStorage-spring-boot-starter.version>1.1.0</eyesStorage-spring-boot-starter.version>
         <mybatis-plus.version>3.5.0</mybatis-plus.version>
-        <eyesTools.version>0.0.1</eyesTools.version>
-        <eyesAuth.version>0.0.1</eyesAuth.version>
-        <nacos.version>2.2.6.RELEASE</nacos.version>
-        <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
-        <swagger-bootstrap-ui.version>1.9.6</swagger-bootstrap-ui.version>
-        <swagger-models.version>1.5.21</swagger-models.version>
+        <nacos.version>2021.0.5.0</nacos.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
         <mapstruct-processor.version>1.4.2.Final</mapstruct-processor.version>
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
         <hutool.version>5.8.25</hutool.version>
+        <fastjson.version>1.2.49</fastjson.version>
+        <userAgentUtils.version>1.21</userAgentUtils.version>
+        <mail.version>1.4.7</mail.version>
+        <activation.version>1.1.1</activation.version>
+        <okhttp.version>4.12.0</okhttp.version>
     </properties>
 
     <dependencies>
@@ -53,15 +56,21 @@
         </dependency>
 
         <dependency>
-            <groupId>com.eyes</groupId>
-            <artifactId>eyesTools-spring-boot-starter</artifactId>
-            <version>${eyesTools.version}</version>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+            <version>${spring-cloud-starter-bootstrap.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.eyes</groupId>
             <artifactId>eyesAuth-spring-boot-starter</artifactId>
-            <version>${eyesAuth.version}</version>
+            <version>${eyesAuth-spring-boot-starter.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.eyesyeager</groupId>
+            <artifactId>eyesStorage-spring-boot-starter</artifactId>
+            <version>${eyesStorage-spring-boot-starter.version}</version>
         </dependency>
 
         <dependency>
@@ -104,31 +113,38 @@
         </dependency>
 
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>${springfox-swagger2.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.mapstruct</groupId>
-                    <artifactId>mapstruct</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>com.github.xiaoymin</groupId>
-            <artifactId>swagger-bootstrap-ui</artifactId>
-            <version>${swagger-bootstrap-ui.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-models</artifactId>
-            <version>${swagger-models.version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>${hutool.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>eu.bitwalker</groupId>
+            <artifactId>UserAgentUtils</artifactId>
+            <version>${userAgentUtils.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>${mail.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>activation</artifactId>
+            <version>${activation.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>${okhttp.version}</version>
         </dependency>
     </dependencies>
 
@@ -137,14 +153,14 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.3.12.RELEASE</version>
+                <version>2.6.15</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>17</source>
+                    <target>17</target>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.mapstruct</groupId>

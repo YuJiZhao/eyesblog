@@ -4,15 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MediaConstant {
-    private static final List<String> image = new ArrayList<>();
+	private static final List<String> image = new ArrayList<>();
 
-    static {
-        image.add(".jpg");
-        image.add(".png");
-        image.add(".jpeg");
-    }
+	public static final String DEFAULT_MEDIA_TYPE = ".png";
 
-    public static boolean imgContain(String media) {
-        return image.contains(media);
-    }
+	static {
+		image.add(DEFAULT_MEDIA_TYPE);
+		image.add(".PNG");
+		image.add(".jpg");
+		image.add(".JPG");
+		image.add(".jpeg");
+		image.add(".JPEG");
+	}
+
+	public static boolean imgContain(String media) {
+		return image.contains(media);
+	}
 }

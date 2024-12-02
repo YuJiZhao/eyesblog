@@ -5,7 +5,8 @@ import lombok.Data;
 
 @Data
 public class HomeListVO {
-    private Integer type;
 
-    private HomeListBean homeList;
+	private Integer type;
+
+	private HomeListBean homeList;
 }

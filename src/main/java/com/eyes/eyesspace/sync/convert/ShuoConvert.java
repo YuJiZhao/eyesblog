@@ -11,14 +11,14 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper
 public interface ShuoConvert {
-    ShuoConvert INSTANCE = Mappers.getMapper(ShuoConvert.class);
+	ShuoConvert INSTANCE = Mappers.getMapper(ShuoConvert.class);
 
-    @Mapping(source = "id", target = "id", ignore = true)
-    ShuoListVO shuoInfoDTO2ListVO(ShuoInfoDTO shuoInfoDTO);
+	@Mapping(source = "id", target = "id", ignore = true)
+	ShuoListVO shuoInfoDTO2ListVO(ShuoInfoDTO shuoInfoDTO);
 
-    @Mapping(source = "id", target = "originalId")
-    ShuoListDTO shuoInfoDTO2ListDTO(ShuoInfoDTO shuoInfoDTO);
+	@Mapping(source = "id", target = "originalId")
+	ShuoListDTO shuoInfoDTO2ListDTO(ShuoInfoDTO shuoInfoDTO);
 
-    @Mapping(source = "objectId", target = "objectId", ignore = true)
-    CommentAddRequest shuoshuo2Comment(ShuoCommentAddRequest shuoCommentAddRequest);
+	@Mapping(source = "objectId", target = "objectId", ignore = true)
+	CommentAddRequest shuoshuo2Comment(ShuoCommentAddRequest shuoCommentAddRequest);
 }
