@@ -6,7 +6,7 @@ const urlConfig: UrlConfigInterface = {
     resourceUrl: "http://space-cdn.eyescode.top/",
     userResourceUrl: "http://user-cdn.eyescode.top/",
     eyesResourceUrl: "http://eyes-cdn.eyescode.top/",
-    warehouseUrl: "https://github.com/YuJiZhao/eyesSpace",
+    warehouseUrl: "https://github.com/eyesyeager/eyesspace",
     zwfwUrl: "https://beian.miit.gov.cn",
     picbedUrl: "http://img.codesocean.top",
     avatarUploadUrl: `${process.env.VITE_API_DOMAIN}/user/info/updateUserAvatar`
@@ -19,14 +19,16 @@ const siteConfig: SiteConfigInterface = {
     },
     tokenExpireTime: 30,
     mpThreshold: 800,
-    aesKey: "",
-    aesIV: "",
+    aesKey: "ar4qwer4qre47qw7",
+    aesIV: "a4e4w54eq869e45q",
     enterURL: "enterURL",
     keepAliveRoute: ["Home", "Blog", "Shuoshuo", "Music", "Video", "Joke", "Anime", "Message", "Friend", "Version", "About"],
     avatarMaxSize: 5,
     avatarImgType: ["image/png", "image/jpg", "image/jpeg"],
     sideBarShowStorage: "isSideBarShow",
     stickyKey: "stickyKey",
+    browserId: "browserId",
+    sessionId: "sessionId",
 }
 
 const codeConfig: CodeConfigInterface = {

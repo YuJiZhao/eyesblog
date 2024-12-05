@@ -24,8 +24,8 @@ const site: SiteInterface = {
     getSiteData: async () => {
         return await get("/home/getSiteData");
     },
-    addSpaceVisit: async (req) => {
-        return await post("/track/visitAdd", req);
+    addTrackPoint: async (req) => {
+        return await post("/track/addTrackPoint", req);
     },
     getAboutContent: async () => {
         return await get("/context/getAboutContext");

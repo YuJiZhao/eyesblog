@@ -51,9 +51,8 @@ export default defineComponent({
 
     // 空间初始化
     router.isReady().then(async () => {
-      if(router.currentRoute.value.fullPath != errorPath.context) {
-        localStorage.setItem(siteConfig.enterURL, router.currentRoute.value.fullPath);
-      }
+      initStorage();
+      // 初始化埋点信息
       Promise.all([context(), user()]).then(async (values) => {
         const [contextData, userData] = values;
         initContext(contextData);
@@ -65,11 +64,25 @@ export default defineComponent({
       }).finally(() => {
         listenWindow.initAll();
       })
-      spaceVisit();
+      // 添加埋点
+      $api.addTrackPoint({
+        browserId: localStorage.getItem(siteConfig.browserId),
+        sessionId: localStorage.getItem(siteConfig.sessionId),
+        path: location.href,
+        title: "visitSpace",
+        content: ""
+      });
     });
 
-    async function spaceVisit() {
-      return await $api.addSpaceVisit({path: router.currentRoute.value.fullPath});
+    // 初始化存储信息数据
+    function initStorage() {
+      if(router.currentRoute.value.fullPath != errorPath.context) {
+        localStorage.setItem(siteConfig.enterURL, router.currentRoute.value.fullPath);
+      }
+      if (localStorage.getItem(siteConfig.browserId) == null) {
+        localStorage.setItem(siteConfig.browserId, $utils.getUUid());
+      }
+      localStorage.setItem(siteConfig.sessionId, $utils.getUUid());
     }
 
     async function context() {

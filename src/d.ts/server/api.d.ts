@@ -54,7 +54,7 @@ export declare interface SiteInterface {
     getContext: () => Promise<RespInterface>;
     getHomeList: (req: GetHomeListReqInterface) => Promise<RespInterface>;
     getSiteData: () => Promise<RespInterface>;
-    addSpaceVisit: (req: AddSpaceVisitReqInterface) => Promise<RespInterface>;
+    addTrackPoint: (req: AddTrackPointReqInterface) => Promise<RespInterface>;
     getAboutContent: () => Promise<RespInterface>;
     doAboutComment: (req: PublishCommentInterface) => Promise<RespInterface>;
     getAboutCommentList: (req: GetCommentListInterface) => Promise<RespInterface>;
@@ -64,6 +64,10 @@ export declare interface SiteInterface {
 interface GetHomeListReqInterface extends PageInterface {}
 
 interface AddSpaceVisitReqInterface {
+    browserId: string;
+	sessionId: string;
+	title: string;
+	content: string;
     path: string;
 }
 

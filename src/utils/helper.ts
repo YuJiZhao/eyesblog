@@ -134,6 +134,14 @@ const utils: HelpInterface = {
         if(num < 1000) return String(num);
         if(type == SimplifyNumType.exclude_M || num / 1000 < 10) return (num / 1000).toFixed(1) + "K";
         return (num / 10000).toFixed(1) + "M";
+    },
+
+    // 获取uuid
+    getUUid: () => {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+            return v.toString(16);
+        });
     }
 };
 

@@ -15,4 +15,5 @@ export declare interface HelpInterface {
     byte2MB: (size: number) => number;
     iosAgent: () => any;
     simplifyNum: (num: number, type?: SimplifyNumType) => string;
+    getUUid: () => string;
 }

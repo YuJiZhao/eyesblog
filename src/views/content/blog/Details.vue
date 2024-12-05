@@ -35,9 +35,9 @@ export default defineComponent({
 
     function setMeta(data: BlogDetailContextDataInterface) {
       writerMeta(buildMeta(
-        data.title,
-        data.title + "，" + data.category + "，" + data.labels,
-        data.title + "，" + data.category + "，" + data.labels + data.summary
+          data.title,
+          data.title + "，" + data.category + "，" + data.labels,
+          data.title + "，" + data.category + "，" + data.labels + data.summary
       ));
     }
 
@@ -53,7 +53,7 @@ export default defineComponent({
           $process.tipShow.error(msg);
           blogDetailProcess.cardInitFail.value = true;
         }
-      })
+      });
     }
 
     onMounted(() => {

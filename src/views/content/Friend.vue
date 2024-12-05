@@ -23,7 +23,7 @@ import useProcessControl from "@/hooks/useProcessControl";
 import { CardDirection, CardType, CardList } from "@/constant";
 import { writerMeta } from "@/router/help";
 import { metaInfo } from "@/config/site";
-import { codeConfig } from "@/config/program";
+import { codeConfig, siteConfig } from "@/config/program";
 import { goBoth, GoBothType } from "@/hooks/useGoBoth";
 import { Wait } from "@/components/general/popup";
 import Pagination from "@/components/general/Pagination/pagination.vue";
@@ -64,6 +64,14 @@ export default defineComponent({
     }
 
     function pageChange(target: number) {
+      // 添加埋点
+      $api.addTrackPoint({
+        browserId: localStorage.getItem(siteConfig.browserId),
+        sessionId: localStorage.getItem(siteConfig.sessionId),
+        path: location.href,
+        title: "pageChange",
+        content: `friend;${page.value}->${target}`,
+      });
       page.value = target;
       getFriendList();
     }

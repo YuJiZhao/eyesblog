@@ -10,9 +10,9 @@
 
 <script lang="ts">
 import { defineComponent, ref, inject } from "vue";
-import { UserInterface, ProcessInterface } from "@/d.ts/plugin";
+import { UserInterface, ProcessInterface, ApiObject } from "@/d.ts/plugin";
 import EmojiInput from "@/components/general/input/EmojiInput.vue";
-import { codeConfig, urlConfig } from "@/config/program";
+import { codeConfig, urlConfig, siteConfig } from "@/config/program";
 import { publishComment } from "@/server/composition/comment";
 import { CommentApiType } from "@/constant";
 import { siteContext } from "@/config/site";
@@ -25,6 +25,7 @@ export default defineComponent({
   setup() {
     const $user = inject<UserInterface>("$user")!;
     const $process = inject<ProcessInterface>("$process")!;
+    const $api = inject<ApiObject>("$api")!;
 
     let objectId = inject<number>("objectId")!;
     let apiType = inject<CommentApiType>("apiType")!;
@@ -35,6 +36,14 @@ export default defineComponent({
     let replyId: null | number = null;
 
     function uploadImg() {
+        // 添加埋点
+        $api.addTrackPoint({
+            browserId: localStorage.getItem(siteConfig.browserId),
+            sessionId: localStorage.getItem(siteConfig.sessionId),
+            path: location.href,
+            title: "uploadImg",
+            content: ""
+        });
         window.open(urlConfig.picbedUrl);
     }
 

@@ -1,34 +1,53 @@
 <template>
-  <div class="friendChainList">
-    <div class="chainItem" v-for="item in dataList" :key="item.id" @click="jump(item.address)">
-        <div class="cover" :style="{backgroundImage: 'url(' + item.avatar + ')'}"></div>
-        <div class="box">
-            <div class="name">{{item.name}}</div>
-            <div class="introduce">{{item.introduce}}</div>
-            <div class="status">{{statusConvert[item.status]}}</div>
+    <div class="friendChainList">
+        <div
+            class="chainItem"
+            v-for="item in dataList"
+            :key="item.id"
+            @click="jump(item.address)"
+        >
+            <div
+                class="cover"
+                :style="{ backgroundImage: 'url(' + item.avatar + ')' }"
+            ></div>
+            <div class="box">
+                <div class="name">{{ item.name }}</div>
+                <div class="introduce">{{ item.introduce }}</div>
+                <div class="status">{{ statusConvert[item.status] }}</div>
+            </div>
         </div>
     </div>
-  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, inject } from "vue";
 import { statusConvert } from "./config";
+import { ApiObject } from "@/d.ts/plugin";
+import { siteConfig } from "@/config/program";
 
 export default defineComponent({
-  props: ["data"],
-  setup(props) {
-    
-    function jump(address: string) {
-        window.open(address);
-    }
+    props: ["data"],
+    setup(props) {
+        const $api = inject<ApiObject>("$api")!;
 
-    return {
-        dataList: props.data,
-        statusConvert,
-        jump
-    };
-  },
+        function jump(address: string) {
+            // 添加埋点
+            $api.addTrackPoint({
+                browserId: localStorage.getItem(siteConfig.browserId),
+                sessionId: localStorage.getItem(siteConfig.sessionId),
+                path: location.href,
+                title: "jumpFriend",
+                content: address,
+            });
+            window.open(address);
+        }
+
+        return {
+            dataList: props.data,
+            statusConvert,
+            jump,
+        };
+    },
 });
 </script>
 

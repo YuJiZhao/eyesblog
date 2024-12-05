@@ -24,6 +24,8 @@ export declare interface SiteConfigInterface {
     avatarImgType: Array<string>;
     sideBarShowStorage: string;
     stickyKey: string;
+    browserId: string;
+    sessionId: string;
 }
 
 export declare interface CodeConfigInterface {
