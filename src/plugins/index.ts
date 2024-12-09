@@ -6,17 +6,10 @@ import process from "@/modules/process";
 import { context } from "@/modules/context";
 import { user } from "@/modules/user";
 import window from "@/modules/window";
-import utils from "@/utils/helper";
 
 const $api = {
     install: (app: App) => {
         app.provide('$api', api);
-    }
-};
-
-const $utils = {
-    install: (app: App) => {
-        app.provide('$utils', utils);
     }
 };
 
@@ -44,4 +37,4 @@ const $window = {
     }
 };
 
-export { $router, $utils, $api, $process, $context, $user, $window };
+export { $router, $api, $process, $context, $user, $window };

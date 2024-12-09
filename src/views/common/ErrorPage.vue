@@ -19,17 +19,23 @@ import { useRouter } from "vue-router";
 import { ProcessInterface, ContextInterface } from "@/d.ts/plugin";
 import resource from "@/config/resource";
 import useProcessControl from "@/hooks/useProcessControl";
-import { metaInfo, errorConfig, errorPath } from "@/config/site";
-import { ErrorConfigPropertyInterface } from "@/d.ts/config/site";
+import { errorConfig, errorPath } from "@/config/site";
 import { Dialogs } from "@/constant";
 import { siteConfig } from "@/config/program";
-import { writerMeta } from "@/router/help";
+
+interface ErrorConfigPropertyInterface {
+    title: string;
+    items?: Array<ErrorConfigItemInterface>;
+    process: Array<boolean>;
+}
+interface ErrorConfigItemInterface {
+    icon: string;
+    word: string;
+    clickFunc: string;
+}
 
 export default defineComponent({
   name: "ErrorPage",
-  beforeRouteEnter: () => {
-    writerMeta(metaInfo.home);
-  },
   setup() {
     const router = useRouter();
     const $process = inject<ProcessInterface>("$process")!;
@@ -41,7 +47,7 @@ export default defineComponent({
       process: [],
     });
 
-    let funcObject = {
+    let funcObject: any = {
       goBack: () => { window.history.go(-1); },
       goIndex: () => { router.push("/"); },
       refreshPage: () => { location.reload(); },
@@ -112,10 +118,9 @@ export default defineComponent({
         width: 120px;
         height: 40px;
         padding: 10px;
-        border-radius: 5px;
-        box-shadow: 0 0 5px rgba($color: $black, $alpha: 0.7);
-        -webkit-box-shadow: 0 0 5px rgba($color: $black, $alpha: 0.7);
-        -moz-box-shadow: 0 0 5px rgba($color: $black, $alpha: 0.7);
+        box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+        -webkit-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+        -moz-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
         cursor: pointer;
         display: flex;
         justify-content: center;

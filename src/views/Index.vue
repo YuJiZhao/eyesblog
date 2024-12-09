@@ -12,19 +12,18 @@
         </keep-alive>
       </router-view>
     </div>
-    <Footer v-if="footerSwitch"/>
-    <Tools />
+    <Footer v-if="footerSwitch" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, inject, onMounted } from "vue";
 import { ProcessInterface, WindowInterface } from "@/d.ts/plugin";
-import { Header, SideBar, SideCard, Footer, Tools } from "@/components/index";
+import { Header, SideBar, SideCard, Footer } from "@/components/index";
 import { siteConfig } from "@/config/program";
 
 export default defineComponent({
-  components: { Header, SideBar, SideCard, Footer, Tools },
+  components: { Header, SideBar, SideCard, Footer },
   setup() {
     const $process = inject<ProcessInterface>("$process")!;
     const $window = inject<WindowInterface>("$window")!;

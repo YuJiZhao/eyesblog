@@ -1,6 +1,4 @@
-import { FriendDataCardConfigInterface } from "@/components/content/friend/d.ts/config";
-
-const friendDataCardConfig: Array<FriendDataCardConfigInterface> = [
+const friendDataCardConfig = [
     {
         title: "有效友链",
         name: "validChain"
@@ -15,7 +13,7 @@ const friendDataCardConfig: Array<FriendDataCardConfigInterface> = [
     }
 ];
 
-const statusConvert = {
+const statusConvert: any = {
     0: "有效",
     1: "审核中",
     2: "失效",

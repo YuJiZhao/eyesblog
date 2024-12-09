@@ -30,12 +30,12 @@ import { Wait } from "@/components/general/popup";
 import videoProcess from "@/components/content/video/businessTs/videoProcess";
 import { videoContext } from "@/components/content/video/businessTs/videoContext";
 import { siteContext } from "@/config/site"; 
-import { HelpInterface, ProcessInterface } from "@/d.ts/plugin";
+import { ProcessInterface } from "@/d.ts/plugin";
+import utils from "@/utils/helper";
 
 export default defineComponent({
   components: { StandardCard, Wait },
   setup() {
-    const $utils = inject<HelpInterface>("$utils")!;
     const $process = inject<ProcessInterface>("$process")!;
 
     let author = ref("");
@@ -51,7 +51,7 @@ export default defineComponent({
     }
 
     function copyEmail() {
-      $utils.doCopy(siteContext.ownerEmail);
+      utils.doCopy(siteContext.ownerEmail);
       $process.tipShow.success("复制成功");
     }
 

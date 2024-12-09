@@ -17,19 +17,19 @@
 <script lang="ts">
 import { defineComponent, inject } from "vue";
 import StandardCard from "@/components/general/card/components/StandardCard.vue";
-import { HelpInterface, ProcessInterface, ContextInterface } from "@/d.ts/plugin";
+import { ProcessInterface, ContextInterface } from "@/d.ts/plugin";
 import resource from "@/config/resource";
 import { Wait } from "@/components/general/popup";
+import utils from "@/utils/helper";
 
 export default defineComponent({
   components: { StandardCard, Wait },
   setup() {
-    const $utils = inject<HelpInterface>("$utils")!;
     const $process = inject<ProcessInterface>("$process")!;
     const $context = inject<ContextInterface>("$context")!;
 
     function doCopy() {
-        $utils.doCopy(location.href);
+        utils.doCopy(location.href);
         $process.tipShow.success("复制成功");
     }
 

@@ -27,10 +27,9 @@ export default defineComponent({
 .iconBtn {
     width: 95px;
     height: 35px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba($color: $black, $alpha: 0.7);
-    -webkit-box-shadow: 0 0 5px rgba($color: $black, $alpha: 0.7);
-    -moz-box-shadow: 0 0 5px rgba($color: $black, $alpha: 0.7);
+    box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+    -webkit-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+    -moz-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
     display: flex;
     justify-content: center;
     align-items: center;

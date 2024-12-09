@@ -15,7 +15,7 @@
     "baseUrl":"./",
     "paths":{
       "@/*":["src/*"]
-    }
+    },
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/libs/title_joke.js"],
   "references": [{ "path": "./tsconfig.node.json" }]

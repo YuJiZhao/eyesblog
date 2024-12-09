@@ -1,17 +1,11 @@
-import { DataCardConfigInterface, BlogDetailConfigInterface } from "@/components/content/blogDetail/d.ts/config";
-
-const blogDetailConfig: BlogDetailConfigInterface = {
+const blogDetailConfig = {
     editorId: "eyesEditor"
 }
 
-const DataCardConfig: Array<DataCardConfigInterface> = [
+const DataCardConfig = [
     {
         title: "阅读量",
         name: "views"
-    },
-    {
-        title: "评论量",
-        name: "comments"
     },
     {
         title: "字数",

@@ -2,8 +2,6 @@
   <div class="details">
     <head-meta />
     <md-editor />
-    <reward-btn />
-    <Comment :objectId="blogId" :apiType="apiType" />
   </div>
 </template>
 
@@ -14,32 +12,18 @@ import useProcessControl from "@/hooks/useProcessControl";
 import { ProcessInterface, ApiObject } from "@/d.ts/plugin";
 import { CardDirection, CardList, CardType } from "@/constant";
 import { codeConfig } from "@/config/program";
-import { MdEditor, HeadMeta, RewardBtn } from "@/components/content/blogDetail";
+import { MdEditor, HeadMeta } from "@/components/content/blogDetail";
 import { goBoth, GoBothType } from "@/hooks/useGoBoth";
 import { blogDetailContext } from "@/components/content/blogDetail/businessTs/blogDetailContext";
 import blogDetailProcess from "@/components/content/blogDetail/businessTs/blogDetailProcess";
-import Comment from "@/components/general/comment/Comment.vue";
-import { CommentApiType } from "@/constant";
-import { buildMeta, writerMeta } from "@/router/help";
-import { BlogDetailContextDataInterface } from "@/components/content/blogDetail/d.ts/blogDetailContext";
-import { RollType } from "@/hooks/useGoBoth";
 
 export default defineComponent({
-  components: { MdEditor, HeadMeta, RewardBtn, Comment },
+  components: { MdEditor, HeadMeta },
   setup() {
     const router = useRouter();
     const $process = inject<ProcessInterface>("$process")!;
     const $api = inject<ApiObject>("$api")!;
-
     let blogId = ref(router.currentRoute.value.params.id);
-
-    function setMeta(data: BlogDetailContextDataInterface) {
-      writerMeta(buildMeta(
-          data.title,
-          data.title + "，" + data.category + "，" + data.labels,
-          data.title + "，" + data.category + "，" + data.labels + data.summary
-      ));
-    }
 
     async function getBlogInfo() {
       blogDetailProcess.cardInitLoad.value = true;
@@ -48,7 +32,6 @@ export default defineComponent({
         if(code == codeConfig.success) {
           blogDetailContext.init(data);
           blogDetailProcess.cardInitLoad.value = false;
-          setMeta(data);
         } else {
           $process.tipShow.error(msg);
           blogDetailProcess.cardInitFail.value = true;
@@ -64,15 +47,11 @@ export default defineComponent({
         cardType: CardType.CardList,
         cardList: CardList.BlogDetailCardList,
         follow: true
-      }, true, {
-        rollType: RollType.time,
-        rollTime: 0.5
-      });
+      }, true);
     });
 
     return {
-      blogId,
-      apiType: CommentApiType.blog,
+      blogId
     };
   },
 });

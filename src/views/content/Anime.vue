@@ -18,8 +18,6 @@ import { defineComponent, inject, onActivated, ref, onBeforeMount } from 'vue';
 import { ProcessInterface, ApiObject } from "@/d.ts/plugin";
 import useProcessControl from "@/hooks/useProcessControl";
 import { CardDirection, CardType, CardList } from "@/constant";
-import { writerMeta } from "@/router/help";
-import { metaInfo } from "@/config/site";
 import { codeConfig } from "@/config/program";
 import { goBoth, GoBothType } from "@/hooks/useGoBoth";
 import { Wait } from "@/components/general/popup";
@@ -29,9 +27,6 @@ import { AnimeList } from "@/components/content/anime";
 export default defineComponent({
   name: "Anime",
   components: { Pagination, Wait, AnimeList },
-  beforeRouteEnter: () => {
-    writerMeta(metaInfo.anime);
-  },
   setup() {
     const $api = inject<ApiObject>("$api")!;
     const $process = inject<ProcessInterface>("$process")!;

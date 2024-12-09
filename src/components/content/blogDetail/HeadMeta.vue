@@ -15,13 +15,11 @@
 import { defineComponent, ref, watch, inject } from "vue";
 import { blogDetailContext } from "@/components/content/blogDetail/businessTs/blogDetailContext";
 import blogDetailProcess from "@/components/content/blogDetail/businessTs/blogDetailProcess";
-import { HelpInterface } from "@/d.ts/plugin";
+import utils from "@/utils/helper";
 
 export default defineComponent({
   components: {  },
   setup() {
-    const $utils = inject<HelpInterface>("$utils")!;
-
     let title = ref("");
     let category = ref("");
     let labels = ref<Array<string>>([]);
@@ -34,7 +32,7 @@ export default defineComponent({
           title.value = blogDetailContext.data.title!;
           category.value = blogDetailContext.data.category!;
           labels.value = blogDetailContext.data.labels!;
-          time.value = $utils.estimateReadTime(blogDetailContext.data.words!);
+          time.value = utils.estimateReadTime(blogDetailContext.data.words!);
         } 
       })
 

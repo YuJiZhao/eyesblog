@@ -8,7 +8,7 @@ import { addHeader } from "@/server/help/authHelp";
 
 const service = axios.create({
     baseURL: process.env.VITE_API_DOMAIN,
-    timeout: 6 * 1000,
+    timeout: 15 * 1000,
 });
 
 service.interceptors.request.use(

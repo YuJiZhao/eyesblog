@@ -1,8 +1,6 @@
-import { BlogContextInterface } from "@/components/content/blog/d.ts/blogContext";
-
-const blogContext: BlogContextInterface = {
+const blogContext = {
     data: [],
-    init: (cx) => {
+    init: (cx: any) => {
         blogContext.data = cx;
     }
 }

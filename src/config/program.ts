@@ -1,7 +1,6 @@
-import { UrlConfigInterface, SiteConfigInterface, CodeConfigInterface } from "@/d.ts/config/program";
 import { publicPath } from "@/router/path";
 
-const urlConfig: UrlConfigInterface = {
+const urlConfig = {
     siteUrl: process.env.VITE_SITE_URL!,
     resourceUrl: "http://space-cdn.eyescode.top/",
     userResourceUrl: "http://user-cdn.eyescode.top/",
@@ -12,7 +11,7 @@ const urlConfig: UrlConfigInterface = {
     avatarUploadUrl: `${process.env.VITE_API_DOMAIN}/user/info/updateUserAvatar`
 };
 
-const siteConfig: SiteConfigInterface = {
+const siteConfig = {
     tokenHeader: {
         sToken: "sAuth",
         lToken: "lAuth"
@@ -25,13 +24,11 @@ const siteConfig: SiteConfigInterface = {
     keepAliveRoute: ["Home", "Blog", "Shuoshuo", "Music", "Video", "Joke", "Anime", "Message", "Friend", "Version", "About"],
     avatarMaxSize: 5,
     avatarImgType: ["image/png", "image/jpg", "image/jpeg"],
-    sideBarShowStorage: "isSideBarShow",
-    stickyKey: "stickyKey",
     browserId: "browserId",
     sessionId: "sessionId",
 }
 
-const codeConfig: CodeConfigInterface = {
+const codeConfig = {
     success: 200,
     fail: 400,
     authentication_error: 20000,

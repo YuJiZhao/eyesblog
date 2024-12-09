@@ -1,13 +1,3 @@
-import { 
-    HeaderConfigType, 
-    SiteDataType, 
-    UserCenterContextInterface,
-    FooterConfigInterface, 
-    ErrorPathInterface, 
-    ErrorConfigInterface, 
-    SiteContextInterface,
-    ContactMeConfigType
-} from "@/d.ts/config/site";
 import resource from "./resource";
 import { pathConfig } from "@/config/program";
 
@@ -16,12 +6,12 @@ import { pathConfig } from "@/config/program";
  *                                    site
  ***************************************************************************************
  */
-const siteContext: SiteContextInterface = {
+const siteContext = {
     clientId: 198344,
     siteName: "耶瞳空间",
     siteNameEn: "eyesSpace",
-    spaceVersion: "3.5.1",
-    ownerEmail: "eyesyeager@gmail.com",
+    spaceVersion: "3.6.0",
+    ownerEmail: "eyesyeager@163.com",
     siteVideoBV: "BV1fg411b7sF",
     commentMaxLen: 1000
 };
@@ -31,97 +21,10 @@ const siteContext: SiteContextInterface = {
  *                                    UserCenter
  ***************************************************************************************
  */
-const userCenterContext: UserCenterContextInterface = {
+const userCenterContext = {
     info: "http://user.eyescode.top/",
     auth: "http://user.eyescode.top/OAuth2",
     redirectUrl: "/auth",
-}
-
-/*
- ***************************************************************************************
- *                                    meta
- * 
- * 对于单页面应用，这玩意儿对SEO一点用也没有，但还是写着玩玩吧
- ***************************************************************************************
- */
-const metaInfo = {
-    home: {
-        title: siteContext.siteName + " | 首页",
-        data: [
-            { keywords: `${siteContext.siteName}，个人网站，耶瞳，eyes，eyesyeager，程序员，博客，说说，音乐，视频，动漫，留言，友联，版本，关于` },
-            { description: `这是${siteContext.siteName}，是一个个人网站` }
-        ]
-    },
-    blog: {
-        title: siteContext.siteName + " | 博客",
-        data: [
-            { keywords: `${siteContext.siteName}，耶瞳，eyes，eyesyeager，程序员，博客，Java，JavaScript，Flutter，Python，PHP，Unity` },
-            { description: `这是${siteContext.siteName}，是一个个人网站，这是博客页面` }
-        ]
-    },
-    shuoshuo: {
-        title: siteContext.siteName + " | 说说",
-        data: [
-            { keywords: `${siteContext.siteName}，耶瞳，eyes，eyesyeager，生活，说说` },
-            { description: `这是${siteContext.siteName}，是一个个人网站，这是说说页面` }
-        ]
-    },
-    music: {
-        title: siteContext.siteName + " | 音乐",
-        data: [
-            { keywords: `${siteContext.siteName}，耶瞳，eyes，eyesyeager，生活，音乐` },
-            { description: `这是${siteContext.siteName}，是一个个人网站，这是音乐页面` }
-        ]
-    },
-    video: {
-        title: siteContext.siteName + " | 视频",
-        data: [
-            { keywords: `${siteContext.siteName}，耶瞳，eyes，eyesyeager，生活，视频` },
-            { description: `这是${siteContext.siteName}，是一个个人网站，这是视频页面` }
-        ]
-    },
-    joke: {
-        title: siteContext.siteName + " | 梗图",
-        data: [
-            { keywords: `${siteContext.siteName}，耶瞳，eyes，eyesyeager，生活，梗图` },
-            { description: `这是${siteContext.siteName}，是一个个人网站，这是梗图页面` }
-        ]
-    },
-    anime: {
-        title: siteContext.siteName + " | 动漫",
-        data: [
-            { keywords: `${siteContext.siteName}，耶瞳，eyes，eyesyeager，生活，动漫` },
-            { description: `这是${siteContext.siteName}，是一个个人网站，这是动漫页面` }
-        ]
-    },
-    message: {
-        title: siteContext.siteName + " | 留言",
-        data: [
-            { keywords: `${siteContext.siteName}，耶瞳，eyes，eyesyeager，生活，留言` },
-            { description: `这是${siteContext.siteName}，是一个个人网站，这是留言页面` }
-        ]
-    },
-    friend: {
-        title: siteContext.siteName + " | 友链",
-        data: [
-            { keywords: `${siteContext.siteName}，耶瞳，eyes，eyesyeager，生活，友链` },
-            { description: `这是${siteContext.siteName}，是一个个人网站，这是友链页面` }
-        ] 
-    },
-    version: {
-        title: siteContext.siteName + " | 版本信息",
-        data: [
-            { keywords: `${siteContext.siteName}，耶瞳，eyes，eyesyeager，生活，版本，更新，日志` },
-            { description: `这是${siteContext.siteName}，是一个个人网站，这是版本信息页面` }
-        ]
-    },
-    about: {
-        title: siteContext.siteName + " | 关于",
-        data: [
-            { keywords: `${siteContext.siteName}，耶瞳，eyes，eyesyeager，生活` },
-            { description: `这是${siteContext.siteName}，是一个个人网站，这是关于页面` }
-        ]
-    }
 }
 
 /*
@@ -131,7 +34,7 @@ const metaInfo = {
  */
 
 // 轻提示图标配置
-const tipType: Array<string> = [
+const tipType = [
     resource.success,
     resource.info,
     resource.warn,
@@ -139,7 +42,7 @@ const tipType: Array<string> = [
 ];
 
 // 联系站长弹窗配置
-const contactMeConfig: ContactMeConfigType = [
+const contactMeConfig = [
     {
         title: "可以发邮件",
         content: siteContext.ownerEmail,
@@ -161,7 +64,7 @@ const contactMeConfig: ContactMeConfigType = [
  *                                    header
  ***************************************************************************************
  */
-const headerConfig: HeaderConfigType = [
+const headerConfig = [
     {
         path: pathConfig.home,
         icon: resource.home,
@@ -214,11 +117,6 @@ const headerConfig: HeaderConfigType = [
         word: "其他",
         children: [
             {
-                path: pathConfig.message,
-                icon: resource.message,
-                word: "留言"
-            },
-            {
                 path: pathConfig.friend,
                 icon: resource.friend,
                 word: "友链"
@@ -239,33 +137,11 @@ const headerConfig: HeaderConfigType = [
 
 /*
  ***************************************************************************************
- *                                    Card
- ***************************************************************************************
- */
-const siteData: SiteDataType = [
-    {
-        key: 0,
-        name: "本站运行时间"
-    },
-    {
-        key: 1,
-        name: "本站访问量"
-    },
-    {
-        key: 2,
-        name: "本站总访客"
-    }
-]
-
-/*
- ***************************************************************************************
  *                                    footer
  ***************************************************************************************
  */
-const footerConfig: FooterConfigInterface = {
-    copyright: "©2022 By 耶瞳",
-    theme: "eyes",
-    techStack: "vue+spring",
+const footerConfig = {
+    copyright: "©2022-至今 By 耶瞳",
     zwfwCode: "赣ICP备2022006255号"
 }
 
@@ -274,7 +150,7 @@ const footerConfig: FooterConfigInterface = {
  *                                    preload
  ***************************************************************************************
  */
-const preloadList: Array<string> = [
+const preloadList = [
     resource.loading
 ]
 
@@ -283,9 +159,9 @@ const preloadList: Array<string> = [
  *                                    error
  ***************************************************************************************
  */
-const errorPath: ErrorPathInterface = pathConfig.errorPath;
+const errorPath = pathConfig.errorPath;
 
-const errorConfig: ErrorConfigInterface = {
+const errorConfig = {
     errorRoute: {
         title: "未找到该页面",
         items: [
@@ -320,4 +196,4 @@ const errorConfig: ErrorConfigInterface = {
     }
 }
 
-export { siteContext, userCenterContext, metaInfo, tipType, contactMeConfig, headerConfig, siteData, footerConfig, preloadList, errorPath, errorConfig };
+export { siteContext, userCenterContext, tipType, contactMeConfig, headerConfig, footerConfig, preloadList, errorPath, errorConfig };

@@ -16,17 +16,12 @@ import { defineComponent, onActivated, ref, inject } from "vue";
 import MdEditor from 'md-editor-v3';
 import 'md-editor-v3/lib/style.css';
 import useProcessControl from "@/hooks/useProcessControl";
-import { writerMeta } from "@/router/help";
-import { metaInfo } from "@/config/site";
 import { ApiObject, ProcessInterface } from "@/d.ts/plugin";
 import { codeConfig } from "@/config/program";
 
 export default defineComponent({
   name: "About",
   components: { MdEditor },
-  beforeRouteEnter: () => {
-    writerMeta(metaInfo.about);
-  },
   setup() {
     const $api = inject<ApiObject>("$api")!;
     const $process = inject<ProcessInterface>("$process")!;
@@ -44,7 +39,7 @@ export default defineComponent({
     }
     
     onActivated(() => {
-      useProcessControl();
+      useProcessControl(true, false, false);
     });
 
     // created生命周期执行
@@ -59,10 +54,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-:deep(.md) {
-  background: none;
-}
-
 .about {
   .aboutComment {
     margin-top: 20px;

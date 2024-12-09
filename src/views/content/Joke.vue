@@ -18,9 +18,7 @@ import { defineComponent, inject, onActivated, ref, onBeforeMount } from 'vue';
 import { ProcessInterface, ApiObject } from "@/d.ts/plugin";
 import useProcessControl from "@/hooks/useProcessControl";
 import { CardDirection, CardType, CardList } from "@/constant";
-import { writerMeta } from "@/router/help";
-import { metaInfo } from "@/config/site";
-import { codeConfig, siteConfig } from "@/config/program";
+import { codeConfig } from "@/config/program";
 import { goBoth, GoBothType } from "@/hooks/useGoBoth";
 import { Wait } from "@/components/general/popup";
 import Pagination from "@/components/general/Pagination/pagination.vue";
@@ -29,9 +27,6 @@ import { JokeList } from "@/components/content/joke";
 export default defineComponent({
   name: "Joke",
   components: { Pagination, Wait, JokeList },
-  beforeRouteEnter: () => {
-    writerMeta(metaInfo.joke);
-  },
   setup() {
     const $api = inject<ApiObject>("$api")!;
     const $process = inject<ProcessInterface>("$process")!;
@@ -60,14 +55,6 @@ export default defineComponent({
     }
 
     function pageChange(target: number) {
-      // 添加埋点
-      $api.addTrackPoint({
-        browserId: localStorage.getItem(siteConfig.browserId),
-        sessionId: localStorage.getItem(siteConfig.sessionId),
-        path: location.href,
-        title: "pageChange",
-        content: `joke;${page.value}->${target}`,
-      });
       page.value = target;
       getJokeList();
     }

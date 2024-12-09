@@ -1,18 +1,18 @@
 <template>
   <div class="friendCard">
     <owner-card class="card" />
+    <announce-card class="card" />
     <friend-data-card class="card" />
-    <info-card class="card" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { OwnerCard, InfoCard } from "@/components/general/card";
+import { OwnerCard, AnnounceCard } from "@/components/general/card";
 import FriendDataCard from "./components/cards/FriendDataCard.vue";
 
 export default defineComponent({
-  components: { OwnerCard, InfoCard, FriendDataCard },
+  components: { OwnerCard, FriendDataCard, AnnounceCard },
   setup() {
     return {
     };

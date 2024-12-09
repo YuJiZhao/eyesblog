@@ -44,7 +44,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-:deep(.md) {
-  background: none;
+:deep.mdEditor {
+  .md-editor-content .md-editor-preview-wrapper {
+    padding: 0;
+  }  
 }
 </style>

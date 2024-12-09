@@ -99,10 +99,9 @@ export default defineComponent({
   .label {
     height: 30px;
     padding: 5px;
-    border-radius: 3px;
-    box-shadow: 0 0 5px rgba($color: $black, $alpha: 0.7);
-    -webkit-box-shadow: 0 0 5px rgba($color: $black, $alpha: 0.7);
-    -moz-box-shadow: 0 0 5px rgba($color: $black, $alpha: 0.7);
+    box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+    -webkit-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+    -moz-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
     display: flex;
     margin-right: 10px;
     margin-bottom: 10px;

@@ -5,43 +5,34 @@
       <Wait :show="show" :fail="isFail" color="#000" width="100%" height="400px" failColor="#000">
         <video-player />
       </Wait>
-      <func-bar @openAnnounce="openAnnounce" />
+      <func-bar />
     </div>
-    <base-dialog v-if="isShowAnnounce" title="视频公告" @close="close">
-      <div class="announce" v-html="announce"></div>
-    </base-dialog>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, inject, onActivated, onMounted, ref, watch } from 'vue';
-import { ProcessInterface, ApiObject } from "@/d.ts/plugin";
+import { ProcessInterface, ApiObject, UserInterface } from "@/d.ts/plugin";
 import useProcessControl from "@/hooks/useProcessControl";
 import { VideoPlayer, FuncBar } from "@/components/content/video";
 import { codeConfig } from "@/config/program";
 import { videoContext } from "@/components/content/video/businessTs/videoContext";
 import videoProcess from "@/components/content/video/businessTs/videoProcess";
-import BaseDialog from "@/components/general/popup/dialogComponent/BaseDialog.vue";
-import { videoContext as videoContextConfig } from "@/components/content/video/config";
 import { Wait } from "@/components/general/popup";
 import { videoSideCards } from "@/components/content/video/config";
-import { writerMeta } from "@/router/help";
-import { metaInfo } from "@/config/site";
+import { userCenterContext, siteContext } from "@/config/site";
 
 export default defineComponent({
   name: "Video",
-  components: { VideoPlayer, BaseDialog, Wait, FuncBar },
-  beforeRouteEnter: () => {
-    writerMeta(metaInfo.video);
-  },
+  components: { VideoPlayer, Wait, FuncBar },
   setup() {
     const $process = inject<ProcessInterface>("$process")!;
     const $api = inject<ApiObject>("$api")!;
+    const $user = inject<UserInterface>("$user")!;
 
     let title = ref("");
     let show = ref(true);
     let isFail = ref(false);
-    let isShowAnnounce = ref(false);
 
     async function initData() {
       videoProcess.cardInitLoad.value = true;
@@ -54,11 +45,6 @@ export default defineComponent({
           videoProcess.cardInitLoad.value = false;
           show.value = false;
           return;
-        } else if(code == codeConfig.authentication_error) {
-          $process.alertShow({
-            title: "视频获取失败",
-            content: "视频功能仅对注册用户开放，请先注册或登录"
-          });
         } else {
           $process.tipShow.error(msg);
         }
@@ -67,29 +53,15 @@ export default defineComponent({
       })
     }
 
-    function controlAnnounce() {
-      let isOpen = localStorage.getItem(videoContextConfig.storageItemKey);
-      if(!isOpen) {
-        localStorage.setItem(videoContextConfig.storageItemKey, videoContextConfig.storageItemValue);
-        isShowAnnounce.value = true;
-      }
-    }
-
-    function close() {
-      isShowAnnounce.value = false;
-    }
-
-    function openAnnounce() {
-      isShowAnnounce.value = true;
-    }
-
     watch(
       () => videoProcess.videoEndSentry.value,
       () => initData()
     )
 
     onMounted(() => {
-      controlAnnounce();
+      if (!$user.isLogin()) {
+        location.href = `${userCenterContext.auth}?clientId=${siteContext.clientId}&redirectUrl=${process.env.VITE_SITE_URL + userCenterContext.redirectUrl}`;
+      }
       initData();
     })
 
@@ -101,10 +73,6 @@ export default defineComponent({
       title,
       show,
       isFail,
-      isShowAnnounce,
-      announce: videoContextConfig.videoAnnounce,
-      close,
-      openAnnounce
     };
   },
 });
@@ -129,10 +97,6 @@ export default defineComponent({
       word-break:break-all;
       overflow:hidden;
     }
-  }
-  .announce {
-    width: 320px;
-    margin: 0 auto;
   }
 }
 </style>

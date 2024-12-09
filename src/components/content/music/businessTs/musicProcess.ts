@@ -1,7 +1,6 @@
-import { MusicProcessInterface, MusicExtInterface } from "@/components/content/music/d.ts/musicProcess";
-import { reactive, ref } from "vue";
+import { ref } from "vue";
 
-const ext: MusicExtInterface = {
+const ext = {
     initSentry: ref(false),
     initNotice: () => {
         ext.initSentry.value = !ext.initSentry.value;
@@ -18,7 +17,7 @@ const ext: MusicExtInterface = {
     }
 }
 
-const musicProcess: MusicProcessInterface = {
+const musicProcess = {
     ...ext
 }
 

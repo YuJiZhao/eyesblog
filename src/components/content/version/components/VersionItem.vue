@@ -16,18 +16,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject } from "vue";
+import { defineComponent } from "vue";
 import Image from "@/components/general/image/Image.vue";
 import VersionMd from "./VersionMd.vue";
-import { HelpInterface } from "@/d.ts/plugin";
 import { versionTypeConvert } from "../config";
 
 export default defineComponent({
   components: { Image, VersionMd },
   props: ["data"],
   setup(props) {
-    const $utils = inject<HelpInterface>("$utils")!;
-
     return {
         type: versionTypeConvert[props.data.type],
         version: props.data.version,
@@ -49,10 +46,9 @@ export default defineComponent({
   margin-top: 2px;
   margin-bottom: 20px;
   padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 0 5px rgba($color: $black, $alpha: 0.7);
-  -webkit-box-shadow: 0 0 5px rgba($color: $black, $alpha: 0.7);
-  -moz-box-shadow: 0 0 5px rgba($color: $black, $alpha: 0.7);
+  box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+  -webkit-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+  -moz-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
   color: $normal;
   .header {
     font-size: 26px;

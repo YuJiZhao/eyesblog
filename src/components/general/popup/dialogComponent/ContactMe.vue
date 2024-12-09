@@ -17,19 +17,19 @@
 
 <script lang="ts">
 import { defineComponent, inject } from "vue";
-import { ProcessInterface, HelpInterface } from "@/d.ts/plugin";
+import { ProcessInterface } from "@/d.ts/plugin";
 import BaseDialog from "./BaseDialog.vue";
 import { siteContext, contactMeConfig } from "@/config/site";
+import utils from "@/utils/helper";
 
 export default defineComponent({
   components: { BaseDialog },
   setup() {
     const $process = inject<ProcessInterface>("$process")!;
-    const $utils = inject<HelpInterface>("$utils")!;
 
-    let clickFunc = {
+    let clickFunc: any = {
       copy: () => {
-        $utils.doCopy(siteContext.ownerEmail);
+        utils.doCopy(siteContext.ownerEmail);
         $process.tipShow.success("复制成功");
       },
       goBilibli: () => { window.open("https://www.bilibili.com/video/" + siteContext.siteVideoBV) },

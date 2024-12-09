@@ -48,13 +48,4 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/index.scss";
-
-:deep(.md) {
-  background: none;
-  li {
-    margin-top: 5px;
-    margin-bottom: 5px;
-  }
-}
 </style>

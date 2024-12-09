@@ -1,11 +1,11 @@
 import { get, post, put, del } from "./ajax";
 import { 
     ApiObject, 
-    SiteInterface, 
-    UserInterface, 
-    ShuoshuoInterface, 
+    SiteInterface,
+    UserInterface,
+    ShuoshuoInterface,
     BlogInterface,
-    MusicInterface, 
+    MusicInterface,
     VideoInterface,
     JokeInterface,
     AnimeInterface,
@@ -21,23 +21,8 @@ const site: SiteInterface = {
     getHomeList: async (req) => {
         return await get("/home/getHomeList", req);
     },
-    getSiteData: async () => {
-        return await get("/home/getSiteData");
-    },
-    addTrackPoint: async (req) => {
-        return await post("/track/addTrackPoint", req);
-    },
     getAboutContent: async () => {
         return await get("/context/getAboutContext");
-    },
-    doAboutComment: async (req) => {
-        return await post("/message/doMessage", req);
-    },
-    getAboutCommentList: async (req) => {
-        return await get("/message/getMessageList", req);
-    },
-    delAboutComment: async (req) => {
-        return await del("/message/delMessage", req, UrlReqType.path);
     }
 }
 
@@ -63,21 +48,6 @@ const blog: BlogInterface = {
     getBlogLabel: async () => {
         return await get("/blog/getBlogLabel");
     },
-    doBlogLike: async (req) => {
-        return await get("/blog/doBlogLike", req);
-    },
-    doBlogCollect: async (req) => {
-        return await get("/blog/doBlogCollect", req);
-    },
-    doBlogComment: async (req) => {
-        return await post("/blog/doBlogComment", req);
-    },
-    getBlogCommentList: async (req) => {
-        return await get("/blog/getBlogCommentList", req);
-    },
-    delBlogComment: async (req) => {
-        return await del("/blog/delBlogComment", req, UrlReqType.path);
-    }
 }
 
 const shuoshuo: ShuoshuoInterface = {
@@ -87,36 +57,18 @@ const shuoshuo: ShuoshuoInterface = {
     getShuoshuoListInfo: async () => {
         return await get("/shuo/getShuoListInfo");
     },
-    getShuoshuoSingleInfo: async (req) => {
-        return await get("/shuo/getSingleShuo", req);
-    },
-    doShuoshuoComment: async (req) => {
-        return await post("/shuo/doShuoComment", req);
-    },
-    getShuoshuoCommentList: async (req) => {
-        return await get("/shuo/getShuoCommentList", req);
-    },
-    delShuoshuoComment: async (req) => {
-        return await del("/shuo/delShuoComment", req, UrlReqType.path);
-    }
 }
 
 const music: MusicInterface = {
     getMusicInfo: async () => {
-        return await get("/music/getMusicInfoByUser");
+        return await get("/music/getMusicInfo");
     },
-    doMusicUserLike: async (req) => {
-        return await get("/music/doUserLike", req);
-    }
 }
 
 const video: VideoInterface = {
     getVideoInfo: async () => {
-        return await get("/video/getVideoInfoByUser");
+        return await get("/video/getVideoInfo");
     },
-    doVideoUserLike: async (req) => {
-        return await get("/video/doUserLike", req);
-    }
 }
 
 const joke: JokeInterface = {
@@ -125,9 +77,6 @@ const joke: JokeInterface = {
     },
     getJokeList: async (req) => {
         return await get("/joke/getJokeList", req);
-    },
-    jokeVisit: async (req) => {
-        return await get("/track/jokeVisit", req);
     },
 }
 
@@ -144,26 +93,14 @@ const anime: AnimeInterface = {
     getAnimeInfo: async (req) => {
         return await get("/anime/getAnimeInfo", req, UrlReqType.path);
     },
-    doAnimeComment: async (req) => {
-        return await post("/anime/doAnimeComment", req);
-    },
-    getAnimeCommentList: async (req) => {
-        return await get("/anime/getAnimeCommentList", req);
-    },
-    delAnimeComment: async (req) => {
-        return await del("/anime/delAnimeComment", req, UrlReqType.path);
-    }
 }
 
 const friend: FriendInterface = {
-    applyFriendChain: async (req) => {
-        return await post("/friend/applyFriendChain", req);
-    },
     getFriendListData: async () => {
         return await get("/friend/getFriendListData");
     },
-    getFriendList: async (req) => {
-        return await get("/friend/getFriendList", req);
+    getFriendList: async () => {
+        return await get("/friend/getFriendList");
     },
     getFriendPreamble: async () => {
         return await get("/friend/getFriendPreamble");

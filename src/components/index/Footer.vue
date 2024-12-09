@@ -1,7 +1,6 @@
 <template>
   <div class="footer" :class="{ static: positionSwitch, fixed: !positionSwitch }">
     <div>{{footerConfig.copyright}}</div>
-    <div><span class="theme" @click="jumpPage(warehouseUrl)">主题 {{footerConfig.theme}} | {{footerConfig.techStack}}</span></div>
     <div><span class="zwfw" @click="jumpPage(zwfwUrl)">{{footerConfig.zwfwCode}}</span></div>
   </div>
 </template>
@@ -46,7 +45,7 @@ export default defineComponent({
     height: 25px;
     line-height: 25px;
   }
-  .theme, .zwfw {
+  .zwfw {
     cursor: pointer;
   }
 }

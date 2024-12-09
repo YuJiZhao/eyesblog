@@ -17,20 +17,20 @@ import 'md-editor-v3/lib/style.css';
 
 export default defineComponent({
   components: { MdEditor },
-  props: ["content", "commentId"],
+  props: ["mdId", "content"],
   setup(props) {
     return {
       content: props.content,
-      id: "shuoId" + props.commentId.replace(/\W/g, "")
+      id: "shuoId" + props.mdId
     };
   },
 });
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/index.scss";
-
-:deep(.md) {
-  background: none;
+:deep.shuoMd {
+  .md-editor-content .md-editor-preview-wrapper {
+    padding: 0;
+  }
 }
 </style>

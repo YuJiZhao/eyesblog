@@ -22,7 +22,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .videoCard {
   .card {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 }
 

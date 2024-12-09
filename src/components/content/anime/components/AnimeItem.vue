@@ -12,7 +12,6 @@
             <div class="time">{{data.createTime}}</div>
             <div class="data">
                 <div>点击量: {{data.view}}</div>
-                <div>评论数: {{data.comment}}</div>
             </div>
         </div>
     </div>
@@ -44,10 +43,9 @@ export default defineComponent({
   margin: 0 auto;
   margin-top: 2px;
   margin-bottom: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 4px rgba($color: $black, $alpha: 0.7);
-  -webkit-box-shadow: 0 0 4px rgba($color: $black, $alpha: 0.7);
-  -moz-box-shadow: 0 0 4px rgba($color: $black, $alpha: 0.7);
+  box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+  -webkit-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+  -moz-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
   color: $normal;
   display: flex;
   flex-direction: v-bind(direction);
@@ -63,7 +61,6 @@ export default defineComponent({
     background-position: center center;
     background-repeat: no-repeat;
     transition: 0.3s;
-    border-radius: 5px;
   }
   .content {
     width: 60%;

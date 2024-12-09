@@ -36,7 +36,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import "@/assets/scss/index.scss";
 .commentCard {
-  min-height: 50px;
+  min-height: 90px;
   max-height: 120px;
   color: $normal;
   overflow-y: auto;

@@ -26,22 +26,16 @@ import { ProcessInterface, ApiObject } from "@/d.ts/plugin";
 import useProcessControl from "@/hooks/useProcessControl";
 import { useRouter } from "vue-router";
 import { CardDirection, CardType, CardList } from "@/constant";
-import { siteConfig, codeConfig } from "@/config/program";
+import { codeConfig } from "@/config/program";
 import { Wait } from "@/components/general/popup";
 import { BlogList } from "@/components/content/blog";
 import { blogContext } from "@/components/content/blog/businessTs/blogContext";
 import Pagination from "@/components/general/Pagination/pagination.vue";
 import { goBoth, GoBothType } from "@/hooks/useGoBoth";
-import { writerMeta } from "@/router/help";
-import { metaInfo } from "@/config/site";
-import { BlogQueryInterface } from "@/components/content/blog/d.ts/blogQuery";
 
 export default defineComponent({
     name: "Blog",
     components: { BlogList, Wait, Pagination },
-    beforeRouteEnter: () => {
-        writerMeta(metaInfo.blog);
-    },
     setup() {
         const router = useRouter();
         const $process = inject<ProcessInterface>("$process")!;
@@ -58,14 +52,6 @@ export default defineComponent({
         let blogSentry = ref(0);
 
         async function getBlogList() {
-            // 添加埋点
-            $api.addTrackPoint({
-                browserId: localStorage.getItem(siteConfig.browserId),
-                sessionId: localStorage.getItem(siteConfig.sessionId),
-                path: location.href,
-                title: "pageChange",
-                content: `blog;page->${page.value};category-${category.value};label-${label.value}`,
-            });
             return await $api
                 .getBlogList({
                     page: page.value,
@@ -101,7 +87,7 @@ export default defineComponent({
         async function pageChange(target: number) {
             category.value = <string>router.currentRoute.value.query.category;
             label.value = <string>router.currentRoute.value.query.label;
-            let query: Partial<BlogQueryInterface> = { page: target };
+            let query: any = { page: target };
             if (category.value) {
                 query.category = category.value;
             }

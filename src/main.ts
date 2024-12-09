@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import lazyPlugin from "vue3-lazy";
-import { $router, $utils, $api, $process, $context, $user, $window } from "@/plugins/index";
+import { $router, $api, $process, $context, $user, $window } from "@/plugins/index";
 import resource from "@/config/resource";
 
 import './assets/css/index.css';
@@ -11,7 +11,7 @@ import '@/libs/statistics.js';
 
 const app = createApp(App);
 
-const plugins = [$router, $utils, $api, $process, $context, $user, $window];
+const plugins = [$router, $api, $process, $context, $user, $window];
 plugins.forEach(plugin => {
     app.use(plugin);
 });

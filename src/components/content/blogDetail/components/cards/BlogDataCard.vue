@@ -25,16 +25,14 @@ import { DataCardConfig } from "@/components/content/blogDetail/config";
 export default defineComponent({
   components: { StandardCard, Wait },
   setup() {
-    let detailData = reactive({
+    let detailData: any = reactive({
       views: 0,
-      comments: 0,
       words: 0,
       createTime: ""
     });
 
     function initData() {
       detailData.views = blogDetailContext.data.views!;
-      detailData.comments = blogDetailContext.data.comments!;
       detailData.words = blogDetailContext.data.words!;
       detailData.createTime = blogDetailContext.data.createTime!;
     }

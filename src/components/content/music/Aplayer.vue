@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted, onDeactivated, onActivated, watch } from "vue";
+import { defineComponent, ref, onMounted, onDeactivated, onActivated } from "vue";
 import "@/libs/aplayer/APlayer.min.js";
 import "@/libs/aplayer/APlayer.min.css";
 import { musicContext } from "@/components/content/music/businessTs/musicContext";
@@ -55,14 +55,6 @@ export default defineComponent({
         }
       );
     }
-
-    watch(
-      () => musicProcess.musicRangeSentry.value,
-      () => {
-        lock.value = localStorage.getItem("musicRange") ? false : true;
-      },
-      { immediate: true }
-    )
 
     onMounted(() => {
       initData();

@@ -73,15 +73,14 @@ export default defineComponent({
     flex-wrap: wrap;
     justify-content: flex-start;
     .option {
-      box-shadow: 0 0 5px rgba($color: $black, $alpha: 0.7);
-      -webkit-box-shadow: 0 0 5px rgba($color: $black, $alpha: 0.7);
-      -moz-box-shadow: 0 0 5px rgba($color: $black, $alpha: 0.7);
+      box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+      -webkit-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+      -moz-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
       display: flex;
       justify-content: center;
       align-items: center;
       width: 80px;
       height: 50px;
-      border-radius: 10px;
       margin-left: calc(20px / 6);
       margin-right: calc(20px / 6);
       margin-bottom: 10px;

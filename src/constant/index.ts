@@ -21,7 +21,6 @@ export enum CardType {
 
 export enum Cards {
     "AnnounceCard",
-    "InfoCard",
     "OwnerCard"
 }
 
@@ -45,15 +44,6 @@ export enum HomeType {
     "blog",
     "shuoshuo",
     "version",
-    "anime"
-}
-
-export enum CommentApiType {
-    "blog",
-    "shuoshuo",
-    "music",
-    "video",
-    "site",
     "anime"
 }
 

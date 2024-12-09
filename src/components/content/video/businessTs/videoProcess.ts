@@ -1,12 +1,11 @@
-import { VideoProcessInterface, CardListInterface, VideoExtInterface } from "@/components/content/video/d.ts/videoProcess";
-import { reactive, ref } from "vue";
+import { ref } from "vue";
 
-const CardList: CardListInterface = {
+const CardList = {
     cardInitLoad: ref(true),
     cardInitFail: ref(false)
 };
 
-const ext: VideoExtInterface = {
+const ext = {
     fullscreenSentry: ref(false),
     doFullScreen: () => {
         ext.fullscreenSentry.value = !ext.fullscreenSentry.value;
@@ -22,7 +21,7 @@ const ext: VideoExtInterface = {
     videoVariable: ref(false),
 }
 
-const videoProcess: VideoProcessInterface = {
+const videoProcess = {
     ...CardList,
     ...ext
 }

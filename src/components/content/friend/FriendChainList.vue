@@ -20,25 +20,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject } from "vue";
+import { defineComponent } from "vue";
 import { statusConvert } from "./config";
-import { ApiObject } from "@/d.ts/plugin";
-import { siteConfig } from "@/config/program";
 
 export default defineComponent({
     props: ["data"],
     setup(props) {
-        const $api = inject<ApiObject>("$api")!;
-
         function jump(address: string) {
-            // 添加埋点
-            $api.addTrackPoint({
-                browserId: localStorage.getItem(siteConfig.browserId),
-                sessionId: localStorage.getItem(siteConfig.sessionId),
-                path: location.href,
-                title: "jumpFriend",
-                content: address,
-            });
             window.open(address);
         }
 
@@ -63,10 +51,9 @@ export default defineComponent({
         height: 120px;
         margin: 20px 4%;
         display: flex;
-        border-radius: 5px;
-        box-shadow: 0 0 5px rgba($color: $black, $alpha: 0.7);
-        -webkit-box-shadow: 0 0 5px rgba($color: $black, $alpha: 0.7);
-        -moz-box-shadow: 0 0 5px rgba($color: $black, $alpha: 0.7);
+        box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+        -webkit-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+        -moz-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
         cursor: pointer;
         .cover {
             border-radius: 5px 50% 50% 5px;

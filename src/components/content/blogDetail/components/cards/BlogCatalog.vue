@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent } from "vue";
 import MdEditor from 'md-editor-v3';
 import 'md-editor-v3/lib/style.css';
 import StandardCard from "@/components/general/card/components/StandardCard.vue";
@@ -38,7 +38,12 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import "@/assets/scss/index.scss";
 
-:deep(.md-catalog-link span) {
-    color: $normal;
+:deep.blogCatalog{
+  .md-editor-catalog-link {
+    padding: 2.5px 0;
+    span {
+      color: $normal;
+    }
+  }
 }
 </style>

@@ -1,6 +1,4 @@
-import { versionDataCardConfigInterface } from "@/components/content/version/d.ts/config";
-
-const versionDataCardConfig: Array<versionDataCardConfigInterface> = [
+const versionDataCardConfig = [
     {
         title: "整站版本",
         name: "siteVersion"

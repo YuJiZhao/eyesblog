@@ -22,28 +22,22 @@ import {
     watch,
     onActivated,
 } from "vue";
-import { ProcessInterface, ApiObject, ContextInterface } from "@/d.ts/plugin";
+import { ProcessInterface, ApiObject } from "@/d.ts/plugin";
 import useProcessControl from "@/hooks/useProcessControl";
 import { CardDirection, Cards } from "@/constant";
-import { siteConfig, codeConfig } from "@/config/program";
+import { codeConfig } from "@/config/program";
 import { useRouter } from "vue-router";
 import Pagination from "@/components/general/Pagination/pagination.vue";
 import { goBoth, GoBothType } from "@/hooks/useGoBoth";
-import { writerMeta } from "@/router/help";
-import { metaInfo } from "@/config/site";
 import HomeList from "@/components/content/home/HomeList.vue";
 import { Wait } from "@/components/general/popup";
 
 export default defineComponent({
     name: "Home",
     components: { HomeList, Pagination, Wait },
-    beforeRouteEnter: () => {
-        writerMeta(metaInfo.home);
-    },
     setup() {
         const router = useRouter();
         const $api = inject<ApiObject>("$api")!;
-        const $context = inject<ContextInterface>("$context")!;
         const $process = inject<ProcessInterface>("$process")!;
 
         let show = ref(true);
@@ -75,14 +69,6 @@ export default defineComponent({
         }
 
         async function pageChange(target: number) {
-            // 添加埋点
-            $api.addTrackPoint({
-                browserId: localStorage.getItem(siteConfig.browserId),
-                sessionId: localStorage.getItem(siteConfig.sessionId),
-                path: location.href,
-                title: "pageChange",
-                content: `home;${page.value}->${target}`,
-            });
             router.push({
                 path: "/",
                 query: {
@@ -105,7 +91,7 @@ export default defineComponent({
         onActivated(() => {
             useProcessControl(true, {
                 direction: CardDirection.row,
-                cards: [Cards.OwnerCard, Cards.AnnounceCard, Cards.InfoCard],
+                cards: [Cards.OwnerCard, Cards.AnnounceCard],
             });
         });
 

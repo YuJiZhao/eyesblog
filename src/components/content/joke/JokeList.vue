@@ -10,7 +10,6 @@
 import { defineComponent, inject } from "vue";
 import { ApiObject } from "@/d.ts/plugin";
 import { v3ImgPreviewFn } from "v3-img-preview";
-import { siteConfig } from "@/config/program";
 
 export default defineComponent({
   props: ["jokeListData"],
@@ -21,15 +20,6 @@ export default defineComponent({
       v3ImgPreviewFn({
         images: <string[]>item.urlList,
         index: 0
-      });
-
-      // 添加埋点
-      $api.addTrackPoint({
-        browserId: localStorage.getItem(siteConfig.browserId),
-        sessionId: localStorage.getItem(siteConfig.sessionId),
-        path: location.href,
-        title: "clickJoke",
-        content: `id-${item.id};category-${item.category}`,
       });
     }
 

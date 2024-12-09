@@ -1,5 +1,5 @@
 <template>
-  <standard-card title="公告" :icon="icon">
+  <standard-card title="关于本站" :icon="icon">
     <div class="announceCard">
       <div class="announce">{{ announce }}</div>
     </div>
@@ -28,9 +28,7 @@ export default defineComponent({
 @import "@/assets/scss/index.scss";
 
 .announceCard {
-  .announce {
-    color: $normal;
-    line-height: 18px;
-  }
+  color: $normal;
+  line-height: 18px;
 }
 </style>

@@ -1,16 +1,15 @@
-import { HelpInterface } from "@/d.ts/utils/help";
 import { siteConfig } from "@/config/program";
 import CryptoJS from 'crypto-js';
 import { SimplifyNumType } from "@/constant";
 
-const utils: HelpInterface = {
+const utils = {
     // 检测Email是否规范
-    checkEmail: (email) => {
+    checkEmail: (email: string) => {
         return /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(email);
     },
 
     // 防抖
-    debounce: (fn, delay = 300) => {
+    debounce: (fn: () => void, delay = 300) => {
         let timer: NodeJS.Timeout | null = null;
         if (timer) clearTimeout(timer);
         timer = setTimeout(() => {
@@ -29,7 +28,7 @@ const utils: HelpInterface = {
     },
 
     // 设置cookie
-    setCookie: (name, value, exdays) => {
+    setCookie: (name: string, value: string, exdays: number) => {
         let d = new Date();
         d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
         let expires = "expires=" + d.toUTCString();
@@ -37,7 +36,7 @@ const utils: HelpInterface = {
     },
 
     // 获取指定cookie
-    getCookie: (name) => {
+    getCookie: (name: string) => {
         name = name + "=";
         let ca = document.cookie.split(';');
         for(let i = 0; i < ca.length; i++) {
@@ -48,7 +47,7 @@ const utils: HelpInterface = {
     },
 
     // 删除指定cookie
-    delCookie: (name) => {
+    delCookie: (name: string) => {
         let exp = new Date();
         exp.setTime(exp.getTime() - 1);
         let cval = utils.getCookie(name);
@@ -56,7 +55,7 @@ const utils: HelpInterface = {
     },
 
     // 加密字符串
-    encryption: (str) => {
+    encryption: (str: string) => {
         return CryptoJS.AES.encrypt(
             CryptoJS.enc.Utf8.parse(str), 
             CryptoJS.enc.Utf8.parse(siteConfig.aesKey), 
@@ -69,7 +68,7 @@ const utils: HelpInterface = {
     },
 
     // 获取时间差
-    getTimeDisff: (t1, t2) => {
+    getTimeDisff: (t1: Date, t2: Date) => {
         let millisecond = t1.valueOf() - t2.valueOf();
         let miscod2d = 1000 * 60 * 60 * 24;
         // let miscod2h = 1000 * 60 * 60;
@@ -80,7 +79,7 @@ const utils: HelpInterface = {
     },
 
     // 复制内容到剪贴板
-    doCopy: (message) => {
+    doCopy: (message: string) => {
         if (utils.iosAgent()) {
             let inputObj = document.createElement("input");
             inputObj.value = message;
@@ -104,7 +103,7 @@ const utils: HelpInterface = {
     },
 
     // 估算阅读时长
-    estimateReadTime: (words) => {
+    estimateReadTime: (words: number) => {
         let readTime = Math.round(words / 400);
         if(readTime < 60) return readTime + "min";
         let h = words / 60 / 400;
@@ -112,7 +111,7 @@ const utils: HelpInterface = {
     },
 
     // 文本框聚焦
-    cursorMove: (el, spos) => {
+    cursorMove: (el: any, spos: number) => {
         setTimeout(function() {
             el.setSelectionRange(spos, spos);
             el.focus();
@@ -120,7 +119,7 @@ const utils: HelpInterface = {
     },
 
     // 字节转Mb
-    byte2MB: (size) => {
+    byte2MB: (size: number) => {
         return size / (1024 * 1024);
     },
 
@@ -130,7 +129,7 @@ const utils: HelpInterface = {
     },
 
     // 大数字简写
-    simplifyNum: (num, type = SimplifyNumType.all) => {
+    simplifyNum: (num: number, type = SimplifyNumType.all) => {
         if(num < 1000) return String(num);
         if(type == SimplifyNumType.exclude_M || num / 1000 < 10) return (num / 1000).toFixed(1) + "K";
         return (num / 10000).toFixed(1) + "M";

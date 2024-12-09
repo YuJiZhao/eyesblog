@@ -21,7 +21,6 @@ import { defineComponent, inject, onMounted, ref } from "vue";
 import {
   ApiObject,
   RespInterface,
-  HelpInterface,
   ContextInterface,
   UserInterface,
   ProcessInterface,
@@ -29,19 +28,17 @@ import {
 } from "@/d.ts/plugin";
 import { useRouter } from "vue-router";
 import { siteConfig, codeConfig } from "@/config/program";
-import { errorPath } from "@/config/site";
 import { Mask, Load, Tip, Alert, Dialog } from "@/components/general/popup";
 import resource from "@/config/resource";
-import preload from "@/utils/preload";
-import { preloadList } from "@/config/site";
-import { siteContext } from "@/config/site";
+import { preloadList, siteContext, errorPath } from "@/config/site";
+import preload from "@/utils/preLoad";
+import utils from "@/utils/helper";
 
 export default defineComponent({
   components: { Mask, Load, Tip, Alert, Dialog },
   setup() {
     const router = useRouter();
     const $api = inject<ApiObject>("$api")!;
-    const $utils = inject<HelpInterface>("$utils")!;
     const $context = inject<ContextInterface>("$context")!;
     const $user = inject<UserInterface>("$user")!;
     const $process = inject<ProcessInterface>("$process")!;
@@ -51,8 +48,9 @@ export default defineComponent({
 
     // 空间初始化
     router.isReady().then(async () => {
-      initStorage();
-      // 初始化埋点信息
+      if(router.currentRoute.value.fullPath != errorPath.context) {
+        localStorage.setItem(siteConfig.enterURL, router.currentRoute.value.fullPath);
+      }
       Promise.all([context(), user()]).then(async (values) => {
         const [contextData, userData] = values;
         initContext(contextData);
@@ -64,33 +62,13 @@ export default defineComponent({
       }).finally(() => {
         listenWindow.initAll();
       })
-      // 添加埋点
-      $api.addTrackPoint({
-        browserId: localStorage.getItem(siteConfig.browserId),
-        sessionId: localStorage.getItem(siteConfig.sessionId),
-        path: location.href,
-        title: "visitSpace",
-        content: ""
-      });
     });
-
-    // 初始化存储信息数据
-    function initStorage() {
-      if(router.currentRoute.value.fullPath != errorPath.context) {
-        localStorage.setItem(siteConfig.enterURL, router.currentRoute.value.fullPath);
-      }
-      if (localStorage.getItem(siteConfig.browserId) == null) {
-        localStorage.setItem(siteConfig.browserId, $utils.getUUid());
-      }
-      localStorage.setItem(siteConfig.sessionId, $utils.getUUid());
-    }
-
     async function context() {
       return await $api.getContext();
     }
 
     async function user() {
-      if ($utils.getCookie(siteConfig.tokenHeader.sToken) == "" || $utils.getCookie(siteConfig.tokenHeader.lToken) == "") return "";
+      if (utils.getCookie(siteConfig.tokenHeader.sToken) == "" || utils.getCookie(siteConfig.tokenHeader.lToken) == "") return "";
       return await $api.getUserInfo();
     }
 
@@ -105,9 +83,7 @@ export default defineComponent({
 
     function initUser(userData: "" | RespInterface) {
       if(userData == "" || userData.code != codeConfig.success) {
-        $user.init({
-          avatar: resource.defaultAvatar
-        });
+        $user.init({avatar: resource.defaultAvatar});
       } else {
         $user.init(userData.data);
         $user.status = 1;

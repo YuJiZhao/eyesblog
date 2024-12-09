@@ -18,10 +18,7 @@
       :id="data.homeList.id"
       :content="data.homeList.content"
       :picList="data.homeList.picList"
-      :views="data.homeList.views"
-      :comments="data.homeList.comments"
       :createTime="data.homeList.createTime"
-      @click.capture.stop="jumpShuo(data.homeList.id)"
     />
     <version-item
       class="item versionItem"
@@ -38,11 +35,11 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { useRouter } from "vue-router";
+import { HomeType } from "@/constant";
 import BlogItem from "@/components/content/blog/components/BlogItem.vue";
 import ShuoItem from "@/components/content/shuoshuo/components/ShuoItem.vue";
 import VersionItem from "@/components/content/version/components/VersionItem.vue";
-import { HomeType } from "@/constant";
-import { useRouter } from "vue-router";
 import { AnimeItem } from "@/components/content/anime";
 
 export default defineComponent({
@@ -50,14 +47,6 @@ export default defineComponent({
   props: ["data"],
   setup(props) {
     let router = useRouter();
-
-    function jumpShuo(id: string) {
-      window.open(router.resolve({
-        path: "/shuoshuo/details",
-        query: { id }
-      }).href, "_blank");
-    }
-
     function jumpAnime(id: number) {
       window.open(router.resolve(`/anime/details/${id}`).href, "_blank");
     }
@@ -65,7 +54,6 @@ export default defineComponent({
     return {
       HomeType,
       data: props.data,
-      jumpShuo,
       jumpAnime
     };
   },
@@ -73,7 +61,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.shuoshuoItem, .animeItem {
+.animeItem {
   cursor: pointer;
 }
 </style>

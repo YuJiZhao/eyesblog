@@ -27,49 +27,16 @@ interface PageInterface {
 
 /*
  ***************************************************************************************
- *                               composition——comment
- ***************************************************************************************
- */
-
-export declare interface PublishCommentInterface {
-    objectId: number | string;
-    landlord?: number;
-    replyId?: number;
-    originalComment: string;
-    comment: string;
-}
-
-export declare interface GetCommentListInterface extends PageInterface {
-    id: number | string;
-}
-
-export declare type DelCommentInterface = Array<number>; 
-
-/*
- ***************************************************************************************
  *                                    site
  ***************************************************************************************
  */
 export declare interface SiteInterface {
     getContext: () => Promise<RespInterface>;
     getHomeList: (req: GetHomeListReqInterface) => Promise<RespInterface>;
-    getSiteData: () => Promise<RespInterface>;
-    addTrackPoint: (req: AddTrackPointReqInterface) => Promise<RespInterface>;
     getAboutContent: () => Promise<RespInterface>;
-    doAboutComment: (req: PublishCommentInterface) => Promise<RespInterface>;
-    getAboutCommentList: (req: GetCommentListInterface) => Promise<RespInterface>;
-    delAboutComment: (req: DelCommentInterface) => Promise<RespInterface>;
 }
 
 interface GetHomeListReqInterface extends PageInterface {}
-
-interface AddSpaceVisitReqInterface {
-    browserId: string;
-	sessionId: string;
-	title: string;
-	content: string;
-    path: string;
-}
 
 /*
  ***************************************************************************************
@@ -91,22 +58,9 @@ export declare interface BlogInterface {
     getBlogInfo: (req: Array<any>) => Promise<RespInterface>;
     getBlogCategory: () => Promise<RespInterface>;
     getBlogLabel: () => Promise<RespInterface>;
-    doBlogLike: (req: DoBlogLikeReqInterface) => Promise<RespInterface>;
-    doBlogCollect: (req: DoBlogCollectReqInterface) => Promise<RespInterface>;
-    doBlogComment: (req: PublishCommentInterface) => Promise<RespInterface>;
-    getBlogCommentList: (req: GetCommentListInterface) => Promise<RespInterface>;
-    delBlogComment: (req: DelCommentInterface) => Promise<RespInterface>;
 }
 
 interface BlogListReqInterface extends PageInterface {}
-
-interface DoBlogLikeReqInterface {
-    id: any;
-}
-
-interface DoBlogCollectReqInterface {
-    id: any;
-}
 
 /*
  ***************************************************************************************
@@ -116,17 +70,9 @@ interface DoBlogCollectReqInterface {
 export declare interface ShuoshuoInterface {
     getShuoshuoList: (req: ShuoshuoListReqInterface) => Promise<RespInterface>;
     getShuoshuoListInfo: () => Promise<RespInterface>;
-    getShuoshuoSingleInfo: (req: ShuoshuoSingleInfoReqInterface) => Promise<RespInterface>;
-    doShuoshuoComment: (req: PublishCommentInterface) => Promise<RespInterface>;
-    getShuoshuoCommentList: (req: GetCommentListInterface) => Promise<RespInterface>;
-    delShuoshuoComment: (req: DelCommentInterface) => Promise<RespInterface>;
 }
 
 interface ShuoshuoListReqInterface extends PageInterface {}
-
-interface ShuoshuoSingleInfoReqInterface {
-    id: string;
-}
 
 /*
  ***************************************************************************************
@@ -135,11 +81,6 @@ interface ShuoshuoSingleInfoReqInterface {
  */
 export declare interface MusicInterface {
     getMusicInfo: () => Promise<RespInterface>;
-    doMusicUserLike: (req: DoMusicUserLikeReqInterface) => Promise<RespInterface>;
-}
-
-interface DoMusicUserLikeReqInterface {
-    id: string;
 }
 
 /*
@@ -149,11 +90,6 @@ interface DoMusicUserLikeReqInterface {
  */
 export declare interface VideoInterface {
     getVideoInfo: () => Promise<RespInterface>;
-    doVideoUserLike: (req: DoVideoUserLikeReqInterface) => Promise<RespInterface>;
-}
-
-interface DoVideoUserLikeReqInterface {
-    id: string;
 }
 
 /*
@@ -164,14 +100,9 @@ interface DoVideoUserLikeReqInterface {
 export declare interface JokeInterface {
     getJokeNotice: () => Promise<RespInterface>;
     getJokeList: (req: GetJokeListReqInterface) => Promise<RespInterface>;
-    jokeVisit: (req: JokeVisitReqInterface) => Promise<RespInterface>;
 }
 
 interface GetJokeListReqInterface extends PageInterface {}
-
-interface JokeVisitReqInterface {
-    id: number
-}
 
 /*
  ***************************************************************************************
@@ -184,9 +115,6 @@ export declare interface AnimeInterface {
     getAnimeListInfo: () => Promise<RespInterface>;
     getAnimeList: (req: GetAnimeListReqInterface) => Promise<RespInterface>;
     getAnimeInfo: (req: Array<any>) => Promise<RespInterface>;
-    doAnimeComment: (req: PublishCommentInterface) => Promise<RespInterface>;
-    getAnimeCommentList: (req: GetCommentListInterface) => Promise<RespInterface>;
-    delAnimeComment: (req: DelCommentInterface) => Promise<RespInterface>;
 }
 
 interface GetAnimeListReqInterface extends PageInterface {}
@@ -197,17 +125,10 @@ interface GetAnimeListReqInterface extends PageInterface {}
  ***************************************************************************************
  */
 export declare interface FriendInterface {
-    applyFriendChain: (req: ApplyFriendChainReqInterface) => Promise<RespInterface>;
     getFriendListData: () => Promise<RespInterface>;
-    getFriendList: (req: GetFriendListReqInterface) => Promise<RespInterface>;
+    getFriendList: () => Promise<RespInterface>;
     getFriendPreamble: () => Promise<RespInterface>;
 }
-
-interface ApplyFriendChainReqInterface {
-
-}
-
-interface GetFriendListReqInterface extends PageInterface {}
 
 /*
  ***************************************************************************************

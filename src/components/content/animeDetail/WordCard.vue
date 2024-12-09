@@ -30,10 +30,9 @@ export default defineComponent({
   margin-top: 2px;
   margin-bottom: 20px;
   padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 0 4px rgba($color: $black, $alpha: 0.7);
-  -webkit-box-shadow: 0 0 4px rgba($color: $black, $alpha: 0.7);
-  -moz-box-shadow: 0 0 4px rgba($color: $black, $alpha: 0.7);
+  box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+  -webkit-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+  -moz-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
   color: $normal;
   .title {
     height: 30px;

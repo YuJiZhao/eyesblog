@@ -19,16 +19,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject } from "vue";
-import { HelpInterface } from "@/d.ts/plugin";
+import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
+import utils from "@/utils/helper";
 
 export default defineComponent({
   components: { },
   props: ["id", "title", "category", "words", "summary", "date", "view"],
   setup(props) {
     let router = useRouter();
-    const $utils = inject<HelpInterface>("$utils")!;
 
     function jumpDetail(id: number) {
       window.open(router.resolve(`/blog/details/${id}`).href, "_blank");
@@ -36,8 +35,8 @@ export default defineComponent({
 
     return {
       props,
-      time: $utils.estimateReadTime(props.words),
-      view: $utils.simplifyNum(props.view),
+      time: utils.estimateReadTime(props.words),
+      view: utils.simplifyNum(props.view),
       jumpDetail
     };
   },
@@ -53,10 +52,9 @@ export default defineComponent({
   margin-top: 2px;
   margin-bottom: 20px;
   padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 0 5px rgba($color: $black, $alpha: 0.7);
-  -webkit-box-shadow: 0 0 5px rgba($color: $black, $alpha: 0.7);
-  -moz-box-shadow: 0 0 5px rgba($color: $black, $alpha: 0.7);
+  box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+  -webkit-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+  -moz-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
   color: $normal;
   cursor: pointer;
   .title {

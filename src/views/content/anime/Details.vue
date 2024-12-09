@@ -2,7 +2,6 @@
   <div class="details">
     <anime-item class="animeItem" :data="animeData" :key="animeSentry" />
     <word-card :word="animeData.word" :key="animeSentry" />
-    <Comment :objectId="animeId" :apiType="apiType" />
   </div>
 </template>
 
@@ -13,9 +12,6 @@ import useProcessControl from "@/hooks/useProcessControl";
 import { ProcessInterface, ApiObject } from "@/d.ts/plugin";
 import { CardDirection, CardList, CardType } from "@/constant";
 import { codeConfig } from "@/config/program";
-import Comment from "@/components/general/comment/Comment.vue";
-import { CommentApiType } from "@/constant";
-import { buildMeta, writerMeta } from "@/router/help";
 import { AnimeItem } from "@/components/content/anime";
 import { WordCard } from "@/components/content/animeDetail";
 
@@ -34,19 +30,10 @@ export default defineComponent({
     });
     let animeSentry = ref(0);
 
-    function setMeta() {
-      writerMeta(buildMeta(
-        "动漫 | " + animeData.value.title,
-        animeData.value.introduce,
-        animeData.value.word
-      ));
-    }
-
     async function getAnimeInfo() {
       $api.getAnimeInfo([animeId.value]).then(({code, msg, data}) => {
         if (code == codeConfig.success) {
           animeData.value = data;
-          setMeta();
           animeSentry.value++;
         } else {
           $process.tipShow.error(msg);
@@ -66,8 +53,7 @@ export default defineComponent({
     return {
       animeId,
       animeData,
-      animeSentry,
-      apiType: CommentApiType.anime,
+      animeSentry
     };
   },
 });

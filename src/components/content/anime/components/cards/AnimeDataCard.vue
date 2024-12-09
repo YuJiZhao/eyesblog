@@ -30,7 +30,7 @@ export default defineComponent({
 
     let show = ref(true);
     let isFail = ref(false);
-    let animeData = ref({});
+    let animeData: any = ref({});
 
     async function getAnimeListInfo() {
       show.value = true;
