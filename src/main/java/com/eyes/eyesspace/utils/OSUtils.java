@@ -4,6 +4,7 @@ import eu.bitwalker.useragentutils.OperatingSystem;
 import eu.bitwalker.useragentutils.UserAgent;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Objects;
 
 /**
  * 操作系统工具类
@@ -22,6 +23,9 @@ public class OSUtils {
 	 * @return String
 	 */
 	public static String osName(HttpServletRequest request) {
+		if (Objects.isNull(request)) {
+			return "unknown";
+		}
 		String userAgent = request.getHeader("User-Agent");
 		UserAgent ua = UserAgent.parseUserAgentString(userAgent);
 		OperatingSystem os = ua.getOperatingSystem();

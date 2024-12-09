@@ -3,7 +3,7 @@ package com.eyes.eyesspace.utils;
 import cn.hutool.core.lang.UUID;
 import com.aliyuncs.utils.StringUtils;
 import com.eyes.eyesspace.constant.MediaConstant;
-import com.eyes.eyesspace.sync.common.exception.CustomException;
+import com.eyes.eyesspace.common.exception.CustomException;
 import io.github.eyesyeager.eyesStorageStarter.entity.ObjectUploadModel;
 import io.github.eyesyeager.eyesStorageStarter.exception.EyesStorageException;
 import io.github.eyesyeager.eyesStorageStarter.service.EyesOssStorage;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import java.io.IOException;
 
 /**
  * @author eyesYeager

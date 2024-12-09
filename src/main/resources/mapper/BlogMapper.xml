@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.eyes.eyesspace.persistent.mapper.BlogMapper">
-    <select id="getBlogData" resultType="com.eyes.eyesspace.persistent.po.BlogDataPO">
+<mapper namespace="com.eyes.eyesspace.mapper.BlogMapper">
+    <select id="getBlogData" resultType="com.eyes.eyesspace.model.po.BlogDataPO">
         select
-               sum(views) viewsNum,
-               sum(comments) commentsNum
+               sum(views) viewsNum
         from blog
         <where>
             <choose>
@@ -28,7 +27,7 @@
         </where>
     </select>
 
-    <select id="getBlogList" resultType="com.eyes.eyesspace.persistent.dto.BlogListDTO">
+    <select id="getBlogList" resultType="com.eyes.eyesspace.model.dto.BlogListDTO">
         select b.id, b.title, b.summary, bc.category, b.views, b.words, b.status, b.create_time
         from blog b, blog_category bc
            <if test="label!=null">

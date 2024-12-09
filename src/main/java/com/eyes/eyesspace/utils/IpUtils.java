@@ -1,14 +1,19 @@
 package com.eyes.eyesspace.utils;
 
+import lombok.extern.slf4j.Slf4j;
+
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Objects;
 
 /**
  * IP工具类
  *
  * @author eyes
  */
+
+@Slf4j
 public class IpUtils {
 	private IpUtils() {
 		throw new UnsupportedOperationException("It is not recommended to instantiate this class. It is recommended to use static method calls");
@@ -21,6 +26,9 @@ public class IpUtils {
 	 * @return String
 	 */
 	public static String getIpAddr(HttpServletRequest request) {
+		if (Objects.isNull(request)) {
+			return "unknown";
+		}
 		String ipAddress = request.getHeader("x-forwarded-for");
 		if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
 			ipAddress = request.getHeader("Proxy-Client-IP");
@@ -36,7 +44,7 @@ public class IpUtils {
 				try {
 					inet = InetAddress.getLocalHost();
 				} catch (UnknownHostException e) {
-					e.printStackTrace();
+					log.error("unknown error:", e);
 				}
 				ipAddress = inet.getHostAddress();
 			}

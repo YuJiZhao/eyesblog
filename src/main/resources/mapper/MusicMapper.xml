@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.eyes.eyesspace.persistent.mapper.MusicMapper">
+<mapper namespace="com.eyes.eyesspace.mapper.MusicMapper">
     <select id="getMusicListInfo" resultType="java.lang.Integer">
         select count(*) from music
         <where>
@@ -11,8 +11,8 @@
         </where>
     </select>
 
-    <select id="getRandomMusicList" resultType="com.eyes.eyesspace.persistent.po.UserMusicPO">
-        select id, title, author, url, pic, views, likes, comments
+    <select id="getRandomMusicList" resultType="com.eyes.eyesspace.model.po.MusicInfoPO">
+        select id, title, author, url, pic, views
         from music as t1 join (
             select round(
                 rand() * (

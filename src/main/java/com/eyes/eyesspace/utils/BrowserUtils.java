@@ -4,6 +4,7 @@ import eu.bitwalker.useragentutils.Browser;
 import eu.bitwalker.useragentutils.UserAgent;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Objects;
 
 /**
  * 浏览器工具类
@@ -23,6 +24,9 @@ public class BrowserUtils {
 	 * @return String
 	 */
 	public static String browserName(HttpServletRequest request) {
+		if (Objects.isNull(request)) {
+			return "unknown";
+		}
 		String userAgent = request.getHeader("User-Agent");
 		UserAgent ua = UserAgent.parseUserAgentString(userAgent);
 		Browser browser = ua.getBrowser();
