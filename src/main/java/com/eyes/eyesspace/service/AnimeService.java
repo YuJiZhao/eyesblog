@@ -1,11 +1,10 @@
 package com.eyes.eyesspace.service;
 
 import com.eyes.eyesspace.common.exception.CustomException;
-import com.eyes.eyesspace.model.dto.AnimeListDTO;
+import com.eyes.eyesspace.common.result.PageBind;
+import com.eyes.eyesspace.model.vo.AnimeListVO;
 import com.eyes.eyesspace.model.vo.AnimeInfoVO;
 import com.eyes.eyesspace.model.vo.AnimeListInfoVO;
-import com.eyes.eyesspace.model.vo.AnimeListVO;
-import com.eyes.eyesspace.model.vo.AnimeNoticeVO;
 import com.eyes.eyesspace.model.vo.FileUploadVO;
 
 import java.util.List;
@@ -21,13 +20,11 @@ public interface AnimeService {
 
 	FileUploadVO uploadAnimePic(MultipartFile multipartFile) throws CustomException;
 
-	AnimeNoticeVO getAnimeNotice();
-
 	AnimeListInfoVO getAnimeListInfo();
 
-	AnimeListVO getAnimeList(Integer page);
+	PageBind<AnimeListVO> getAnimeList(Integer page);
 
 	AnimeInfoVO getAnimeInfo(Integer id) throws CustomException;
 
-	List<AnimeListDTO> getAnimeListByIds(List<Integer> ids);
+	List<AnimeListVO> getAnimeListByIds(List<Integer> ids);
 }

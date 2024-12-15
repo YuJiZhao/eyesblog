@@ -5,7 +5,6 @@ import com.eyes.eyesAuth.permission.Permission;
 import com.eyes.eyesspace.common.result.Result;
 import com.eyes.eyesspace.model.dto.FriendListDTO;
 import com.eyes.eyesspace.model.vo.FriendListInfoVO;
-import com.eyes.eyesspace.model.vo.FriendPreambleVO;
 import com.eyes.eyesspace.service.FriendService;
 
 import org.springframework.validation.annotation.Validated;
@@ -41,12 +40,5 @@ public class FriendController {
 	@GetMapping("/getFriendList")
 	public Result<List<FriendListDTO>> getFriendList() {
 		return Result.success(friendService.getFriendList());
-	}
-
-	@Permission
-	@Limiter
-	@GetMapping("/getFriendPreamble")
-	public Result<FriendPreambleVO> getFriendPreamble() {
-		return Result.success(friendService.getFriendPreamble());
 	}
 }

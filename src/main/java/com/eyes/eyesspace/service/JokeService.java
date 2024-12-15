@@ -6,7 +6,6 @@ import com.eyes.eyesspace.model.dto.JokeListDTO;
 import com.eyes.eyesspace.model.request.JokeAddRequest;
 import com.eyes.eyesspace.model.vo.FileUploadVO;
 import com.eyes.eyesspace.model.vo.JokeAddVO;
-import com.eyes.eyesspace.model.vo.JokeNoticeVO;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -17,8 +16,6 @@ public interface JokeService {
 	JokeAddVO addJoke(JokeAddRequest jokeAddRequest) throws CustomException;
 
 	FileUploadVO uploadJokePic(MultipartFile multipartFile) throws CustomException;
-
-	JokeNoticeVO getJokeNotice();
 
 	PageBind<JokeListDTO> getJokeList(Integer page);
 }

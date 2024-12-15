@@ -10,20 +10,14 @@ import com.eyes.eyesspace.model.dto.JokeListDTO;
 import com.eyes.eyesspace.model.request.JokeAddRequest;
 import com.eyes.eyesspace.model.vo.FileUploadVO;
 import com.eyes.eyesspace.model.vo.JokeAddVO;
-import com.eyes.eyesspace.model.vo.JokeNoticeVO;
 import com.eyes.eyesspace.service.JokeService;
 
-import java.util.Objects;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.util.CollectionUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -56,13 +50,6 @@ public class JokeController {
 	@PostMapping("/uploadJokePic")
 	public Result<FileUploadVO> uploadJokePic(@RequestPart("file") MultipartFile multipartFile) throws CustomException {
 		return Result.success(jokeService.uploadJokePic(multipartFile));
-	}
-
-	@Permission
-	@Limiter
-	@GetMapping("/getJokeNotice")
-	public Result<JokeNoticeVO> getJokeNotice() {
-		return Result.success(jokeService.getJokeNotice());
 	}
 
 	@Permission

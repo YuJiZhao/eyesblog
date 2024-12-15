@@ -1,22 +1,18 @@
 package com.eyes.eyesspace.model.vo;
 
-import com.eyes.eyesspace.model.bean.HomeListBean;
 import com.fasterxml.jackson.annotation.JsonFormat;
-
-import java.time.LocalDateTime;
-
 import lombok.Data;
 
 /**
  * @author eyesYeager
- * date 2023/5/22 17:55
+ * data 2024/12/14 17:13
  */
 
 @Data
-public class AnimeListVO implements HomeListBean {
-	private Integer id;
-
+public class BookInfoVO {
 	private String title;
+
+	private String author;
 
 	private String type;
 
@@ -24,10 +20,10 @@ public class AnimeListVO implements HomeListBean {
 
 	private String introduce;
 
-	private String cover;
+	private String word;
 
 	private Integer view;
 
 	@JsonFormat(pattern = "yyyy-MM-dd")
-	private LocalDateTime createTime;
+	private String createTime;
 }

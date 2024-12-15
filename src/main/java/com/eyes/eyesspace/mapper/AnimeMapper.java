@@ -1,6 +1,6 @@
 package com.eyes.eyesspace.mapper;
 
-import com.eyes.eyesspace.model.dto.AnimeListDTO;
+import com.eyes.eyesspace.model.vo.AnimeListVO;
 import com.eyes.eyesspace.model.vo.AnimeInfoVO;
 
 import java.util.List;
@@ -25,7 +25,7 @@ public interface AnimeMapper {
 	Integer getAnimeNum(String statusCondition);
 
 	@Select("select id, title, type, period, introduce, cover, view, create_time from anime where ${statusCondition} order by create_time desc limit #{start}, #{pageSize}")
-	List<AnimeListDTO> getAnimeList(Integer start, Integer pageSize, String statusCondition);
+	List<AnimeListVO> getAnimeList(int start, int pageSize, String statusCondition);
 
 	@Select("select title, type, period, introduce, word, cover, view, create_time from anime where id=#{id} and ${statusCondition}")
 	AnimeInfoVO getAnimeInfo(Integer id, String statusCondition);
@@ -40,5 +40,5 @@ public interface AnimeMapper {
 			+ "#{item}"
 			+ "</foreach>"
 			+ "</script>")
-	List<AnimeListDTO> getAnimeListByIds(List<Integer> ids);
+	List<AnimeListVO> getAnimeListByIds(List<Integer> ids);
 }

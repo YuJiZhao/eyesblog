@@ -5,11 +5,13 @@ import lombok.Data;
 
 /**
  * @author eyesYeager
- * date 2023/6/1 18:49
+ * data 2024/12/12 21:14
  */
 
 @Data
 @AllArgsConstructor
-public class FriendPreambleVO {
-	private String content;
+public class BookListInfoVO {
+	private Long totalNum;
+
+	private Integer viewNum;
 }

@@ -7,7 +7,7 @@ import com.eyes.eyesspace.mapper.HomeMapper;
 import com.eyes.eyesspace.model.dto.BlogListDTO;
 import com.eyes.eyesspace.model.po.HomeListPO;
 import com.eyes.eyesspace.common.result.PageBind;
-import com.eyes.eyesspace.model.dto.AnimeListDTO;
+import com.eyes.eyesspace.model.vo.AnimeListVO;
 import com.eyes.eyesspace.model.dto.ShuoListDTO;
 import com.eyes.eyesspace.model.dto.VersionListDTO;
 import com.eyes.eyesspace.model.vo.HomeListVO;
@@ -73,7 +73,7 @@ public class HomeServiceImpl implements HomeService {
 		Map<Integer, BlogListDTO> blogMap = new HashMap<>();
 		Map<Integer, ShuoListDTO> shuoMap = new HashMap<>();
 		Map<Integer, VersionListDTO> versionMap = new HashMap<>();
-		Map<Integer, AnimeListDTO> animeMap = new HashMap<>();
+		Map<Integer, AnimeListVO> animeMap = new HashMap<>();
 		for (Map.Entry<Integer, List<Integer>> entry : homeMap.entrySet()) {
 			if (HomeTypeEnum.BLOG.getType().equals(entry.getKey())) {
 				// 博客列表
@@ -89,8 +89,8 @@ public class HomeServiceImpl implements HomeService {
 				versionMap = versionList.stream().collect(Collectors.toMap(VersionListDTO::getId, o -> o, (front, behind) -> front));
 			} else if (HomeTypeEnum.ANIME.getType().equals(entry.getKey())) {
 				// 动漫列表
-				List<AnimeListDTO> animeList = animeService.getAnimeListByIds(entry.getValue());
-				animeMap = animeList.stream().collect(Collectors.toMap(AnimeListDTO::getId, o -> o, (front, behind) -> front));
+				List<AnimeListVO> animeList = animeService.getAnimeListByIds(entry.getValue());
+				animeMap = animeList.stream().collect(Collectors.toMap(AnimeListVO::getId, o -> o, (front, behind) -> front));
 			} else {
 				log.error("wrong content type: " + entry.getKey());
 			}

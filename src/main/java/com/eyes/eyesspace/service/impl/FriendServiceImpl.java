@@ -3,10 +3,8 @@ package com.eyes.eyesspace.service.impl;
 import com.eyes.eyesspace.constant.FriendChainConstant;
 import com.eyes.eyesspace.mapper.ContextMapper;
 import com.eyes.eyesspace.mapper.FriendMapper;
-import com.eyes.eyesspace.model.po.ContextPO;
 import com.eyes.eyesspace.model.dto.FriendListDTO;
 import com.eyes.eyesspace.model.vo.FriendListInfoVO;
-import com.eyes.eyesspace.model.vo.FriendPreambleVO;
 import com.eyes.eyesspace.service.FriendService;
 
 import java.util.Arrays;
@@ -55,11 +53,5 @@ public class FriendServiceImpl implements FriendService {
 	public List<FriendListDTO> getFriendList() {
 		List<Integer> statusList = Arrays.asList(FriendChainConstant.NORMAL, FriendChainConstant.INVALID, FriendChainConstant.STAGING);
 		return friendMapper.getFriendList(statusList);
-	}
-
-	@Override
-	public FriendPreambleVO getFriendPreamble() {
-		List<ContextPO> context = contextMapper.getContext(PREAMBLE_ID);
-		return new FriendPreambleVO(context.get(0).getValue());
 	}
 }

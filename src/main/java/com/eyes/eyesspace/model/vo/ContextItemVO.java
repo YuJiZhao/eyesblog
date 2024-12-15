@@ -5,10 +5,11 @@ import lombok.Data;
 
 /**
  * @author eyesYeager
- * date 2023/2/24 12:50
+ * date 2023/5/22 14:19
  */
+
 @Data
 @AllArgsConstructor
-public class ContextAboutContentVO {
+public class ContextItemVO {
 	private String content;
 }

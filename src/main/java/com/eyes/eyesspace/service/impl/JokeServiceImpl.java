@@ -4,10 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.eyes.eyesAuth.context.UserInfoHolder;
 import com.eyes.eyesspace.common.exception.CustomException;
 import com.eyes.eyesspace.constant.MediaConstant;
-import com.eyes.eyesspace.mapper.ContextMapper;
 import com.eyes.eyesspace.mapper.JokeMapper;
 import com.eyes.eyesspace.model.dto.JokeAddDTO;
-import com.eyes.eyesspace.model.po.ContextPO;
 import com.eyes.eyesspace.model.po.JokeAddCategoryPO;
 import com.eyes.eyesspace.model.po.JokeListPO;
 import com.eyes.eyesspace.common.result.PageBind;
@@ -15,11 +13,9 @@ import com.eyes.eyesspace.model.dto.JokeListDTO;
 import com.eyes.eyesspace.model.request.JokeAddRequest;
 import com.eyes.eyesspace.model.vo.FileUploadVO;
 import com.eyes.eyesspace.model.vo.JokeAddVO;
-import com.eyes.eyesspace.model.vo.JokeNoticeVO;
 import com.eyes.eyesspace.service.JokeService;
 import com.eyes.eyesspace.utils.AuthUtils;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -43,15 +39,11 @@ import javax.annotation.Resource;
 @Service
 @RefreshScope
 public class JokeServiceImpl implements JokeService {
-	private static final List<Integer> JOKE_NOTICE_ID = Collections.singletonList(11);
 
 	private static final Integer JOKE_PAGE_SIZE = 20;
 
 	@Value("${path.folder.joke}")
 	private String jokePath;
-
-	@Resource
-	private ContextMapper contextMapper;
 
 	@Resource
 	private JokeMapper jokeMapper;
@@ -97,12 +89,6 @@ public class JokeServiceImpl implements JokeService {
 		}
 		String url = fileUtils.putObject(multipartFile, jokePath);
 		return new FileUploadVO(url);
-	}
-
-	@Override
-	public JokeNoticeVO getJokeNotice() {
-		List<ContextPO> context = contextMapper.getContext(JOKE_NOTICE_ID);
-		return new JokeNoticeVO(context.get(0).getValue());
 	}
 
 	@Override

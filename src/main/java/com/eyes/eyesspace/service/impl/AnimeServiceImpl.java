@@ -3,21 +3,17 @@ package com.eyes.eyesspace.service.impl;
 import com.eyes.eyesAuth.constant.AuthConfigConstant;
 import com.eyes.eyesAuth.context.UserInfoHolder;
 import com.eyes.eyesspace.common.exception.CustomException;
+import com.eyes.eyesspace.common.result.PageBind;
 import com.eyes.eyesspace.constant.MediaConstant;
 import com.eyes.eyesspace.constant.StatusEnum;
 import com.eyes.eyesspace.mapper.AnimeMapper;
-import com.eyes.eyesspace.mapper.ContextMapper;
-import com.eyes.eyesspace.model.po.ContextPO;
-import com.eyes.eyesspace.model.dto.AnimeListDTO;
+import com.eyes.eyesspace.model.vo.AnimeListVO;
 import com.eyes.eyesspace.model.vo.AnimeInfoVO;
 import com.eyes.eyesspace.model.vo.AnimeListInfoVO;
-import com.eyes.eyesspace.model.vo.AnimeListVO;
-import com.eyes.eyesspace.model.vo.AnimeNoticeVO;
 import com.eyes.eyesspace.model.vo.FileUploadVO;
 import com.eyes.eyesspace.service.AnimeService;
 import com.eyes.eyesspace.utils.AuthUtils;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -42,15 +38,10 @@ import javax.annotation.Resource;
 @RefreshScope
 public class AnimeServiceImpl implements AnimeService {
 
-	private static final List<Integer> ANIME_NOTICE_ID = Collections.singletonList(9);
-
 	private static final Integer ANIME_PAGE_SIZE = 6;
 
 	@Value("${path.folder.anime}")
 	private String animePath;
-
-	@Resource
-	private ContextMapper contextMapper;
 
 	@Resource
 	private AnimeMapper animeMapper;
@@ -71,12 +62,6 @@ public class AnimeServiceImpl implements AnimeService {
 
 		String url = fileUtils.putObject(multipartFile, animePath);
 		return new FileUploadVO(url);
-	}
-
-	@Override
-	public AnimeNoticeVO getAnimeNotice() {
-		List<ContextPO> context = contextMapper.getContext(ANIME_NOTICE_ID);
-		return new AnimeNoticeVO(context.get(0).getValue());
 	}
 
 	@Override
@@ -102,14 +87,11 @@ public class AnimeServiceImpl implements AnimeService {
 	}
 
 	@Override
-	public AnimeListVO getAnimeList(Integer page) {
+	public PageBind<AnimeListVO> getAnimeList(Integer page) {
 		String role = UserInfoHolder.getRole();
 		String statusCondition = AuthUtils.statusSqlCondition(role);
-		List<AnimeListDTO> animeDTOList = animeMapper.getAnimeList((page - 1) * ANIME_PAGE_SIZE, ANIME_PAGE_SIZE, statusCondition);
-		return new AnimeListVO(
-				animeMapper.getAnimeNum(statusCondition),
-				animeDTOList
-		);
+		List<AnimeListVO> animeDTOList = animeMapper.getAnimeList((page - 1) * ANIME_PAGE_SIZE, ANIME_PAGE_SIZE, statusCondition);
+		return new PageBind<>(page, animeMapper.getAnimeNum(statusCondition), animeDTOList);
 	}
 
 	@Override
@@ -128,7 +110,7 @@ public class AnimeServiceImpl implements AnimeService {
 	}
 
 	@Override
-	public List<AnimeListDTO> getAnimeListByIds(List<Integer> ids) {
+	public List<AnimeListVO> getAnimeListByIds(List<Integer> ids) {
 		return animeMapper.getAnimeListByIds(ids);
 	}
 }

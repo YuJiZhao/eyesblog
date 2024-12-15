@@ -4,12 +4,9 @@ import com.eyes.eyesAuth.limiter.Limiter;
 import com.eyes.eyesAuth.permission.Permission;
 import com.eyes.eyesAuth.permission.PermissionEnum;
 import com.eyes.eyesspace.common.exception.CustomException;
+import com.eyes.eyesspace.common.result.PageBind;
 import com.eyes.eyesspace.common.result.Result;
-import com.eyes.eyesspace.model.vo.AnimeInfoVO;
-import com.eyes.eyesspace.model.vo.AnimeListInfoVO;
-import com.eyes.eyesspace.model.vo.AnimeListVO;
-import com.eyes.eyesspace.model.vo.AnimeNoticeVO;
-import com.eyes.eyesspace.model.vo.FileUploadVO;
+import com.eyes.eyesspace.model.vo.*;
 import com.eyes.eyesspace.service.AnimeService;
 
 import org.springframework.validation.annotation.Validated;
@@ -43,13 +40,6 @@ public class AnimeController {
 
 	@Permission
 	@Limiter
-	@GetMapping("/getAnimeNotice")
-	public Result<AnimeNoticeVO> getAnimeNotice() {
-		return Result.success(animeService.getAnimeNotice());
-	}
-
-	@Permission
-	@Limiter
 	@GetMapping("/getAnimeListInfo")
 	public Result<AnimeListInfoVO> getAnimeListInfo() {
 		return Result.success(animeService.getAnimeListInfo());
@@ -58,7 +48,7 @@ public class AnimeController {
 	@Permission
 	@Limiter
 	@GetMapping("/getAnimeList")
-	public Result<AnimeListVO> getAnimeList(Integer page) {
+	public Result<PageBind<AnimeListVO>> getAnimeList(Integer page) {
 		return Result.success(animeService.getAnimeList(page));
 	}
 

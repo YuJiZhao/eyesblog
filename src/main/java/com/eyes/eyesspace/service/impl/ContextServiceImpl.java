@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.eyes.eyesspace.mapper.ContextMapper;
 import com.eyes.eyesspace.model.po.ContextPO;
 import com.eyes.eyesspace.model.dto.FootprintDTO;
-import com.eyes.eyesspace.model.vo.ContextAboutContentVO;
+import com.eyes.eyesspace.model.vo.ContextItemVO;
 import com.eyes.eyesspace.model.vo.ContextVO;
 import com.eyes.eyesspace.service.ContextService;
 
@@ -20,9 +20,7 @@ import javax.annotation.Resource;
 
 @Service
 public class ContextServiceImpl implements ContextService {
-	private static final List<Integer> SITE_CONTEXT_IDS = Arrays.asList(1, 2, 3, 4, 5, 6, 7);
-
-	private static final List<Integer> ABOUT_ID = Collections.singletonList(8);
+	private static final List<Integer> SITE_CONTEXT_IDS = Arrays.asList(3, 4, 5, 6, 7);
 
 	@Resource
 	private ContextMapper contextMapper;
@@ -42,8 +40,8 @@ public class ContextServiceImpl implements ContextService {
 	}
 
 	@Override
-	public ContextAboutContentVO getAboutContent() {
-		List<ContextPO> context = contextMapper.getContext(ABOUT_ID);
-		return new ContextAboutContentVO(context.get(0).getValue());
+	public ContextItemVO getContextItem(Integer id) {
+		List<ContextPO> context = contextMapper.getContext(Collections.singletonList(id));
+		return new ContextItemVO(context.get(0).getValue());
 	}
 }
