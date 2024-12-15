@@ -17,7 +17,7 @@ import MdEditor from 'md-editor-v3';
 import 'md-editor-v3/lib/style.css';
 import useProcessControl from "@/hooks/useProcessControl";
 import { ApiObject, ProcessInterface } from "@/d.ts/plugin";
-import { codeConfig } from "@/config/program";
+import { codeConfig, contextConfig } from "@/config/program";
 
 export default defineComponent({
   name: "About",
@@ -29,11 +29,11 @@ export default defineComponent({
     let content = ref("");
 
     async function getAboutContent() {
-      $api.getAboutContent().then(({code, msg, data}) => {
+      $api.getContextItem([contextConfig.about]).then(({code, msg, data}) => {
         if (code == codeConfig.success) {
           content.value = data.content;
         } else {
-          $process.tipShow.error(`内容获取失败！${msg}`);
+          $process.tipShow.error(msg);
         }
       });
     }

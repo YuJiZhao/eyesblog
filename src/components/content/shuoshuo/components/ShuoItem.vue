@@ -22,7 +22,7 @@ import ShuoMd from "./ShuoMd.vue";
 export default defineComponent({
   components: { Image, ShuoMd },
   props: {
-    id: String,
+    id: Number,
     content: String,
     picList: Array<string>,
     createTime: String

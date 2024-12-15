@@ -7,7 +7,6 @@ const urlConfig = {
     eyesResourceUrl: "http://eyes-cdn.eyescode.top/",
     warehouseUrl: "https://github.com/eyesyeager/eyesspace",
     zwfwUrl: "https://beian.miit.gov.cn",
-    picbedUrl: "http://img.codesocean.top",
     avatarUploadUrl: `${process.env.VITE_API_DOMAIN}/user/info/updateUserAvatar`
 };
 
@@ -21,11 +20,9 @@ const siteConfig = {
     aesKey: "ar4qwer4qre47qw7",
     aesIV: "a4e4w54eq869e45q",
     enterURL: "enterURL",
-    keepAliveRoute: ["Home", "Blog", "Shuoshuo", "Music", "Video", "Joke", "Anime", "Message", "Friend", "Version", "About"],
+    keepAliveRoute: ["Home", "Blog", "Shuoshuo", "Music", "Video", "Joke", "Anime", "Book", "Friend", "Version", "About"],
     avatarMaxSize: 5,
     avatarImgType: ["image/png", "image/jpg", "image/jpeg"],
-    browserId: "browserId",
-    sessionId: "sessionId",
 }
 
 const codeConfig = {
@@ -39,6 +36,15 @@ const codeConfig = {
     no_time: 2001,
 }
 
+const contextConfig = {
+    announce: 1,
+    about: 8,
+    animeNotice: 9,
+    friendPreamble: 10,
+    jokeNotice: 11,
+    bookNotice: 12
+}
+
 const pathConfig = publicPath;
 
-export { urlConfig, siteConfig, codeConfig, pathConfig }
+export { urlConfig, siteConfig, codeConfig, pathConfig, contextConfig }

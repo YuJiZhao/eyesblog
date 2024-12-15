@@ -1,34 +1,23 @@
 <template>
-  <standard-card title="关于本站" :icon="icon">
-    <div class="announceCard">
-      <div class="announce">{{ announce }}</div>
-    </div>
-  </standard-card>
+    <notice-card :id="id" :title="title" :icon="icon" />
 </template>
 
 <script lang="ts">
-import { defineComponent, inject } from "vue";
-import StandardCard from "./components/StandardCard.vue";
+import { defineComponent } from "vue";
+import NoticeCard from "./NoticeCard.vue";
+import { contextConfig } from "@/config/program";
 import resource from "@/config/resource";
-import { ContextInterface } from "@/d.ts/plugin";
 
 export default defineComponent({
-  components: { StandardCard },
-  setup() {
-    const $context = inject<ContextInterface>("$context")!;
-    return {
-      announce: $context.data.announce,
-      icon: resource.announce,
-    };
-  },
+    components: { NoticeCard },
+    setup() {
+        return {
+            id: contextConfig.announce,
+            title: "站长说",
+            icon: resource.announce
+        };
+    },
 });
 </script>
 
-<style lang="scss" scoped>
-@import "@/assets/scss/index.scss";
-
-.announceCard {
-  color: $normal;
-  line-height: 18px;
-}
-</style>
+<style lang="scss" scoped></style>

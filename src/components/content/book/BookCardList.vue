@@ -1,0 +1,34 @@
+<template>
+    <div class="bookCard">
+        <owner-card class="card" />
+        <notice-card class="card" :id="id" :title="title" :icon="icon"/>
+        <book-data-card class="card" />
+    </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+import BookDataCard from "./components/BookDataCard.vue";
+import { OwnerCard, NoticeCard } from "@/components/general/card";
+import { contextConfig } from "@/config/program";
+import resource from "@/config/resource";
+
+export default defineComponent({
+    components: { OwnerCard, NoticeCard, BookDataCard },
+    setup() {
+        return {
+            id: contextConfig.bookNotice,
+            title: "站长说",
+            icon: resource.announce
+        };
+    },
+});
+</script>
+
+<style lang="scss" scoped>
+.bookCard {
+    .card {
+        margin-bottom: 20px;
+    }
+}
+</style>

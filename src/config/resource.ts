@@ -19,6 +19,7 @@ const icon = {
     joke: siteResource + "joke.png",
     warehouse: siteResource + "warehouse.png",
     anime: siteResource + "anime.png",
+    book: siteResource + "book.png",
     other: siteResource + "other.png",
     message: siteResource + "message.png",
     friend: siteResource + "friend.png",

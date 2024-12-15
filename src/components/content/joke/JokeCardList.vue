@@ -1,19 +1,23 @@
 <template>
   <div class="jokeCardList">
     <owner-card class="card" />
-    <joke-notice-card class="card" />
+    <notice-card class="card" :id="id" :title="title" :icon="icon"/>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import JokeNoticeCard from "./components/card/JokeNoticeCard.vue";
-import { OwnerCard } from "@/components/general/card";
+import { OwnerCard, NoticeCard } from "@/components/general/card";
+import { contextConfig } from "@/config/program";
+import resource from "@/config/resource";
 
 export default defineComponent({
-  components: { OwnerCard, JokeNoticeCard },
+  components: { OwnerCard, NoticeCard },
   setup() {
     return {
+      id: contextConfig.jokeNotice,
+      title: "站长说",
+      icon: resource.announce
     };
   },
 });

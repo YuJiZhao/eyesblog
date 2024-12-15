@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, inject, onMounted } from "vue";
+import { defineComponent, ref, inject, onBeforeMount } from "vue";
 import { ProcessInterface, WindowInterface } from "@/d.ts/plugin";
 import { Header, SideBar, SideCard, Footer } from "@/components/index";
 import { siteConfig } from "@/config/program";
@@ -62,7 +62,7 @@ export default defineComponent({
       })
     }
 
-    onMounted(() => {
+    onBeforeMount(() => {
       DOMObserve();
     })
 

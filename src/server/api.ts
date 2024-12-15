@@ -8,6 +8,7 @@ import {
     MusicInterface,
     VideoInterface,
     JokeInterface,
+    BookInterface,
     AnimeInterface,
     FriendInterface,
     VersionInterface
@@ -18,12 +19,12 @@ const site: SiteInterface = {
     getContext: async () => {
         return await get("/context/getContext");
     },
+    getContextItem: async (req) => {
+        return await get("/context/getContextItem", req, UrlReqType.path);
+    },
     getHomeList: async (req) => {
         return await get("/home/getHomeList", req);
     },
-    getAboutContent: async () => {
-        return await get("/context/getAboutContext");
-    }
 }
 
 const user: UserInterface = {
@@ -72,18 +73,12 @@ const video: VideoInterface = {
 }
 
 const joke: JokeInterface = {
-    getJokeNotice: async () => {
-        return await get("/joke/getJokeNotice");
-    },
     getJokeList: async (req) => {
         return await get("/joke/getJokeList", req);
     },
 }
 
 const anime: AnimeInterface = {
-    getAnimeNotice: async () => {
-        return await get("/anime/getAnimeNotice");
-    },
     getAnimeListInfo: async () => {
         return await get("/anime/getAnimeListInfo");
     },
@@ -95,6 +90,18 @@ const anime: AnimeInterface = {
     },
 }
 
+const book: BookInterface = {
+    getBookListInfo: async () => {
+        return await get("/book/getBookListInfo");
+    },
+    getBookList: async (req) => {
+        return await get("/book/getBookList", req);
+    },
+    getBookInfo: async (req) => {
+        return await get("/book/getBookInfo", req, UrlReqType.path);
+    }
+}
+
 const friend: FriendInterface = {
     getFriendListData: async () => {
         return await get("/friend/getFriendListData");
@@ -102,9 +109,6 @@ const friend: FriendInterface = {
     getFriendList: async () => {
         return await get("/friend/getFriendList");
     },
-    getFriendPreamble: async () => {
-        return await get("/friend/getFriendPreamble");
-    }
 }
 
 
@@ -125,6 +129,7 @@ const api: ApiObject = {
     ...music,
     ...video,
     ...joke,
+    ...book,
     ...anime,
     ...friend,
     ...version

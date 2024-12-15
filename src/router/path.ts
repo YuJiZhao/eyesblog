@@ -8,6 +8,7 @@ const publicPath = {
     video: "/video",
     joke: "/joke",
     anime: "/anime",
+    book: "/book",
     friend: "/friend",
     version: "version",
     about: "/about",
@@ -58,18 +59,8 @@ const content: Array<RouteRecordRaw> = [
     },
     {
         path: publicPath.shuoshuo,
-        children: [
-            {
-                path: "",
-                name: "shuoshuo",
-                component: () => import("@/views/content/Shuoshuo.vue"),
-            },
-            {
-                path: "details",
-                name: "shuoshuoDetails",
-                component: () => import("@/views/content/shuoshuo/Details.vue"),
-            }
-        ]
+        name: "shuoshuo",
+        component: () => import("@/views/content/Shuoshuo.vue"),
     },
     {
         path: publicPath.music,
@@ -98,6 +89,21 @@ const content: Array<RouteRecordRaw> = [
                 path: "details/:id",
                 name: "animeDetails",
                 component: () => import("@/views/content/anime/Details.vue"),
+            }
+        ]
+    },
+    {
+        path: publicPath.book,
+        children: [
+            {
+                path: "",
+                name: "book",
+                component: () => import("@/views/content/Book.vue"),
+            },
+            {
+                path: "details/:id",
+                name: "bookDetails",
+                component: () => import("@/views/content/book/Details.vue"),
             }
         ]
     },

@@ -30,7 +30,7 @@ export default defineComponent({
 
     let show = ref(true);
     let isFail = ref(false);
-    let friendData = ref({
+    let friendData: any = ref({
         validChain: 10,
         invalidChain: 1,
         verifyingChain: 3

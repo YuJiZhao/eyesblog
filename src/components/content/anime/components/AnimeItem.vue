@@ -10,9 +10,7 @@
         <div class="introduce">{{data.introduce}}</div>
         <div class="footer">
             <div class="time">{{data.createTime}}</div>
-            <div class="data">
-                <div>点击量: {{data.view}}</div>
-            </div>
+            <div class="data">点击量: {{data.view}}</div>
         </div>
     </div>
   </div>
@@ -86,12 +84,6 @@ export default defineComponent({
         line-height: 20px;
         display: flex;
         justify-content: space-between;
-        .data {
-            display: flex;
-            div {
-                margin-left: 10px;
-            }
-        }
     }
   }
 }

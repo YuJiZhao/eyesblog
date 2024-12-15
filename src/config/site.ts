@@ -109,6 +109,11 @@ const headerConfig = [
                 path: pathConfig.anime,
                 icon: resource.anime,
                 word: "动漫"
+            },
+            {
+                path: pathConfig.book,
+                icon: resource.book,
+                word: "书单"
             }
         ]
     },

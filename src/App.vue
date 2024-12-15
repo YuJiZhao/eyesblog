@@ -1,9 +1,7 @@
 <template>
   <router-view v-slot="{ Component }">
     <template v-if="Component">
-      <Suspense>
-        <component :is="Component" v-if="isShow" />
-      </Suspense>
+      <component :is="Component" v-if="isShow" />
     </template>
   </router-view>
 

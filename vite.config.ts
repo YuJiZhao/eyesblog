@@ -21,7 +21,8 @@ export default ({ command, mode }) => {
 		},
 		logLevel: mode == "development" ? "info" : "warn",
 		define: {
-			'process.env': process.env
+			'process.env': process.env,
+			__VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'true'
 		},
 		server: {
 			host: "0.0.0.0",

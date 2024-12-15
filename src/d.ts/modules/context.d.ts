@@ -9,9 +9,6 @@ export declare interface ContextType {
     ownerAvatar: string;
     ownerMotto: string;
     footprint: Partial<IconLinkType>;
-    announce: string;
-    announceVersion: number;
-    buildTime: string;
 }
 
 export declare interface IconLinkType {

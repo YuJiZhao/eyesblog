@@ -11,9 +11,7 @@
     <div class="summary">{{props.summary}}</div>
     <div class="footer">
         <div class="time">{{props.date}}</div>
-        <div class="data">
-            <div class="view">阅读:{{view}}</div>
-        </div>
+        <div class="view">阅读:{{view}}</div>
     </div>
   </div>
 </template>

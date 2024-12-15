@@ -14,16 +14,11 @@ export declare interface ApiObject extends
     MusicInterface, 
     VideoInterface,
     JokeInterface,
+    BookInterface,
     AnimeInterface,
     FriendInterface,
     VersionInterface
 {}
-
-// 分页
-interface PageInterface {
-    [page]: number;
-    [pageSize]: number;
-}
 
 /*
  ***************************************************************************************
@@ -32,11 +27,9 @@ interface PageInterface {
  */
 export declare interface SiteInterface {
     getContext: () => Promise<RespInterface>;
-    getHomeList: (req: GetHomeListReqInterface) => Promise<RespInterface>;
-    getAboutContent: () => Promise<RespInterface>;
+    getContextItem: (req: any) => Promise<RespInterface>;
+    getHomeList: (req: any) => Promise<RespInterface>;
 }
-
-interface GetHomeListReqInterface extends PageInterface {}
 
 /*
  ***************************************************************************************
@@ -54,13 +47,11 @@ export declare interface UserInterface {
  */
 export declare interface BlogInterface {
     getBlogListInfo: () => Promise<RespInterface>;
-    getBlogList:(req: BlogListReqInterface) => Promise<RespInterface>;
+    getBlogList:(req: any) => Promise<RespInterface>;
     getBlogInfo: (req: Array<any>) => Promise<RespInterface>;
     getBlogCategory: () => Promise<RespInterface>;
     getBlogLabel: () => Promise<RespInterface>;
 }
-
-interface BlogListReqInterface extends PageInterface {}
 
 /*
  ***************************************************************************************
@@ -98,11 +89,8 @@ export declare interface VideoInterface {
  ***************************************************************************************
  */
 export declare interface JokeInterface {
-    getJokeNotice: () => Promise<RespInterface>;
-    getJokeList: (req: GetJokeListReqInterface) => Promise<RespInterface>;
+    getJokeList: (req: any) => Promise<RespInterface>;
 }
-
-interface GetJokeListReqInterface extends PageInterface {}
 
 /*
  ***************************************************************************************
@@ -111,13 +99,22 @@ interface GetJokeListReqInterface extends PageInterface {}
  */
 
 export declare interface AnimeInterface {
-    getAnimeNotice: () => Promise<RespInterface>;
     getAnimeListInfo: () => Promise<RespInterface>;
-    getAnimeList: (req: GetAnimeListReqInterface) => Promise<RespInterface>;
+    getAnimeList: (req: any) => Promise<RespInterface>;
     getAnimeInfo: (req: Array<any>) => Promise<RespInterface>;
 }
 
-interface GetAnimeListReqInterface extends PageInterface {}
+/*
+ ***************************************************************************************
+ *                                    book
+ ***************************************************************************************
+ */
+
+export declare interface BookInterface {
+    getBookListInfo: () => Promise<RespInterface>;
+    getBookList: (req: any) => Promise<RespInterface>;
+    getBookInfo: (req: Array<any>) => Promise<RespInterface>;
+}
 
 /*
  ***************************************************************************************
@@ -127,7 +124,6 @@ interface GetAnimeListReqInterface extends PageInterface {}
 export declare interface FriendInterface {
     getFriendListData: () => Promise<RespInterface>;
     getFriendList: () => Promise<RespInterface>;
-    getFriendPreamble: () => Promise<RespInterface>;
 }
 
 /*
@@ -135,10 +131,7 @@ export declare interface FriendInterface {
  *                                    version
  ***************************************************************************************
  */
-
 export declare interface VersionInterface {
     getVersionInfo: () => Promise<RespInterface>;
-    getVersionList: (req: GetVersionListReqInterface) => Promise<RespInterface>;
+    getVersionList: (req: any) => Promise<RespInterface>;
 }
-
-interface GetVersionListReqInterface extends PageInterface {}
