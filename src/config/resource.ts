@@ -22,7 +22,6 @@ const icon = {
     book: siteResource + "book.png",
     footprint: siteResource + "footprint.png",
     other: siteResource + "other.png",
-    message: siteResource + "message.png",
     friend: siteResource + "friend.png",
     version: siteResource + "version.png",
     about: siteResource + "about.png",
@@ -36,48 +35,27 @@ const icon = {
     copy: siteResource + "copy.png",
     bilibili: siteResource + "bilibili.png",
     copyright: siteResource + "copyright.png",
-    like: siteResource + "like.png",
-    likeActive: siteResource + "like_active.png",
     hide: siteResource + "hide.png",
     fullscreen: siteResource + "fullscreen.png",
     switch: siteResource + "switch.png",
-    touch: siteResource + "touch.png",
-    load: siteResource + "load.png",
     category: siteResource + "category.png",
     label: siteResource + "label.png",
-    toolBox: siteResource + "toolBox.png",
-    top: siteResource + "goTop.png",
-    bottom: siteResource + "goBottom.png",
-    showBar: siteResource + "switchCardList.png",
-    switchBar: siteResource + "swapCardList.png",
-    collect: siteResource + "collect.png",
-    collectActive: siteResource + "collectActive.png",
-    reward: siteResource + "reward.png",
     catalogue: siteResource + "catalogue.png",
-    function: siteResource + "function.png",
-    range: siteResource + "range.png",
 }
 
 const img = {
     errorPage: siteResource + "errorPage.png",
     defaultAvatar: urlConfig.userResourceUrl + avatarPrefix + "space.jpg",
-    alipay: siteResource + "alipay.png",
-    wepay: siteResource + "wepay.png",
 }
 
 const gif = {
     loading: siteResource + "loading.png",
 }
 
-const data = {
-    emojiJson: "http://eyes-cdn.eyescode.top/data/emoji.json"
-}
-
 const resource = {
     ...icon,
     ...img,
     ...gif,
-    ...data
 }
 
 export default resource;

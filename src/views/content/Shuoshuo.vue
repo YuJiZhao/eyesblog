@@ -21,7 +21,6 @@ import { CardDirection, CardType, CardList } from "@/constant";
 import { ShuoList } from "@/components/content/shuoshuo";
 import { codeConfig } from "@/config/program";
 import { Wait } from "@/components/general/popup";
-import resource from "@/config/resource";
 import Pagination from "@/components/general/Pagination/pagination.vue";
 import { goBoth, GoBothType } from "@/hooks/useGoBoth";
 
@@ -87,7 +86,6 @@ export default defineComponent({
             isFail,
             shuoSentry,
             loadShow,
-            loadIcon: resource.load,
             pageChange,
         };
     },

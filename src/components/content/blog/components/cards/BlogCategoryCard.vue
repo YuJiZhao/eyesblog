@@ -19,7 +19,6 @@ import { useRouter } from "vue-router";
 import StandardCard from "@/components/general/card/components/StandardCard.vue";
 import resource from "@/config/resource";
 import { Wait } from "@/components/general/popup";
-import { BlogQueryInterface } from "@/components/content/blog/d.ts/blogQuery";
 
 export default defineComponent({
   components: { StandardCard, Wait },
@@ -48,7 +47,7 @@ export default defineComponent({
     }
 
     function getBlogList(category: string) {
-      let query: Partial<BlogQueryInterface> = {};
+      let query: Partial<any> = {};
       query.page = 1;
       if(router.currentRoute.value.query.label) query.label = <string>router.currentRoute.value.query.label;
       if(!document.querySelector(".category_" + category)!.classList.contains("active")) {

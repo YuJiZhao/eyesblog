@@ -2,9 +2,8 @@ import { publicPath } from "@/router/path";
 
 const urlConfig = {
     siteUrl: process.env.VITE_SITE_URL!,
-    resourceUrl: "http://space-cdn.eyescode.top/",
-    userResourceUrl: "http://user-cdn.eyescode.top/",
-    eyesResourceUrl: "http://eyes-cdn.eyescode.top/",
+    resourceUrl: "http://oss.eyescode.top/eyesspace/",
+    userResourceUrl: "http://oss.eyescode.top/eyesuser/",
     warehouseUrl: "https://github.com/eyesyeager/eyesspace",
     zwfwUrl: "https://beian.miit.gov.cn",
     avatarUploadUrl: `${process.env.VITE_API_DOMAIN}/user/info/updateUserAvatar`
