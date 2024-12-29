@@ -42,7 +42,8 @@ const contextConfig = {
     friendPreamble: 10,
     jokeNotice: 11,
     bookNotice: 12,
-    footprintInit: 13
+    footprintInit: 13,
+    footprintNotice: 14,
 }
 
 const pathConfig = publicPath;

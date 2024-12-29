@@ -107,6 +107,12 @@ const footprint: FootprintInterface = {
     getFootprintList: async () => {
         return await get("/footprint/getFootprintList");
     },
+    getFootprintListInfo: async () => {
+        return await get("/footprint/getFootprintListInfo");
+    },
+    getFootprintContentList: async (req) => {
+        return await get("/footprint/getFootprintContentList", req);
+    },
 }
 
 const friend: FriendInterface = {

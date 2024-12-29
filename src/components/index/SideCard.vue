@@ -23,16 +23,17 @@ import { FriendCardList } from "@/components/content/friend";
 import { VersionCardList } from "@/components/content/version";
 import { JokeCardList } from "@/components/content/joke";
 import { BookCardList } from "@/components/content/book";
+import { FootprintCardList } from "@/components/content/footprint";
 
 export default defineComponent({
   components: { 
     AnnounceCard, OwnerCard,
-    VideoCardList, ShuoCardList, BlogCardList, BlogDetailCardList, AnimeCardList, VersionCardList, JokeCardList, BookCardList
+    VideoCardList, ShuoCardList, BlogCardList, BlogDetailCardList, AnimeCardList, VersionCardList, JokeCardList, BookCardList, FootprintCardList
   },
   setup() {
     const $process = inject<ProcessInterface>("$process")!;
     const cardComponents = [AnnounceCard, OwnerCard];
-    const cardListComponents = [VideoCardList, ShuoCardList, BlogCardList, BlogDetailCardList, AnimeCardList, FriendCardList, VersionCardList, JokeCardList, BookCardList];
+    const cardListComponents = [VideoCardList, ShuoCardList, BlogCardList, BlogDetailCardList, AnimeCardList, FriendCardList, VersionCardList, JokeCardList, BookCardList, FootprintCardList];
 
     return {
       CardType,

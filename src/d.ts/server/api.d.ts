@@ -126,6 +126,8 @@ export declare interface BookInterface {
 
 export declare interface FootprintInterface {
     getFootprintList: () => Promise<RespInterface>;
+    getFootprintListInfo: () => Promise<RespInterface>;
+    getFootprintContentList: (req: any) => Promise<RespInterface>;
 }
 
 /*

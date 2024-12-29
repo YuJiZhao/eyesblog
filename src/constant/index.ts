@@ -33,7 +33,8 @@ export enum CardList {
     "FriendCardList",
     "VersionCardList",
     "JokeCardList",
-    "BookCardList"
+    "BookCardList",
+    "FootprintCardList"
 }
 
 export enum Dialogs {

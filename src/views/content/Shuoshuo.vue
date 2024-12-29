@@ -31,14 +31,13 @@ export default defineComponent({
         const $process = inject<ProcessInterface>("$process")!;
         const $api = inject<ApiObject>("$api")!;
 
+        let shuoSentry = ref(0);
+        let shuoListData = ref([]);
         let page = ref(1);
         let pageSize = ref(6);
         let total = ref(0);
-        let shuoListData = ref([]);
         let show = ref(true);
         let isFail = ref(false);
-        let loadShow = ref(false);
-        let shuoSentry = ref(0);
 
         async function getShuoshuoList() {
             await $api.getShuoshuoList({page: page.value}).then(({ code, msg, data }) => {
@@ -49,7 +48,7 @@ export default defineComponent({
                     shuoSentry.value++;
                     goBoth(GoBothType.TopSpeed);
                 } else {
-                    $process.tipShow.error("获取数据失败");
+                    $process.tipShow.error(msg);
                     isFail.value = true;
                 }
             });
@@ -85,7 +84,6 @@ export default defineComponent({
             show,
             isFail,
             shuoSentry,
-            loadShow,
             pageChange,
         };
     },
@@ -93,30 +91,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/index.scss";
-
 .shuoshuo {
     width: 100%;
-    .loadBtnWait {
-        width: 100px;
-        height: 40px;
-        box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-        -webkit-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-        -moz-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-        margin: 10px auto;
-        .loadBtn {
-            color: $normal;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            img {
-                display: block;
-                width: 20px;
-                height: 20px;
-            }
-        }
-    }
 }
 </style>
