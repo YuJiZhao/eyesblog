@@ -77,4 +77,13 @@ public interface BlogMapper {
 
 	@Update("update blog set views=views+1 where id=#{id}")
 	Boolean addView(Integer id);
+
+
+
+
+	@Select("select content from blog where id = #{id}")
+	String getBlogContent(Integer id);
+
+	@Update("update blog set content=#{content} where id = #{id}")
+	Boolean updateBlogContent(Integer id, String content);
 }
