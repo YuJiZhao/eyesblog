@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@types/jquery": "^3.5.9",
+    "@types/leaflet": "^1.9.15",
     "@types/node": "^16.11.10",
     "@types/nprogress": "^0.2.0",
     "animate.css": "^4.1.1",
@@ -18,6 +19,7 @@
     "crypto-js": "^4.1.1",
     "emot": "^1.0.0-beta.3",
     "jquery": "^3.6.0",
+    "leaflet": "^1.9.4",
     "md-editor-v3": "^2.2.1",
     "nprogress": "^0.2.0",
     "reset-css": "^5.0.1",

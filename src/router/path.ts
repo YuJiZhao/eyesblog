@@ -9,6 +9,7 @@ const publicPath = {
     joke: "/joke",
     anime: "/anime",
     book: "/book",
+    footprint: "/footprint",
     friend: "/friend",
     version: "version",
     about: "/about",
@@ -104,6 +105,21 @@ const content: Array<RouteRecordRaw> = [
                 path: "details/:id",
                 name: "bookDetails",
                 component: () => import("@/views/content/book/Details.vue"),
+            }
+        ]
+    },
+    {
+        path: publicPath.footprint,
+        children: [
+            {
+                path: "",
+                name: "footprint",
+                component: () => import("@/views/content/Footprint.vue"),
+            },
+            {
+                path: "details/:id",
+                name: "footprintDetails",
+                component: () => import("@/views/content/footprint/Details.vue"),
             }
         ]
     },

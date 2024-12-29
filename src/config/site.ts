@@ -114,6 +114,11 @@ const headerConfig = [
                 path: pathConfig.book,
                 icon: resource.book,
                 word: "书单"
+            },
+            {
+                path: pathConfig.footprint,
+                icon: resource.footprint,
+                word: "足迹"
             }
         ]
     },

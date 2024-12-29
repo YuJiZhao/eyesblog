@@ -20,7 +20,7 @@ const siteConfig = {
     aesKey: "ar4qwer4qre47qw7",
     aesIV: "a4e4w54eq869e45q",
     enterURL: "enterURL",
-    keepAliveRoute: ["Home", "Blog", "Shuoshuo", "Music", "Video", "Joke", "Anime", "Book", "Friend", "Version", "About"],
+    keepAliveRoute: ["Home", "Blog", "Shuoshuo", "Music", "Video", "Joke", "Anime", "Book", "Footprint", "Friend", "Version", "About"],
     avatarMaxSize: 5,
     avatarImgType: ["image/png", "image/jpg", "image/jpeg"],
 }
@@ -42,7 +42,8 @@ const contextConfig = {
     animeNotice: 9,
     friendPreamble: 10,
     jokeNotice: 11,
-    bookNotice: 12
+    bookNotice: 12,
+    footprintInit: 13
 }
 
 const pathConfig = publicPath;

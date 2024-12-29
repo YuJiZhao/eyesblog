@@ -15,6 +15,7 @@ export declare interface ApiObject extends
     VideoInterface,
     JokeInterface,
     BookInterface,
+    FootprintInterface,
     AnimeInterface,
     FriendInterface,
     VersionInterface
@@ -114,6 +115,17 @@ export declare interface BookInterface {
     getBookListInfo: () => Promise<RespInterface>;
     getBookList: (req: any) => Promise<RespInterface>;
     getBookInfo: (req: Array<any>) => Promise<RespInterface>;
+}
+
+/*
+ ***************************************************************************************
+ *                                    footprint
+ ***************************************************************************************
+ */
+
+
+export declare interface FootprintInterface {
+    getFootprintList: () => Promise<RespInterface>;
 }
 
 /*

@@ -9,6 +9,7 @@ import {
     VideoInterface,
     JokeInterface,
     BookInterface,
+    FootprintInterface,
     AnimeInterface,
     FriendInterface,
     VersionInterface
@@ -102,6 +103,12 @@ const book: BookInterface = {
     }
 }
 
+const footprint: FootprintInterface = {
+    getFootprintList: async () => {
+        return await get("/footprint/getFootprintList");
+    },
+}
+
 const friend: FriendInterface = {
     getFriendListData: async () => {
         return await get("/friend/getFriendListData");
@@ -130,6 +137,7 @@ const api: ApiObject = {
     ...video,
     ...joke,
     ...book,
+    ...footprint,
     ...anime,
     ...friend,
     ...version

@@ -21,3 +21,4 @@ declare module 'xgplayer/dist/controls/progress';
 declare module 'xgplayer/dist/controls/time';
 declare module 'xgplayer/dist/controls/volume';
 declare module 'xgplayer/dist/controls/flex';
+declare module 'leaflet';

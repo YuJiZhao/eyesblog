@@ -20,6 +20,7 @@ const icon = {
     warehouse: siteResource + "warehouse.png",
     anime: siteResource + "anime.png",
     book: siteResource + "book.png",
+    footprint: siteResource + "footprint.png",
     other: siteResource + "other.png",
     message: siteResource + "message.png",
     friend: siteResource + "friend.png",
