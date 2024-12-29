@@ -43,7 +43,7 @@ export default defineComponent({
 
         let page = ref(1);
         let total = ref(1);
-        let pageSize = ref(8);
+        let pageSize = ref(10);
         let category = ref<string>();
         let label = ref<string>();
 

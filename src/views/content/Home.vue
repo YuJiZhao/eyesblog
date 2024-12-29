@@ -43,7 +43,7 @@ export default defineComponent({
         let show = ref(true);
         let isFail = ref(false);
         let page = ref(1);
-        let pageSize = ref(8);
+        let pageSize = ref(6);
         let total = ref(0);
         let homeListData = ref([]);
         let homeSentry = ref(0);
