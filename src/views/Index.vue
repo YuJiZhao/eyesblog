@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, inject, onBeforeMount } from "vue";
+import { defineComponent, ref, inject, onMounted } from "vue";
 import { ProcessInterface, WindowInterface } from "@/d.ts/plugin";
 import { Header, SideBar, SideCard, Footer } from "@/components/index";
 import { siteConfig } from "@/config/program";
@@ -42,27 +42,16 @@ export default defineComponent({
 
     // DOM监听
     function DOMObserve() {
-      let dom = document.querySelector("html")!;
-      let win: any = window;
-      let MutationObserver = win.MutationObserver || win.webkitMutationObserver || win.MozMutationObserver;
-      let mutationObserver = new MutationObserver((mutations: any) => {
+      setInterval(() => {
       	let height = document.querySelector("html")!.offsetHeight;
         // header形态监听
         $process.headerCheckSwitch($window.height.value, height);
         // footer形态更新
         $process.footerPositionSwitch($window.height.value, height);
-      })
-      mutationObserver.observe(dom, {
-        childList: true,
-      	attributes: true,
-      	characterData: true,
-      	subtree: false,
-      	attributeOldValue: false,
-      	characterDataOldValue: false
-      })
+      }, 1000);
     }
 
-    onBeforeMount(() => {
+    onMounted(() => {
       DOMObserve();
     })
 
