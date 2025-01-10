@@ -1,11 +1,13 @@
 package com.eyes.eyesspace.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.eyes.eyesAuth.context.UserInfoHolder;
 import com.eyes.eyesspace.common.exception.CustomException;
 import com.eyes.eyesspace.common.result.PageBind;
 import com.eyes.eyesspace.mapper.BookMapper;
+import com.eyes.eyesspace.model.entity.Book;
 import com.eyes.eyesspace.model.vo.*;
-import com.eyes.eyesspace.service.BookService;
+import com.eyes.eyesspace.service.IBookService;
 import com.eyes.eyesspace.utils.AuthUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,7 +23,7 @@ import java.util.Objects;
 
 @Slf4j
 @Service
-public class BookServiceImpl implements BookService {
+public class BookServiceImpl extends ServiceImpl<BookMapper, Book> implements IBookService {
 
 	private static final Integer BOOK_PAGE_SIZE = 6;
 

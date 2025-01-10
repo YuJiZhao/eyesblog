@@ -1,7 +1,10 @@
 package com.eyes.eyesspace.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.eyes.eyesspace.model.dto.FriendListDTO;
 import java.util.List;
+
+import com.eyes.eyesspace.model.entity.Friend;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -11,7 +14,7 @@ import org.apache.ibatis.annotations.Select;
  */
 
 @Mapper
-public interface FriendMapper {
+public interface FriendMapper extends BaseMapper<Friend> {
 	@Select("select status from friend")
 	List<Integer> getFriendStatusList();
 

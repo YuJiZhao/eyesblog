@@ -10,7 +10,7 @@ import com.eyes.eyesspace.model.dto.JokeListDTO;
 import com.eyes.eyesspace.model.request.JokeAddRequest;
 import com.eyes.eyesspace.model.vo.FileUploadVO;
 import com.eyes.eyesspace.model.vo.JokeAddVO;
-import com.eyes.eyesspace.service.JokeService;
+import com.eyes.eyesspace.service.IJokeService;
 
 import org.springframework.util.CollectionUtils;
 import org.springframework.validation.annotation.Validated;
@@ -35,7 +35,7 @@ import javax.annotation.Resource;
 public class JokeController {
 
 	@Resource
-	private JokeService jokeService;
+	private IJokeService jokeService;
 
 	@Permission(PermissionEnum.ADMIN)
 	@PostMapping("/addJoke")

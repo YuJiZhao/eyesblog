@@ -1,5 +1,6 @@
 package com.eyes.eyesspace.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.eyes.eyesAuth.constant.AuthConfigConstant;
 import com.eyes.eyesAuth.context.UserInfoHolder;
 import com.eyes.eyesspace.common.exception.CustomException;
@@ -11,6 +12,7 @@ import com.eyes.eyesspace.model.dto.BlogCategoryDTO;
 import com.eyes.eyesspace.model.dto.BlogInfoDTO;
 import com.eyes.eyesspace.model.dto.BlogLabelDTO;
 import com.eyes.eyesspace.model.dto.BlogListDTO;
+import com.eyes.eyesspace.model.entity.Blog;
 import com.eyes.eyesspace.model.po.BlogAddCategoryPO;
 import com.eyes.eyesspace.model.po.BlogAddLabelPO;
 import com.eyes.eyesspace.model.po.BlogDataPO;
@@ -20,7 +22,7 @@ import com.eyes.eyesspace.model.request.BlogAddRequest;
 import com.eyes.eyesspace.model.vo.BlogAddVO;
 import com.eyes.eyesspace.model.vo.BlogListInfoVO;
 import com.eyes.eyesspace.model.vo.FileUploadVO;
-import com.eyes.eyesspace.service.BlogService;
+import com.eyes.eyesspace.service.IBlogService;
 import com.eyes.eyesspace.utils.AuthUtils;
 
 import java.util.List;
@@ -40,7 +42,7 @@ import javax.annotation.Resource;
 @Slf4j
 @RefreshScope
 @Service
-public class BlogServiceImpl implements BlogService {
+public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements IBlogService {
 	// 展示最大标签数
 	private static final Integer LABEL_MAX_NUM = 20;
 

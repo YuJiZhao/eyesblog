@@ -10,7 +10,7 @@ import com.eyes.eyesspace.model.request.ShuoAddRequest;
 import com.eyes.eyesspace.model.vo.FileUploadVO;
 import com.eyes.eyesspace.model.vo.ShuoListInfoVO;
 import com.eyes.eyesspace.model.vo.ShuoListVO;
-import com.eyes.eyesspace.service.ShuoService;
+import com.eyes.eyesspace.service.IShuoService;
 
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,9 +26,9 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/shuo")
 public class ShuoController {
 
-	private final ShuoService shuoService;
+	private final IShuoService shuoService;
 
-	public ShuoController(ShuoService shuoService) {
+	public ShuoController(IShuoService shuoService) {
 		this.shuoService = shuoService;
 	}
 

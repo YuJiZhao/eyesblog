@@ -1,5 +1,7 @@
 package com.eyes.eyesspace.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.eyes.eyesspace.model.entity.Video;
 import com.eyes.eyesspace.model.po.VideoInfoPO;
 import com.eyes.eyesspace.model.request.VideoAddRequest;
 import org.apache.ibatis.annotations.Insert;
@@ -12,7 +14,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Update;
 
 @Mapper
-public interface VideoMapper {
+public interface VideoMapper extends BaseMapper<Video> {
 	@Insert(
 			"insert into video " +
 					"(video_url, picture_url, title, original_url, original_author, owner_comment, status, create_time) " +

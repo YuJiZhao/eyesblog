@@ -1,5 +1,7 @@
 package com.eyes.eyesspace.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.eyes.eyesspace.model.entity.Music;
 import com.eyes.eyesspace.model.po.MusicInfoPO;
 import com.eyes.eyesspace.model.request.MusicAddRequest;
 import org.apache.ibatis.annotations.Insert;
@@ -12,7 +14,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Update;
 
 @Mapper
-public interface MusicMapper {
+public interface MusicMapper extends BaseMapper<Music> {
 	@Insert("insert into music " +
 			"(url, pic, title, author, lrc, owner_comment, status, create_time) " +
 			"values " +

@@ -1,5 +1,6 @@
 package com.eyes.eyesspace.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.eyes.eyesAuth.constant.AuthConfigConstant;
 import com.eyes.eyesAuth.context.UserInfoHolder;
 import com.eyes.eyesspace.common.exception.CustomException;
@@ -11,11 +12,12 @@ import com.eyes.eyesspace.mapper.HomeMapper;
 import com.eyes.eyesspace.mapper.ShuoMapper;
 import com.eyes.eyesspace.model.dto.ShuoInfoDTO;
 import com.eyes.eyesspace.model.dto.ShuoListDTO;
+import com.eyes.eyesspace.model.entity.Shuoshuo;
 import com.eyes.eyesspace.model.request.ShuoAddRequest;
 import com.eyes.eyesspace.model.vo.FileUploadVO;
 import com.eyes.eyesspace.model.vo.ShuoListInfoVO;
 import com.eyes.eyesspace.model.vo.ShuoListVO;
-import com.eyes.eyesspace.service.ShuoService;
+import com.eyes.eyesspace.service.IShuoService;
 import com.eyes.eyesspace.utils.AuthUtils;
 
 import java.util.ArrayList;
@@ -24,7 +26,6 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import com.eyes.eyesspace.utils.FileUtils;
-import com.eyes.eyesspace.utils.SecurityUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -39,7 +40,7 @@ import javax.annotation.Resource;
 @Slf4j
 @Service
 @RefreshScope
-public class ShuoServiceImpl implements ShuoService {
+public class ShuoServiceImpl extends ServiceImpl<ShuoMapper, Shuoshuo> implements IShuoService {
 
 	private static final int SHUO_PAGE_SIZE = 6;
 

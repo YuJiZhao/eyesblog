@@ -1,11 +1,13 @@
 package com.eyes.eyesspace.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.eyes.eyesspace.common.exception.CustomException;
 import com.eyes.eyesspace.common.result.PageBind;
 import com.eyes.eyesspace.model.dto.BlogCategoryDTO;
 import com.eyes.eyesspace.model.dto.BlogInfoDTO;
 import com.eyes.eyesspace.model.dto.BlogLabelDTO;
 import com.eyes.eyesspace.model.dto.BlogListDTO;
+import com.eyes.eyesspace.model.entity.Blog;
 import com.eyes.eyesspace.model.request.BlogAddRequest;
 import com.eyes.eyesspace.model.vo.BlogAddVO;
 import com.eyes.eyesspace.model.vo.BlogListInfoVO;
@@ -14,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-public interface BlogService {
+public interface IBlogService extends IService<Blog>  {
 	BlogAddVO addBlog(BlogAddRequest blogAddRequest) throws CustomException;
 
 	FileUploadVO addBlogPic(MultipartFile multipartFile) throws CustomException;

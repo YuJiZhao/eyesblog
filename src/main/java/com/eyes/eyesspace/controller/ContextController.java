@@ -6,7 +6,7 @@ import com.eyes.eyesspace.common.exception.CustomException;
 import com.eyes.eyesspace.common.result.Result;
 import com.eyes.eyesspace.model.vo.ContextItemVO;
 import com.eyes.eyesspace.model.vo.ContextVO;
-import com.eyes.eyesspace.service.ContextService;
+import com.eyes.eyesspace.service.IContextService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +25,7 @@ import javax.annotation.Resource;
 public class ContextController {
 
 	@Resource
-	private ContextService contextService;
+	private IContextService contextService;
 
 	@Limiter
 	@Permission

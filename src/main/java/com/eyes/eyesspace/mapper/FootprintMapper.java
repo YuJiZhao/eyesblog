@@ -1,5 +1,7 @@
 package com.eyes.eyesspace.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.eyes.eyesspace.model.entity.Footprint;
 import com.eyes.eyesspace.model.po.FootprintContentPO;
 import com.eyes.eyesspace.model.vo.FootprintInfoVO;
 import com.eyes.eyesspace.model.vo.FootprintListInfoVO;
@@ -14,7 +16,7 @@ import java.util.List;
  */
 
 @Mapper
-public interface FootprintMapper {
+public interface FootprintMapper extends BaseMapper<Footprint> {
 	@Select("select id, country, province, city, latitude, longitude from footprint where ${statusCondition}")
 	List<FootprintInfoVO> getFootprintList(String statusCondition);
 

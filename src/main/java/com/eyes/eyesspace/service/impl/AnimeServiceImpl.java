@@ -1,5 +1,6 @@
 package com.eyes.eyesspace.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.eyes.eyesAuth.constant.AuthConfigConstant;
 import com.eyes.eyesAuth.context.UserInfoHolder;
 import com.eyes.eyesspace.common.exception.CustomException;
@@ -7,11 +8,12 @@ import com.eyes.eyesspace.common.result.PageBind;
 import com.eyes.eyesspace.constant.MediaConstant;
 import com.eyes.eyesspace.constant.StatusEnum;
 import com.eyes.eyesspace.mapper.AnimeMapper;
+import com.eyes.eyesspace.model.entity.Anime;
 import com.eyes.eyesspace.model.vo.AnimeListVO;
 import com.eyes.eyesspace.model.vo.AnimeInfoVO;
 import com.eyes.eyesspace.model.vo.AnimeListInfoVO;
 import com.eyes.eyesspace.model.vo.FileUploadVO;
-import com.eyes.eyesspace.service.AnimeService;
+import com.eyes.eyesspace.service.IAnimeService;
 import com.eyes.eyesspace.utils.AuthUtils;
 
 import java.util.List;
@@ -36,7 +38,7 @@ import javax.annotation.Resource;
 @Slf4j
 @Service
 @RefreshScope
-public class AnimeServiceImpl implements AnimeService {
+public class AnimeServiceImpl extends ServiceImpl<AnimeMapper, Anime> implements IAnimeService {
 
 	private static final Integer ANIME_PAGE_SIZE = 6;
 

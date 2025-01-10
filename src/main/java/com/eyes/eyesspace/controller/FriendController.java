@@ -5,7 +5,7 @@ import com.eyes.eyesAuth.permission.Permission;
 import com.eyes.eyesspace.common.result.Result;
 import com.eyes.eyesspace.model.dto.FriendListDTO;
 import com.eyes.eyesspace.model.vo.FriendListInfoVO;
-import com.eyes.eyesspace.service.FriendService;
+import com.eyes.eyesspace.service.IFriendService;
 
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +26,7 @@ import java.util.List;
 public class FriendController {
 
 	@Resource
-	private FriendService friendService;
+	private IFriendService friendService;
 
 	@Permission
 	@Limiter

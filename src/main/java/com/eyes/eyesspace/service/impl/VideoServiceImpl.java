@@ -1,9 +1,11 @@
 package com.eyes.eyesspace.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.eyes.eyesAuth.context.UserInfoHolder;
 import com.eyes.eyesspace.common.exception.CustomException;
 import com.eyes.eyesspace.mapper.VideoMapper;
+import com.eyes.eyesspace.model.entity.Video;
 import com.eyes.eyesspace.model.po.VideoInfoPO;
 import com.eyes.eyesspace.common.result.ResultCode;
 import com.eyes.eyesspace.model.bean.UserVideoKeyBean;
@@ -13,7 +15,7 @@ import com.eyes.eyesspace.model.vo.FileUploadVO;
 import com.eyes.eyesspace.model.vo.VideoInfoVO;
 import com.eyes.eyesspace.model.vo.VideoAddCoverFailVO;
 import com.eyes.eyesspace.model.vo.VideoAddVO;
-import com.eyes.eyesspace.service.VideoService;
+import com.eyes.eyesspace.service.IVideoService;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,7 +37,8 @@ import javax.annotation.Resource;
 @RefreshScope
 @Slf4j
 @Service
-public class VideoServiceImpl implements VideoService {
+public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements IVideoService {
+
 	// bilibili视频页面的base url，拼接bv号后成为原视频链接
 	private static final String BILI_VIDEO_BASE_URL = "https://www.bilibili.com/video/";
 

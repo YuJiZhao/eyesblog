@@ -1,14 +1,16 @@
 package com.eyes.eyesspace.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.eyes.eyesspace.common.exception.CustomException;
 import com.eyes.eyesspace.common.result.PageBind;
 import com.eyes.eyesspace.constant.VersionTypeConstant;
 import com.eyes.eyesspace.mapper.VersionMapper;
+import com.eyes.eyesspace.model.entity.Version;
 import com.eyes.eyesspace.model.po.VersionInfoPO;
 import com.eyes.eyesspace.model.po.VersionPicPO;
 import com.eyes.eyesspace.model.dto.VersionListDTO;
 import com.eyes.eyesspace.model.vo.VersionInfoVO;
-import com.eyes.eyesspace.service.VersionService;
+import com.eyes.eyesspace.service.IVersionService;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,7 +27,7 @@ import javax.annotation.Resource;
  * date 2023/5/20 16:30
  */
 @Service
-public class VersionServiceImpl implements VersionService {
+public class VersionServiceImpl extends ServiceImpl<VersionMapper, Version> implements IVersionService {
 
 	private final static Integer VERSION_PAGE_SIZE = 10;
 

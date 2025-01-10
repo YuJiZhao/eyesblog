@@ -1,5 +1,7 @@
 package com.eyes.eyesspace.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.eyes.eyesspace.model.entity.Book;
 import com.eyes.eyesspace.model.vo.BookInfoVO;
 import com.eyes.eyesspace.model.vo.BookListInfoVO;
 import com.eyes.eyesspace.model.vo.BookListVO;
@@ -14,7 +16,7 @@ import java.util.List;
  * data 2024/12/9 20:53
  */
 @Mapper
-public interface BookMapper {
+public interface BookMapper extends BaseMapper<Book> {
 	@Select("select COUNT(*) as totalNum, SUM(`view`) as viewNum from book where ${statusCondition}")
 	BookListInfoVO getBookListInfo(String statusCondition);
 

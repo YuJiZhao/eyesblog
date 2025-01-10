@@ -1,11 +1,13 @@
 package com.eyes.eyesspace.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.eyes.eyesspace.constant.FriendChainConstant;
 import com.eyes.eyesspace.mapper.ContextMapper;
 import com.eyes.eyesspace.mapper.FriendMapper;
 import com.eyes.eyesspace.model.dto.FriendListDTO;
+import com.eyes.eyesspace.model.entity.Friend;
 import com.eyes.eyesspace.model.vo.FriendListInfoVO;
-import com.eyes.eyesspace.service.FriendService;
+import com.eyes.eyesspace.service.IFriendService;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -28,15 +30,10 @@ import javax.annotation.Resource;
 @RefreshScope
 @Service
 @Slf4j
-public class FriendServiceImpl implements FriendService {
-
-	private static final List<Integer> PREAMBLE_ID = Collections.singletonList(10);
+public class FriendServiceImpl extends ServiceImpl<FriendMapper, Friend> implements IFriendService {
 
 	@Resource
 	private FriendMapper friendMapper;
-
-	@Resource
-	private ContextMapper contextMapper;
 
 	@Override
 	public FriendListInfoVO getFriendListData() {

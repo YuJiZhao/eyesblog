@@ -1,9 +1,11 @@
 package com.eyes.eyesspace.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.eyes.eyesAuth.context.UserInfoHolder;
 import com.eyes.eyesspace.common.exception.CustomException;
 import com.eyes.eyesspace.mapper.MusicMapper;
+import com.eyes.eyesspace.model.entity.Music;
 import com.eyes.eyesspace.model.po.MusicInfoPO;
 import com.eyes.eyesspace.common.result.ResultCode;
 import com.eyes.eyesspace.model.bean.UserMusicKeyBean;
@@ -11,7 +13,7 @@ import com.eyes.eyesspace.model.vo.FileUploadVO;
 import com.eyes.eyesspace.model.vo.MusicAddVO;
 import com.eyes.eyesspace.model.vo.MusicInfoVO;
 import com.eyes.eyesspace.model.request.MusicAddRequest;
-import com.eyes.eyesspace.service.MusicService;
+import com.eyes.eyesspace.service.IMusicService;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,7 +34,8 @@ import javax.annotation.Resource;
 @RefreshScope
 @Slf4j
 @Service
-public class MusicServiceImpl implements MusicService {
+public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> implements IMusicService {
+
 	@Value("${path.folder.music}")
 	private String musicPath;
 

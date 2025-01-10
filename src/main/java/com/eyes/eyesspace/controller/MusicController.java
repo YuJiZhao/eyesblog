@@ -9,7 +9,7 @@ import com.eyes.eyesspace.model.request.MusicAddRequest;
 import com.eyes.eyesspace.model.vo.FileUploadVO;
 import com.eyes.eyesspace.model.vo.MusicAddVO;
 import com.eyes.eyesspace.model.vo.MusicInfoVO;
-import com.eyes.eyesspace.service.MusicService;
+import com.eyes.eyesspace.service.IMusicService;
 
 import javax.annotation.Resource;
 import javax.validation.constraints.NotNull;
@@ -28,7 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/music")
 public class MusicController {
 	@Resource
-	private MusicService musicService;
+	private IMusicService musicService;
 
 	@Permission(PermissionEnum.ADMIN)
 	@PostMapping("/addMusic")

@@ -1,8 +1,10 @@
 package com.eyes.eyesspace.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.eyes.eyesspace.common.exception.CustomException;
 import com.eyes.eyesspace.common.result.PageBind;
 import com.eyes.eyesspace.model.dto.VersionListDTO;
+import com.eyes.eyesspace.model.entity.Version;
 import com.eyes.eyesspace.model.vo.VersionInfoVO;
 
 import java.util.List;
@@ -12,7 +14,7 @@ import java.util.List;
  * date 2023/5/20 16:30
  */
 
-public interface VersionService {
+public interface IVersionService extends IService<Version> {
 
 	VersionInfoVO getVersionInfo() throws CustomException;
 

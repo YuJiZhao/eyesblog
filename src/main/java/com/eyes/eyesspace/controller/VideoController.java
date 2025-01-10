@@ -11,7 +11,7 @@ import com.eyes.eyesspace.model.vo.FileUploadVO;
 import com.eyes.eyesspace.model.vo.VideoInfoVO;
 import com.eyes.eyesspace.model.vo.VideoAddCoverFailVO;
 import com.eyes.eyesspace.model.vo.VideoAddVO;
-import com.eyes.eyesspace.service.VideoService;
+import com.eyes.eyesspace.service.IVideoService;
 
 import java.util.List;
 import javax.annotation.Resource;
@@ -30,7 +30,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/video")
 public class VideoController {
 	@Resource
-	private VideoService videoService;
+	private IVideoService videoService;
 
 	@Permission(PermissionEnum.ADMIN)
 	@PostMapping("/addVideo")

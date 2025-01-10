@@ -8,7 +8,7 @@ import com.eyes.eyesspace.common.result.Result;
 import com.eyes.eyesspace.model.vo.BookInfoVO;
 import com.eyes.eyesspace.model.vo.BookListInfoVO;
 import com.eyes.eyesspace.model.vo.BookListVO;
-import com.eyes.eyesspace.service.BookService;
+import com.eyes.eyesspace.service.IBookService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +28,7 @@ import javax.annotation.Resource;
 public class BookController {
 
 	@Resource
-	private BookService bookService;
+	private IBookService bookService;
 
 	@Permission
 	@Limiter

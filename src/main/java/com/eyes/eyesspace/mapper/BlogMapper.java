@@ -1,9 +1,11 @@
 package com.eyes.eyesspace.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.eyes.eyesspace.model.dto.BlogCategoryDTO;
 import com.eyes.eyesspace.model.dto.BlogInfoDTO;
 import com.eyes.eyesspace.model.dto.BlogLabelDTO;
 import com.eyes.eyesspace.model.dto.BlogListDTO;
+import com.eyes.eyesspace.model.entity.Blog;
 import com.eyes.eyesspace.model.po.BlogAddLabelPO;
 import com.eyes.eyesspace.model.bo.BlogAddBO;
 import com.eyes.eyesspace.model.po.BlogDataPO;
@@ -13,7 +15,7 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 
 @Mapper
-public interface BlogMapper {
+public interface BlogMapper extends BaseMapper<Blog> {
 	@Select("select id from blog_category where category=#{category}")
 	Integer getCategoryIdByName(String category);
 

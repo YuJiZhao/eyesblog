@@ -6,9 +6,8 @@ import com.eyes.eyesspace.common.exception.CustomException;
 import com.eyes.eyesspace.common.result.PageBind;
 import com.eyes.eyesspace.common.result.Result;
 import com.eyes.eyesspace.model.vo.HomeListVO;
-import com.eyes.eyesspace.service.HomeService;
+import com.eyes.eyesspace.service.IHomeService;
 
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +24,7 @@ import javax.annotation.Resource;
 @Validated
 public class HomeController {
 	@Resource
-	private HomeService homeService;
+	private IHomeService homeService;
 
 	@Limiter
 	@Permission

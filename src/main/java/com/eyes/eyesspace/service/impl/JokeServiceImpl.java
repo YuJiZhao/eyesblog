@@ -1,11 +1,13 @@
 package com.eyes.eyesspace.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.eyes.eyesAuth.context.UserInfoHolder;
 import com.eyes.eyesspace.common.exception.CustomException;
 import com.eyes.eyesspace.constant.MediaConstant;
 import com.eyes.eyesspace.mapper.JokeMapper;
 import com.eyes.eyesspace.model.dto.JokeAddDTO;
+import com.eyes.eyesspace.model.entity.Joke;
 import com.eyes.eyesspace.model.po.JokeAddCategoryPO;
 import com.eyes.eyesspace.model.po.JokeListPO;
 import com.eyes.eyesspace.common.result.PageBind;
@@ -13,7 +15,7 @@ import com.eyes.eyesspace.model.dto.JokeListDTO;
 import com.eyes.eyesspace.model.request.JokeAddRequest;
 import com.eyes.eyesspace.model.vo.FileUploadVO;
 import com.eyes.eyesspace.model.vo.JokeAddVO;
-import com.eyes.eyesspace.service.JokeService;
+import com.eyes.eyesspace.service.IJokeService;
 import com.eyes.eyesspace.utils.AuthUtils;
 
 import java.util.List;
@@ -38,7 +40,7 @@ import javax.annotation.Resource;
 @Slf4j
 @Service
 @RefreshScope
-public class JokeServiceImpl implements JokeService {
+public class JokeServiceImpl extends ServiceImpl<JokeMapper, Joke> implements IJokeService {
 
 	private static final Integer JOKE_PAGE_SIZE = 20;
 

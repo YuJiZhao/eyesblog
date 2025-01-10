@@ -1,5 +1,7 @@
 package com.eyes.eyesspace.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.eyes.eyesspace.model.entity.Version;
 import com.eyes.eyesspace.model.po.VersionInfoPO;
 import com.eyes.eyesspace.model.po.VersionPicPO;
 import com.eyes.eyesspace.model.dto.VersionListDTO;
@@ -15,7 +17,7 @@ import org.apache.ibatis.annotations.Select;
  */
 
 @Mapper
-public interface VersionMapper {
+public interface VersionMapper extends BaseMapper<Version> {
 	@Select("select version, type from version where (type, create_time) in (select type, MAX(create_time) from version where status=0 group by type)")
 	List<VersionInfoPO> getVersionInfo();
 

@@ -19,7 +19,7 @@ import com.eyes.eyesspace.model.request.BlogAddRequest;
 import com.eyes.eyesspace.model.vo.BlogAddVO;
 import com.eyes.eyesspace.model.vo.BlogListInfoVO;
 import com.eyes.eyesspace.model.vo.FileUploadVO;
-import com.eyes.eyesspace.service.BlogService;
+import com.eyes.eyesspace.service.IBlogService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,7 +33,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/blog")
 public class BlogController {
 	@Resource
-	private BlogService blogService;
+	private IBlogService blogService;
 
 	@Permission(PermissionEnum.ADMIN)
 	@PostMapping("/addBlog")

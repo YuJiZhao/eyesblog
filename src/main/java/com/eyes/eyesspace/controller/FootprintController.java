@@ -5,10 +5,9 @@ import com.eyes.eyesspace.common.result.Result;
 import com.eyes.eyesspace.model.vo.FootprintContentListVO;
 import com.eyes.eyesspace.model.vo.FootprintInfoVO;
 import com.eyes.eyesspace.model.vo.FootprintListInfoVO;
-import com.eyes.eyesspace.service.FootprintService;
+import com.eyes.eyesspace.service.IFootprintService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,7 +25,7 @@ import java.util.List;
 public class FootprintController {
 
 	@Resource
-	private FootprintService footprintService;
+	private IFootprintService footprintService;
 
 	@Permission
 	@GetMapping("/getFootprintList")

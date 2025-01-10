@@ -1,5 +1,7 @@
 package com.eyes.eyesspace.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.eyes.eyesspace.model.entity.Anime;
 import com.eyes.eyesspace.model.vo.AnimeListVO;
 import com.eyes.eyesspace.model.vo.AnimeInfoVO;
 
@@ -14,7 +16,7 @@ import org.apache.ibatis.annotations.Update;
  * date 2023/5/22 14:51
  */
 @Mapper
-public interface AnimeMapper {
+public interface AnimeMapper extends BaseMapper<Anime> {
 	@Select("select status from anime")
 	List<Integer> getAnimeStatusList();
 

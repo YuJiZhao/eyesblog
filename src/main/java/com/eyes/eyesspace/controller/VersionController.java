@@ -7,7 +7,7 @@ import com.eyes.eyesspace.common.result.PageBind;
 import com.eyes.eyesspace.common.result.Result;
 import com.eyes.eyesspace.model.dto.VersionListDTO;
 import com.eyes.eyesspace.model.vo.VersionInfoVO;
-import com.eyes.eyesspace.service.VersionService;
+import com.eyes.eyesspace.service.IVersionService;
 
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +26,7 @@ import javax.annotation.Resource;
 @RequestMapping("/version")
 public class VersionController {
 	@Resource
-	private VersionService versionService;
+	private IVersionService versionService;
 
 	@Limiter
 	@Permission

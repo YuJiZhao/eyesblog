@@ -7,7 +7,7 @@ import com.eyes.eyesspace.common.exception.CustomException;
 import com.eyes.eyesspace.common.result.PageBind;
 import com.eyes.eyesspace.common.result.Result;
 import com.eyes.eyesspace.model.vo.*;
-import com.eyes.eyesspace.service.AnimeService;
+import com.eyes.eyesspace.service.IAnimeService;
 
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +30,7 @@ import javax.annotation.Resource;
 @RequestMapping("/anime")
 public class AnimeController {
 	@Resource
-	private AnimeService animeService;
+	private IAnimeService animeService;
 
 	@Permission(PermissionEnum.ADMIN)
 	@PostMapping("/uploadAnimePic")

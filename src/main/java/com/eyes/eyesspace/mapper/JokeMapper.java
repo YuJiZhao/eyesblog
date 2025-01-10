@@ -1,6 +1,8 @@
 package com.eyes.eyesspace.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.eyes.eyesspace.model.dto.JokeAddDTO;
+import com.eyes.eyesspace.model.entity.Joke;
 import com.eyes.eyesspace.model.po.JokeAddCategoryPO;
 import com.eyes.eyesspace.model.po.JokeListPO;
 
@@ -17,7 +19,7 @@ import org.apache.ibatis.annotations.Select;
  */
 
 @Mapper
-public interface JokeMapper {
+public interface JokeMapper extends BaseMapper<Joke> {
 	@Select("select id from joke_category where category=#{name}")
 	Long getCategoryIdByName(String name);
 

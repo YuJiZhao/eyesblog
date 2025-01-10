@@ -1,21 +1,19 @@
 package com.eyes.eyesspace.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.eyes.eyesAuth.context.UserInfoHolder;
 import com.eyes.eyesspace.common.exception.CustomException;
 import com.eyes.eyesspace.constant.HomeTypeEnum;
 import com.eyes.eyesspace.mapper.HomeMapper;
 import com.eyes.eyesspace.model.dto.BlogListDTO;
+import com.eyes.eyesspace.model.entity.Home;
 import com.eyes.eyesspace.model.po.HomeListPO;
 import com.eyes.eyesspace.common.result.PageBind;
 import com.eyes.eyesspace.model.vo.AnimeListVO;
 import com.eyes.eyesspace.model.dto.ShuoListDTO;
 import com.eyes.eyesspace.model.dto.VersionListDTO;
 import com.eyes.eyesspace.model.vo.HomeListVO;
-import com.eyes.eyesspace.service.AnimeService;
-import com.eyes.eyesspace.service.BlogService;
-import com.eyes.eyesspace.service.HomeService;
-import com.eyes.eyesspace.service.ShuoService;
-import com.eyes.eyesspace.service.VersionService;
+import com.eyes.eyesspace.service.*;
 import com.eyes.eyesspace.utils.AuthUtils;
 
 import java.util.ArrayList;
@@ -30,7 +28,7 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class HomeServiceImpl implements HomeService {
+public class HomeServiceImpl extends ServiceImpl<HomeMapper, Home> implements IHomeService {
 
 	private final int HOME_PAGE_SIZE = 6;
 
@@ -38,16 +36,16 @@ public class HomeServiceImpl implements HomeService {
 	private HomeMapper homeMapper;
 
 	@Resource
-	private BlogService blogService;
+	private IBlogService IBlogService;
 
 	@Resource
-	private ShuoService shuoService;
+	private IShuoService shuoService;
 
 	@Resource
-	private VersionService versionService;
+	private IVersionService versionService;
 
 	@Resource
-	private AnimeService animeService;
+	private IAnimeService animeService;
 
 	@Override
 	public PageBind<HomeListVO> getHomeList(Integer page) throws CustomException {
@@ -77,7 +75,7 @@ public class HomeServiceImpl implements HomeService {
 		for (Map.Entry<Integer, List<Integer>> entry : homeMap.entrySet()) {
 			if (HomeTypeEnum.BLOG.getType().equals(entry.getKey())) {
 				// 博客列表
-				List<BlogListDTO> blogList = blogService.getBlogListByIds(entry.getValue());
+				List<BlogListDTO> blogList = IBlogService.getBlogListByIds(entry.getValue());
 				blogMap = blogList.stream().collect(Collectors.toMap(BlogListDTO::getId, o -> o, (front, behind) -> front));
 			} else if (HomeTypeEnum.SHUOSHUO.getType().equals(entry.getKey())) {
 				// 说说列表
