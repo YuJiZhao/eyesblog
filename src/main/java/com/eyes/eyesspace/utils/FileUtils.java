@@ -3,7 +3,7 @@ package com.eyes.eyesspace.utils;
 import cn.hutool.core.lang.UUID;
 import com.aliyuncs.utils.StringUtils;
 import com.eyes.eyesspace.constant.MediaConstant;
-import com.eyes.eyesspace.common.exception.CustomException;
+import com.eyes.eyesspace.exception.CustomException;
 import io.github.eyesyeager.eyesStorageStarter.entity.ObjectUploadModel;
 import io.github.eyesyeager.eyesStorageStarter.exception.EyesStorageException;
 import io.github.eyesyeager.eyesStorageStarter.service.EyesOssStorage;

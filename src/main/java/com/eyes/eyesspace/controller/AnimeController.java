@@ -3,9 +3,9 @@ package com.eyes.eyesspace.controller;
 import com.eyes.eyesAuth.limiter.Limiter;
 import com.eyes.eyesAuth.permission.Permission;
 import com.eyes.eyesAuth.permission.PermissionEnum;
-import com.eyes.eyesspace.common.exception.CustomException;
-import com.eyes.eyesspace.common.result.PageBind;
-import com.eyes.eyesspace.common.result.Result;
+import com.eyes.eyesspace.exception.CustomException;
+import com.eyes.eyesspace.result.PageBind;
+import com.eyes.eyesspace.result.Result;
 import com.eyes.eyesspace.model.vo.*;
 import com.eyes.eyesspace.service.IAnimeService;
 

@@ -1,4 +1,4 @@
-package com.eyes.eyesspace.common.config;
+package com.eyes.eyesspace.config;
 
 import java.util.Collections;
 

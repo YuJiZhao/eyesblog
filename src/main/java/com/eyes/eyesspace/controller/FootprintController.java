@@ -1,7 +1,7 @@
 package com.eyes.eyesspace.controller;
 
 import com.eyes.eyesAuth.permission.Permission;
-import com.eyes.eyesspace.common.result.Result;
+import com.eyes.eyesspace.result.Result;
 import com.eyes.eyesspace.model.vo.FootprintContentListVO;
 import com.eyes.eyesspace.model.vo.FootprintInfoVO;
 import com.eyes.eyesspace.model.vo.FootprintListInfoVO;

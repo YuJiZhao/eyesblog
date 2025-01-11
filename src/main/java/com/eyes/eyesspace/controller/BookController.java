@@ -2,9 +2,9 @@ package com.eyes.eyesspace.controller;
 
 import com.eyes.eyesAuth.limiter.Limiter;
 import com.eyes.eyesAuth.permission.Permission;
-import com.eyes.eyesspace.common.exception.CustomException;
-import com.eyes.eyesspace.common.result.PageBind;
-import com.eyes.eyesspace.common.result.Result;
+import com.eyes.eyesspace.exception.CustomException;
+import com.eyes.eyesspace.result.PageBind;
+import com.eyes.eyesspace.result.Result;
 import com.eyes.eyesspace.model.vo.BookInfoVO;
 import com.eyes.eyesspace.model.vo.BookListInfoVO;
 import com.eyes.eyesspace.model.vo.BookListVO;

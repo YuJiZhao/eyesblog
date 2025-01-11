@@ -21,6 +21,7 @@
         <eyesStorage-spring-boot-starter.version>1.1.0</eyesStorage-spring-boot-starter.version>
         <mybatis-plus.version>3.5.9</mybatis-plus.version>
         <nacos.version>2021.0.5.0</nacos.version>
+        <xxl-job-core.version>2.4.2</xxl-job-core.version>
         <hutool.version>5.8.25</hutool.version>
         <fastjson.version>1.2.49</fastjson.version>
         <userAgentUtils.version>1.21</userAgentUtils.version>
@@ -105,6 +106,12 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
             <version>${nacos.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.xuxueli</groupId>
+            <artifactId>xxl-job-core</artifactId>
+            <version>${xxl-job-core.version}</version>
         </dependency>
 
         <dependency>

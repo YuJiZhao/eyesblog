@@ -8,9 +8,9 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.validation.constraints.NotNull;
 
-import com.eyes.eyesspace.common.exception.CustomException;
-import com.eyes.eyesspace.common.result.PageBind;
-import com.eyes.eyesspace.common.result.Result;
+import com.eyes.eyesspace.exception.CustomException;
+import com.eyes.eyesspace.result.PageBind;
+import com.eyes.eyesspace.result.Result;
 import com.eyes.eyesspace.model.dto.BlogCategoryDTO;
 import com.eyes.eyesspace.model.dto.BlogInfoDTO;
 import com.eyes.eyesspace.model.dto.BlogLabelDTO;

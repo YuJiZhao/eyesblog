@@ -1,4 +1,4 @@
-package com.eyes.eyesspace.common.result;
+package com.eyes.eyesspace.result;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;

@@ -1,12 +1,12 @@
-package com.eyes.eyesspace.common.exception;
+package com.eyes.eyesspace.exception;
 
-import com.eyes.eyesspace.common.result.DefaultResultCode;
-import com.eyes.eyesspace.common.result.ResultCodeInterface;
+import com.eyes.eyesspace.result.DefaultResultCode;
+import com.eyes.eyesspace.result.ResultCodeInterface;
 import lombok.Getter;
 import lombok.ToString;
 
 /**
- * 自定义异常类
+ * 业务异常类
  *
  * @author eyes
  */

@@ -2,13 +2,13 @@ package com.eyes.eyesspace.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.eyes.eyesAuth.context.UserInfoHolder;
-import com.eyes.eyesspace.common.exception.CustomException;
+import com.eyes.eyesspace.exception.CustomException;
 import com.eyes.eyesspace.constant.HomeTypeEnum;
 import com.eyes.eyesspace.mapper.HomeMapper;
 import com.eyes.eyesspace.model.dto.BlogListDTO;
 import com.eyes.eyesspace.model.entity.Home;
 import com.eyes.eyesspace.model.po.HomeListPO;
-import com.eyes.eyesspace.common.result.PageBind;
+import com.eyes.eyesspace.result.PageBind;
 import com.eyes.eyesspace.model.vo.AnimeListVO;
 import com.eyes.eyesspace.model.dto.ShuoListDTO;
 import com.eyes.eyesspace.model.dto.VersionListDTO;

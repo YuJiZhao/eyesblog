@@ -1,8 +1,8 @@
 package com.eyes.eyesspace.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.eyes.eyesspace.common.exception.CustomException;
-import com.eyes.eyesspace.common.result.PageBind;
+import com.eyes.eyesspace.exception.CustomException;
+import com.eyes.eyesspace.result.PageBind;
 import com.eyes.eyesspace.constant.VersionTypeConstant;
 import com.eyes.eyesspace.mapper.VersionMapper;
 import com.eyes.eyesspace.model.entity.Version;

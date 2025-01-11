@@ -1,9 +1,9 @@
-package com.eyes.eyesspace.common.exception;
+package com.eyes.eyesspace.exception;
 
 import com.eyes.eyesAuth.exception.EyesAuthException;
 import com.eyes.eyesAuth.exception.EyesLimiterException;
-import com.eyes.eyesspace.common.result.ResultCode;
-import com.eyes.eyesspace.common.result.Result;
+import com.eyes.eyesspace.result.ResultCode;
+import com.eyes.eyesspace.result.Result;
 
 import java.util.List;
 import java.util.stream.Collectors;

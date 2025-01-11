@@ -1,4 +1,4 @@
-package com.eyes.eyesspace.common.result;
+package com.eyes.eyesspace.result;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

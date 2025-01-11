@@ -1,7 +1,7 @@
 package com.eyes.eyesspace.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.eyes.eyesspace.common.exception.CustomException;
+import com.eyes.eyesspace.exception.CustomException;
 import com.eyes.eyesspace.model.entity.Video;
 import com.eyes.eyesspace.model.request.VideoAddBatchBiliRequest;
 import com.eyes.eyesspace.model.request.VideoAddRequest;

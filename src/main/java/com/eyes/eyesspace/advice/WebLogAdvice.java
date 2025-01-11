@@ -1,4 +1,4 @@
-package com.eyes.eyesspace.common.advice;
+package com.eyes.eyesspace.advice;
 
 import com.alibaba.fastjson.JSON;
 import com.eyes.eyesAuth.context.UserInfoHolder;

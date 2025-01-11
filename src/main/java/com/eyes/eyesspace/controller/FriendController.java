@@ -2,7 +2,7 @@ package com.eyes.eyesspace.controller;
 
 import com.eyes.eyesAuth.limiter.Limiter;
 import com.eyes.eyesAuth.permission.Permission;
-import com.eyes.eyesspace.common.result.Result;
+import com.eyes.eyesspace.result.Result;
 import com.eyes.eyesspace.model.dto.FriendListDTO;
 import com.eyes.eyesspace.model.vo.FriendListInfoVO;
 import com.eyes.eyesspace.service.IFriendService;

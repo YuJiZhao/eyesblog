@@ -2,13 +2,13 @@ package com.eyes.eyesspace.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.eyes.eyesAuth.context.UserInfoHolder;
-import com.eyes.eyesspace.common.result.PageBind;
 import com.eyes.eyesspace.mapper.FootprintMapper;
 import com.eyes.eyesspace.model.entity.Footprint;
 import com.eyes.eyesspace.model.po.FootprintContentPO;
 import com.eyes.eyesspace.model.vo.FootprintContentListVO;
 import com.eyes.eyesspace.model.vo.FootprintInfoVO;
 import com.eyes.eyesspace.model.vo.FootprintListInfoVO;
+import com.eyes.eyesspace.result.PageBind;
 import com.eyes.eyesspace.service.IFootprintService;
 import com.eyes.eyesspace.utils.AuthUtils;
 import org.springframework.stereotype.Service;
