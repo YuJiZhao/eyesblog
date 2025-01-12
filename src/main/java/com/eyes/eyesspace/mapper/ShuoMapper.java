@@ -23,7 +23,7 @@ public interface ShuoMapper extends BaseMapper<Shuoshuo> {
 	Integer getShuoListInfo(Integer status);
 
 	@Select("select count(*) from shuoshuo where ${statusCondition}")
-	Integer getShuoTotalNum(String statusCondition);
+	Long getShuoTotalNum(String statusCondition);
 
 	@Select("select id, content, status, create_time from shuoshuo where ${statusCondition} order by id desc limit #{start}, #{pageSize}")
 	List<ShuoInfoDTO> getShuoList(Integer start, Integer pageSize, String statusCondition);

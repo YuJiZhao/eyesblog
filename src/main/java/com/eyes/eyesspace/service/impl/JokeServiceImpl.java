@@ -1,37 +1,24 @@
 package com.eyes.eyesspace.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.eyes.eyesAuth.constant.AuthConfigConstant;
 import com.eyes.eyesAuth.context.UserInfoHolder;
-import com.eyes.eyesspace.exception.CustomException;
-import com.eyes.eyesspace.constant.MediaConstant;
+import com.eyes.eyesspace.constant.StatusEnum;
 import com.eyes.eyesspace.mapper.JokeMapper;
-import com.eyes.eyesspace.model.dto.JokeAddDTO;
 import com.eyes.eyesspace.model.entity.Joke;
-import com.eyes.eyesspace.model.po.JokeAddCategoryPO;
-import com.eyes.eyesspace.model.po.JokeListPO;
 import com.eyes.eyesspace.result.PageBind;
 import com.eyes.eyesspace.model.dto.JokeListDTO;
-import com.eyes.eyesspace.model.request.JokeAddRequest;
-import com.eyes.eyesspace.model.vo.FileUploadVO;
-import com.eyes.eyesspace.model.vo.JokeAddVO;
 import com.eyes.eyesspace.service.IJokeService;
-import com.eyes.eyesspace.utils.AuthUtils;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
-import com.eyes.eyesspace.utils.FileUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.annotation.Resource;
 
 /**
  * @author eyesYeager
@@ -44,66 +31,21 @@ public class JokeServiceImpl extends ServiceImpl<JokeMapper, Joke> implements IJ
 
 	private static final Integer JOKE_PAGE_SIZE = 20;
 
-	@Value("${path.folder.joke}")
-	private String jokePath;
-
-	@Resource
-	private JokeMapper jokeMapper;
-
-	@Resource
-	private FileUtils fileUtils;
-
 	@Override
-	@Transactional
-	public JokeAddVO addJoke(JokeAddRequest jokeAddRequest) throws CustomException {
-		JokeAddDTO jokeAddDTO = new JokeAddDTO();
-		BeanUtils.copyProperties(jokeAddRequest, jokeAddDTO);
-		// 获得梗图分类
-		Long categoryIndex = jokeMapper.getCategoryIdByName(jokeAddRequest.getCategory());
-		if (Objects.nonNull(categoryIndex)) {
-			jokeAddDTO.setCategoryId(categoryIndex);
-		} else {
-			JokeAddCategoryPO jokeAddCategoryPO = new JokeAddCategoryPO();
-			jokeAddCategoryPO.setCategory(jokeAddRequest.getCategory());
-			if (!jokeMapper.addJokeCategory(jokeAddCategoryPO)) {
-				throw new CustomException("新增分类失败！");
-			}
-			jokeAddDTO.setCategoryId(jokeAddCategoryPO.getId());
-		}
-
-		jokeAddDTO.setUrlList(JSON.toJSONString(jokeAddRequest.getUrlList()));
-		// 插入梗图
-		if (!jokeMapper.addJoke(jokeAddDTO)) {
-			throw new CustomException("新增梗图失败！");
-		}
-		return new JokeAddVO(jokeAddDTO.getId());
-	}
-
-	@Override
-	public FileUploadVO uploadJokePic(MultipartFile multipartFile) throws CustomException {
-		String originalFilename = multipartFile.getOriginalFilename();
-		if (Objects.isNull(originalFilename)) {
-			throw new CustomException("文件错误");
-		}
-		String fileType = originalFilename.substring(originalFilename.lastIndexOf("."));
-		if (!MediaConstant.imgContain(fileType)) {
-			throw new CustomException("图片格式不支持");
-		}
-		String url = fileUtils.putObject(multipartFile, jokePath);
-		return new FileUploadVO(url);
-	}
-
-	@Override
-	public PageBind<JokeListDTO> getJokeList(Integer page) {
+	public PageBind<JokeListDTO> getJokeList(Integer pageIndex) {
 		String role = UserInfoHolder.getRole();
-		String statusCondition = AuthUtils.statusSqlCondition(role);
-		List<JokeListPO> jokeList = jokeMapper.getJokeList((page - 1) * JOKE_PAGE_SIZE, JOKE_PAGE_SIZE, statusCondition);
-		List<JokeListDTO> jokeDTOList = jokeList.stream().map(v -> {
+		Page<Joke> jokePage = new Page<>(pageIndex, JOKE_PAGE_SIZE);
+		Page<Joke> page = page(jokePage, Wrappers.<Joke>lambdaQuery()
+				.ne(AuthConfigConstant.ROLE_ADMIN.equals(role), Joke::getStatus, StatusEnum.DELETE.getStatus())
+				.eq(!AuthConfigConstant.ROLE_ADMIN.equals(role), Joke::getStatus, StatusEnum.PUBLIC.getStatus())
+				.orderByDesc(Joke::getCreateTime));
+		List<JokeListDTO> jokeDTOList = page.getRecords().stream().map(v -> {
 			JokeListDTO jokeListDTO = new JokeListDTO();
-			BeanUtils.copyProperties(v, jokeListDTO);
+			jokeListDTO.setId(v.getId());
+			jokeListDTO.setCategory(v.getCategory());
 			jokeListDTO.setUrlList(JSON.parseArray(v.getUrlList(), String.class));
 			return jokeListDTO;
 		}).collect(Collectors.toList());
-		return new PageBind<>(page, jokeMapper.getJokeTotalNum(statusCondition), jokeDTOList);
+		return new PageBind<>(pageIndex, page.getTotal(), jokeDTOList);
 	}
 }

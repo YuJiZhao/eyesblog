@@ -75,7 +75,7 @@ public interface BlogMapper extends BaseMapper<Blog> {
 			+ "</script>")
 	List<BlogListDTO> getBlogListByIds(List<Integer> ids);
 
-	Integer getBlogListNum(String statusCondition, String category, String label);
+	Long getBlogListNum(String statusCondition, String category, String label);
 
 	@Update("update blog set views=views+1 where id=#{id}")
 	Boolean addView(Integer id);

@@ -55,7 +55,7 @@ public class VersionServiceImpl extends ServiceImpl<VersionMapper, Version> impl
 			}
 		}
 		// 获取版本总数
-		result.setVersionNum(versionMapper.getVersionNum());
+		result.setVersionNum(versionMapper.getVersionNum().intValue());
 		return result;
 	}
 

@@ -16,7 +16,7 @@ public interface HomeMapper extends BaseMapper<Home> {
 	List<HomeListPO> getHomeList(Integer start, Integer size, String statusCondition);
 
 	@Select("select count(*) from home where ${statusCondition}")
-	Integer getHomeListTotal(String statusCondition);
+	Long getHomeListTotal(String statusCondition);
 
 	@Insert("insert into home (type, cid, create_time, status) values (#{type}, #{id}, now(), #{status})")
 	Boolean insertHome(Integer type, Integer id, Integer status);

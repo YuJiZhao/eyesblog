@@ -20,6 +20,7 @@
         <eyesAuth-spring-boot-starter.version>1.0.0</eyesAuth-spring-boot-starter.version>
         <eyesStorage-spring-boot-starter.version>1.1.0</eyesStorage-spring-boot-starter.version>
         <mybatis-plus.version>3.5.9</mybatis-plus.version>
+        <velocity-engine-core.version>2.3</velocity-engine-core.version>
         <nacos.version>2021.0.5.0</nacos.version>
         <xxl-job-core.version>2.4.2</xxl-job-core.version>
         <hutool.version>5.8.25</hutool.version>
@@ -89,17 +90,20 @@
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>${mybatis-plus.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-jsqlparser</artifactId>
+            <version>${mybatis-plus.version}</version>
+        </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-generator</artifactId>
             <version>${mybatis-plus.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity-engine-core</artifactId>
-            <version>2.3</version>
+            <version>${velocity-engine-core.version}</version>
         </dependency>
 
         <dependency>

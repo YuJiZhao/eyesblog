@@ -22,7 +22,7 @@ public interface VersionMapper extends BaseMapper<Version> {
 	List<VersionInfoPO> getVersionInfo();
 
 	@Select("select COUNT(*) from version where status=0")
-	Integer getVersionNum();
+	Long getVersionNum();
 
 	@Select("select id from version where status=0 order by create_time desc, id desc limit #{start}, #{pageSize}")
 	List<Integer> getVersionIdList(Integer start, Integer pageSize);

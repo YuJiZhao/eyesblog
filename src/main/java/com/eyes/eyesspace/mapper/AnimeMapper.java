@@ -24,7 +24,7 @@ public interface AnimeMapper extends BaseMapper<Anime> {
 	Integer getAnimeViewNum(String statusCondition);
 
 	@Select("select COUNT(*) from anime where ${statusCondition}")
-	Integer getAnimeNum(String statusCondition);
+	Long getAnimeNum(String statusCondition);
 
 	@Select("select id, title, type, period, introduce, cover, view, create_time from anime where ${statusCondition} order by create_time desc limit #{start}, #{pageSize}")
 	List<AnimeListVO> getAnimeList(int start, int pageSize, String statusCondition);

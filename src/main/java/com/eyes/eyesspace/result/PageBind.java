@@ -19,7 +19,7 @@ import java.util.List;
 public class PageBind<T> {
 	private Integer page;
 
-	private Integer total;
+	private Long total;
 
 	private List<T> data;
 }

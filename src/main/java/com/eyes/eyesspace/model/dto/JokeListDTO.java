@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Data
 public class JokeListDTO {
-	private Long id;
+	private Integer id;
 
 	private List<String> urlList;
 

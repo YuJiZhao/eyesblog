@@ -28,7 +28,7 @@ public interface FootprintMapper extends BaseMapper<Footprint> {
 	FootprintListInfoVO getFootprintListInfo(String statusCondition);
 
 	@Select("select count(*) from footprint_content where footprint_id = #{id} and ${statusCondition}")
-	Integer getFootprintContentNum(Integer id, String statusCondition);
+	Long getFootprintContentNum(Integer id, String statusCondition);
 
 	@Select("select id, `type`, content, time_from, time_to from footprint_content " +
 			"where footprint_id = #{id} and ${statusCondition} " +

@@ -47,7 +47,7 @@
         limit #{start}, #{pageSize}
     </select>
 
-    <select id="getBlogListNum" resultType="java.lang.Integer">
+    <select id="getBlogListNum" resultType="java.lang.Long">
         select count(*)
         from blog b, blog_category bc
         <if test="label!=null">
