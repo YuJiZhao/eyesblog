@@ -55,17 +55,16 @@ public class UploadJokePic extends AbstractTask {
         for (File f : files) {
             // 读取图片转换为流
             byte[] data;
-            String fileName;
             try {
                 FileInputStream fis = new FileInputStream(f);
                 data = IOUtils.inputStreamToBytes(fis);
-                fileName = f.getName();
             } catch (Exception e) {
                 XxlJobHelper.log("读取文件失败: {}", e.getMessage());
                 continue;
             }
 
             // 处理文件名
+            String fileName = f.getName();
             String name = fileName.substring(0, fileName.lastIndexOf("."));
             String[] split = name.split(JOKE_PIC_NAME_SPLIT);
             if (split.length != 2 && split.length != 3) {

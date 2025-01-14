@@ -26,4 +26,8 @@ public abstract class AbstractTask {
         }
         return paramMap;
     }
+
+    protected Map<String, Object> buildEtlMap(String jobParam) {
+        return null;
+    }
 }

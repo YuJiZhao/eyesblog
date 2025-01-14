@@ -18,7 +18,7 @@
         <java.version>17</java.version>
         <spring-cloud-starter-bootstrap.version>3.1.5</spring-cloud-starter-bootstrap.version>
         <eyesAuth-spring-boot-starter.version>1.0.0</eyesAuth-spring-boot-starter.version>
-        <eyesStorage-spring-boot-starter.version>1.1.0</eyesStorage-spring-boot-starter.version>
+        <eyesStorage-spring-boot-starter.version>1.1.1</eyesStorage-spring-boot-starter.version>
         <mybatis-plus.version>3.5.9</mybatis-plus.version>
         <velocity-engine-core.version>2.3</velocity-engine-core.version>
         <nacos.version>2021.0.5.0</nacos.version>
