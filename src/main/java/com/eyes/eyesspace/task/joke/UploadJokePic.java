@@ -37,11 +37,7 @@ public class UploadJokePic extends AbstractTask {
     public void execute() {
         // 初始化参数
         Map<String, Object> paramMap = buildParamMap(XxlJobHelper.getJobParam());
-        String localPath = (String) paramMap.get("localPath");
-        if (StringUtils.isBlank(localPath)) {
-            XxlJobHelper.handleFail("localPath can not be null");
-            return;
-        }
+        String localPath = (String) getNotNullParam(paramMap, "localPath");
 
         // 读取文件夹，得到文件列表
         File file = new File(localPath);

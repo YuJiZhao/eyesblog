@@ -41,16 +41,8 @@ public class UploadBiliVideo extends AbstractTask {
     public void execute() {
         // 初始化参数
         Map<String, Object> paramMap = buildParamMap(XxlJobHelper.getJobParam());
-        String videoLocalPath = (String) paramMap.get("videoLocalPath");
-        if (StringUtils.isBlank(videoLocalPath)) {
-            XxlJobHelper.handleFail("videoLocalPath can not be null");
-            return;
-        }
-        String infoLocalPath = (String) paramMap.get("infoLocalPath");
-        if (StringUtils.isBlank(infoLocalPath)) {
-            XxlJobHelper.handleFail("infoLocalPath can not be null");
-            return;
-        }
+        String videoLocalPath = (String) getNotNullParam(paramMap, "videoLocalPath");
+        String infoLocalPath = (String) getNotNullParam(paramMap, "infoLocalPath");
 
         // 读取 info json 文件
         FileReader fileReader = null;
