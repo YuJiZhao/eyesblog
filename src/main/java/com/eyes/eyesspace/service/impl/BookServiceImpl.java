@@ -2,7 +2,7 @@ package com.eyes.eyesspace.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.eyes.eyesAuth.context.UserInfoHolder;
-import com.eyes.eyesspace.exception.CustomException;
+import com.eyes.eyesspace.exception.BizException;
 import com.eyes.eyesspace.result.PageBind;
 import com.eyes.eyesspace.mapper.BookMapper;
 import com.eyes.eyesspace.model.entity.Book;
@@ -46,12 +46,12 @@ public class BookServiceImpl extends ServiceImpl<BookMapper, Book> implements IB
 	}
 
 	@Override
-	public BookInfoVO getBookInfo(Integer id) throws CustomException {
+	public BookInfoVO getBookInfo(Integer id) throws BizException {
 		String role = UserInfoHolder.getRole();
 		String statusCondition = AuthUtils.statusSqlCondition(role);
 		BookInfoVO result = bookMapper.getBookInfo(id, statusCondition);
 		if (Objects.isNull(result)) {
-			throw new CustomException("该书不存在");
+			throw new BizException("该书不存在");
 		}
 		// 更新点击量
 		if (!bookMapper.addView(id)) {

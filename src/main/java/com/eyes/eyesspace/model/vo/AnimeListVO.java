@@ -1,6 +1,6 @@
 package com.eyes.eyesspace.model.vo;
 
-import com.eyes.eyesspace.model.bean.HomeListBean;
+import com.eyes.eyesspace.utils.DateUtils;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDateTime;
@@ -13,7 +13,7 @@ import lombok.Data;
  */
 
 @Data
-public class AnimeListVO implements HomeListBean {
+public class AnimeListVO {
 	private Integer id;
 
 	private String title;
@@ -28,6 +28,6 @@ public class AnimeListVO implements HomeListBean {
 
 	private Integer view;
 
-	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = DateUtils.DATE_FORMAT)
 	private LocalDateTime createTime;
 }

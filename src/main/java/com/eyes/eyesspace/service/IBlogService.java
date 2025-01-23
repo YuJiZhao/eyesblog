@@ -1,7 +1,7 @@
 package com.eyes.eyesspace.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.eyes.eyesspace.exception.CustomException;
+import com.eyes.eyesspace.exception.BizException;
 import com.eyes.eyesspace.result.PageBind;
 import com.eyes.eyesspace.model.dto.BlogCategoryDTO;
 import com.eyes.eyesspace.model.dto.BlogInfoDTO;
@@ -17,19 +17,17 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 public interface IBlogService extends IService<Blog>  {
-	BlogAddVO addBlog(BlogAddRequest blogAddRequest) throws CustomException;
+	BlogAddVO addBlog(BlogAddRequest blogAddRequest) throws BizException;
 
-	FileUploadVO addBlogPic(MultipartFile multipartFile) throws CustomException;
+	FileUploadVO addBlogPic(MultipartFile multipartFile) throws BizException;
 
-	BlogListInfoVO getBlogListInfo() throws CustomException;
+	BlogListInfoVO getBlogListInfo() throws BizException;
 
-	PageBind<BlogListDTO> getBlogList(Integer page, String category, String label) throws CustomException;
+	PageBind<BlogListDTO> getBlogList(Integer page, String category, String label) throws BizException;
 
-	List<BlogListDTO> getBlogListByIds(List<Integer> ids);
+	BlogInfoDTO getBlogInfo(Integer id) throws BizException;
 
-	BlogInfoDTO getBlogInfo(Integer id) throws CustomException;
+	List<BlogCategoryDTO> getBlogCategory() throws BizException;
 
-	List<BlogCategoryDTO> getBlogCategory() throws CustomException;
-
-	List<BlogLabelDTO> getBlogLabel() throws CustomException;
+	List<BlogLabelDTO> getBlogLabel() throws BizException;
 }

@@ -1,6 +1,6 @@
 package com.eyes.eyesspace.service;
 
-import com.eyes.eyesspace.exception.CustomException;
+import com.eyes.eyesspace.exception.BizException;
 import com.eyes.eyesspace.model.vo.UserInfoVO;
 
 /**
@@ -9,5 +9,5 @@ import com.eyes.eyesspace.model.vo.UserInfoVO;
  */
 
 public interface UserService {
-	UserInfoVO getUserInfo() throws CustomException;
+	UserInfoVO getUserInfo() throws BizException;
 }

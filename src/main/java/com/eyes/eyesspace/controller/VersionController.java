@@ -1,8 +1,7 @@
 package com.eyes.eyesspace.controller;
 
-import com.eyes.eyesAuth.limiter.Limiter;
 import com.eyes.eyesAuth.permission.Permission;
-import com.eyes.eyesspace.exception.CustomException;
+import com.eyes.eyesspace.exception.BizException;
 import com.eyes.eyesspace.result.PageBind;
 import com.eyes.eyesspace.result.Result;
 import com.eyes.eyesspace.model.dto.VersionListDTO;
@@ -28,17 +27,15 @@ public class VersionController {
 	@Resource
 	private IVersionService versionService;
 
-	@Limiter
 	@Permission
 	@GetMapping("/getVersionInfo")
-	public Result<VersionInfoVO> getVersionInfo() throws CustomException {
+	public Result<VersionInfoVO> getVersionInfo() throws BizException {
 		return Result.success(versionService.getVersionInfo());
 	}
 
-	@Limiter
 	@Permission
 	@GetMapping("/getVersionList")
-	public Result<PageBind<VersionListDTO>> getVersionList(Integer page) throws CustomException {
+	public Result<PageBind<VersionListDTO>> getVersionList(Integer page) throws BizException {
 		return Result.success(versionService.getVersionList(page));
 	}
 }

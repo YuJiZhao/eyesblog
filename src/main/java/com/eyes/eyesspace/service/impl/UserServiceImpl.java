@@ -5,7 +5,7 @@ import com.eyes.eyesAuth.thrift.TTClientPool;
 import com.eyes.eyesAuth.thrift.config.TTSocket;
 import com.eyes.eyesAuth.thrift.generate.common.TTCustomException;
 import com.eyes.eyesAuth.thrift.generate.user.UserInfoReturnee;
-import com.eyes.eyesspace.exception.CustomException;
+import com.eyes.eyesspace.exception.BizException;
 import com.eyes.eyesspace.result.ResultCode;
 import com.eyes.eyesspace.model.vo.UserInfoVO;
 import com.eyes.eyesspace.service.UserService;
@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
 	private TTClientPool ttClientPool;
 
 	@Override
-	public UserInfoVO getUserInfo() throws CustomException {
+	public UserInfoVO getUserInfo() throws BizException {
 		Long uid = UserInfoHolder.getUid();
 		TTSocket ttSocket = null;
 		try {
@@ -42,11 +42,11 @@ public class UserServiceImpl implements UserService {
 			userInfoVO.setEmail(SensitiveInfoUtils.email(userInfoVO.getEmail()));
 			return userInfoVO;
 		} catch (TTCustomException e) {
-			throw new CustomException(e.getMsg());
+			throw new BizException(e.getMsg());
 		} catch (Exception e) {
 			ttClientPool.invalidateObject(ttSocket);
 			log.error("unknown error:", e);
-			throw new CustomException(ResultCode.FAILURE);
+			throw new BizException(ResultCode.FAILURE);
 		}
 	}
 }

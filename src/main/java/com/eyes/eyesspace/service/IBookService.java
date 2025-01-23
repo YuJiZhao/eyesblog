@@ -1,7 +1,7 @@
 package com.eyes.eyesspace.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.eyes.eyesspace.exception.CustomException;
+import com.eyes.eyesspace.exception.BizException;
 import com.eyes.eyesspace.result.PageBind;
 import com.eyes.eyesspace.model.entity.Book;
 import com.eyes.eyesspace.model.vo.BookInfoVO;
@@ -18,5 +18,5 @@ public interface IBookService extends IService<Book> {
 
 	PageBind<BookListVO> getBookList(Integer page);
 
-	BookInfoVO getBookInfo(Integer id) throws CustomException;
+	BookInfoVO getBookInfo(Integer id) throws BizException;
 }

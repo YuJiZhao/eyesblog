@@ -13,12 +13,9 @@
         </foreach>
     </insert>
 
-    <select id="getShuoListInfo" resultType="java.lang.Integer">
-        select count(*) from shuoshuo
-        <where>
-            <if test="status!=null">
-                status=#{status}
-            </if>
-        </where>
+    <select id="getShuoPicNum" resultType="java.lang.Long">
+        select count(*)
+        from shuoshuo s, shuoshuo_pic sp
+        where s.id = sp.shuoshuo_id and ${statusCondition}
     </select>
 </mapper>

@@ -26,13 +26,13 @@ public class Music implements Serializable {
 
     private String author;
 
-    private String url;
+    private String musicUrl;
 
-    private String pic;
+    private String coverUrl;
 
     private String lrc;
 
-    private String ownerComment;
+    private String comment;
 
     private Integer status;
 
@@ -41,6 +41,4 @@ public class Music implements Serializable {
     private LocalDateTime updateTime;
 
     private LocalDateTime deleteTime;
-
-    private Integer views;
 }

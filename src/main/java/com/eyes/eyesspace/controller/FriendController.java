@@ -29,14 +29,12 @@ public class FriendController {
 	private IFriendService friendService;
 
 	@Permission
-	@Limiter
 	@GetMapping("/getFriendListData")
 	public Result<FriendListInfoVO> getFriendListData() {
 		return Result.success(friendService.getFriendListData());
 	}
 
 	@Permission
-	@Limiter
 	@GetMapping("/getFriendList")
 	public Result<List<FriendListDTO>> getFriendList() {
 		return Result.success(friendService.getFriendList());

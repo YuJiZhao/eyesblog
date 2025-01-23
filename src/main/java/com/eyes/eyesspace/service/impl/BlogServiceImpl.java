@@ -3,11 +3,9 @@ package com.eyes.eyesspace.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.eyes.eyesAuth.constant.AuthConfigConstant;
 import com.eyes.eyesAuth.context.UserInfoHolder;
-import com.eyes.eyesspace.exception.CustomException;
-import com.eyes.eyesspace.constant.HomeTypeEnum;
+import com.eyes.eyesspace.exception.BizException;
 import com.eyes.eyesspace.constant.StatusEnum;
 import com.eyes.eyesspace.mapper.BlogMapper;
-import com.eyes.eyesspace.mapper.HomeMapper;
 import com.eyes.eyesspace.model.dto.BlogCategoryDTO;
 import com.eyes.eyesspace.model.dto.BlogInfoDTO;
 import com.eyes.eyesspace.model.dto.BlogLabelDTO;
@@ -55,14 +53,11 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements IB
 	private BlogMapper blogMapper;
 
 	@Resource
-	private HomeMapper homeMapper;
-
-	@Resource
 	private FileUtils fileUtils;
 
 	@Override
 	@Transactional
-	public BlogAddVO addBlog(BlogAddRequest blogAddRequest) throws CustomException {
+	public BlogAddVO addBlog(BlogAddRequest blogAddRequest) throws BizException {
 		BlogAddBO blogAddBo = new BlogAddBO();
 		BeanUtils.copyProperties(blogAddRequest, blogAddBo);
 
@@ -74,14 +69,14 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements IB
 			BlogAddCategoryPO blogAddCategoryPO = new BlogAddCategoryPO();
 			blogAddCategoryPO.setCategory(blogAddRequest.getCategory());
 			if (!blogMapper.addCategory(blogAddCategoryPO)) {
-				throw new CustomException("新增分类失败！");
+				throw new BizException("新增分类失败！");
 			}
 			blogAddBo.setCategory(blogAddCategoryPO.getId());
 		}
 
 		// 插入博客
 		if (!blogMapper.addBlog(blogAddBo)) {
-			throw new CustomException("新增博客失败！");
+			throw new BizException("新增博客失败！");
 		}
 
 		// 插入标签
@@ -91,35 +86,25 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements IB
 				Integer labelIndex = blogMapper.getLabelIdByName(label);
 				if (Objects.nonNull(labelIndex)) {
 					if (!blogMapper.addBlogLabelId(blogAddBo.getId(), labelIndex)) {
-						throw new CustomException("博客插入标签 '" + label + "' 失败！");
+						throw new BizException("博客插入标签 '" + label + "' 失败！");
 					}
 				} else {
 					BlogAddLabelPO blogAddLabelPO = new BlogAddLabelPO();
 					blogAddLabelPO.setLabel(label);
 					if (!blogMapper.addBlogLabel(blogAddLabelPO)) {
-						throw new CustomException("新增标签 '" + label + "' 失败！");
+						throw new BizException("新增标签 '" + label + "' 失败！");
 					}
 					if (!blogMapper.addBlogLabelId(blogAddBo.getId(), blogAddLabelPO.getId())) {
-						throw new CustomException("博客插入标签 '" + label + "' 失败！");
+						throw new BizException("博客插入标签 '" + label + "' 失败！");
 					}
 				}
 			}
 		}
-
-		// 插入home
-		if (!homeMapper.insertHome(
-				HomeTypeEnum.BLOG.getType(),
-				blogAddBo.getId(),
-				blogAddBo.getStatus()
-		)) {
-			throw new CustomException("插入home失败");
-		}
-
 		return new BlogAddVO(blogAddBo.getId());
 	}
 
 	@Override
-	public FileUploadVO addBlogPic(MultipartFile multipartFile) throws CustomException {
+	public FileUploadVO addBlogPic(MultipartFile multipartFile) throws BizException {
 		String url = fileUtils.putObject(multipartFile, blogPath);
 		return new FileUploadVO(url);
 	}
@@ -159,17 +144,12 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements IB
 	}
 
 	@Override
-	public List<BlogListDTO> getBlogListByIds(List<Integer> ids) {
-		return blogMapper.getBlogListByIds(ids);
-	}
-
-	@Override
-	public BlogInfoDTO getBlogInfo(Integer id) throws CustomException {
+	public BlogInfoDTO getBlogInfo(Integer id) throws BizException {
 		String role = UserInfoHolder.getRole();
 		String statusCondition = AuthUtils.statusSqlCondition(role);
 		BlogInfoDTO blogInfoDto = blogMapper.getBlogInfo(id, statusCondition);
 		if (Objects.isNull(blogInfoDto)) {
-			throw new CustomException("暂无数据");
+			throw new BizException("暂无数据");
 		}
 		if (!AuthConfigConstant.ROLE_ADMIN.equals(role)) {
 			blogInfoDto.setStatus(null);

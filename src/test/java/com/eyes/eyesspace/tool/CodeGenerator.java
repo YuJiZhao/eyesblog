@@ -10,11 +10,12 @@ import java.util.List;
 
 public class CodeGenerator {
     public static void main(String[] args) {
-        String url = "jdbc:mysql://gz-cdb-3hs7lo95.sql.tencentcdb.com:28123/eyesspace_dev?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8";
-        String username = "dev";
-        String password = "eyesYeager@Db24@dev!";
-        List<String> tableNames = List.of("footprint_pic");
+        String uri = "";
+        String username = "";
+        String password = "";
+        List<String> tableNames = List.of("product");
 
+        String url = "jdbc:mysql:// + " + uri + "/eyesspace?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8";
         FastAutoGenerator.create(url, username, password)
                 .globalConfig(builder -> {
                     builder.author("eyesYeager") // 设置作者

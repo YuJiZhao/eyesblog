@@ -3,7 +3,7 @@ package com.eyes.eyesspace.utils;
 import cn.hutool.core.lang.UUID;
 import com.aliyuncs.utils.StringUtils;
 import com.eyes.eyesspace.constant.MediaConstant;
-import com.eyes.eyesspace.exception.CustomException;
+import com.eyes.eyesspace.exception.BizException;
 import io.github.eyesyeager.eyesStorageStarter.entity.ObjectUploadModel;
 import io.github.eyesyeager.eyesStorageStarter.exception.EyesStorageException;
 import io.github.eyesyeager.eyesStorageStarter.service.EyesOssStorage;
@@ -30,7 +30,7 @@ public class FileUtils {
 	 * @param path          路径
 	 * @return 文件地址
 	 */
-	public String putObject(MultipartFile multipartFile, String path) throws CustomException {
+	public String putObject(MultipartFile multipartFile, String path) throws BizException {
 		String originalFilename = multipartFile.getOriginalFilename();
 		String fileName = UUID.fastUUID().toString();
 		if (StringUtils.isEmpty(originalFilename)) {
@@ -43,7 +43,7 @@ public class FileUtils {
 			ObjectUploadModel model = eyesOssStorage.putObject(multipartFile.getBytes(), fileName, path);
 			return eyesOssStorage.getSimpleUrl(model.getObjectName(), path);
 		} catch (Exception e) {
-			throw new CustomException("文件上传失败！", e);
+			throw new BizException("文件上传失败！", e);
 		}
 	}
 
@@ -54,13 +54,13 @@ public class FileUtils {
 	 * @param path 存储路径
 	 * @return 文件地址
 	 */
-	public String putObjectByUrl(String url, String path) throws CustomException {
+	public String putObjectByUrl(String url, String path) throws BizException {
 		String fileName = UUID.fastUUID() + MediaConstant.DEFAULT_MEDIA_TYPE;
 		try {
 			ObjectUploadModel model = eyesOssStorage.putObjectByNetUrl(url, fileName, path);
 			return eyesOssStorage.getSimpleUrl(model.getObjectName(), path);
 		} catch (EyesStorageException e) {
-			throw new CustomException("网络文件上传失败！", e);
+			throw new BizException("网络文件上传失败！", e);
 		}
 	}
 }

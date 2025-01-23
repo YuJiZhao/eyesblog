@@ -1,5 +1,6 @@
 package com.eyes.eyesspace.model.vo;
 
+import com.eyes.eyesspace.utils.DateUtils;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDateTime;
@@ -27,6 +28,6 @@ public class AnimeInfoVO {
 
 	private Integer view;
 
-	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = DateUtils.DATE_FORMAT)
 	private LocalDateTime createTime;
 }

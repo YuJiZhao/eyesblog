@@ -5,6 +5,8 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class VideoAddVO {
-	private Integer id;
+public class ProductListInfoVO {
+    private Integer totalNum;
+
+    private Integer TypeNum;
 }

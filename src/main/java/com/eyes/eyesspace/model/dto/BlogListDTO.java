@@ -1,6 +1,6 @@
 package com.eyes.eyesspace.model.dto;
 
-import com.eyes.eyesspace.model.bean.HomeListBean;
+import com.eyes.eyesspace.utils.DateUtils;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
@@ -8,7 +8,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class BlogListDTO implements HomeListBean {
+public class BlogListDTO {
 	private Integer id;
 
 	private String title;
@@ -24,6 +24,6 @@ public class BlogListDTO implements HomeListBean {
 	@JsonInclude(JsonInclude.Include.NON_NULL)
 	private Integer status;
 
-	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = DateUtils.DATE_FORMAT)
 	private Date createTime;
 }

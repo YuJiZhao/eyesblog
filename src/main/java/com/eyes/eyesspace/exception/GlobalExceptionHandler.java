@@ -23,13 +23,13 @@ public class GlobalExceptionHandler {
 	/**
 	 * 自定义异常
 	 *
-	 * @param e CustomException
+	 * @param e BizException
 	 * @return Result<Void>
 	 */
-	@ExceptionHandler(value = CustomException.class)
+	@ExceptionHandler(value = BizException.class)
 	@ResponseBody
-	public Result<Void> error(CustomException e) {
-		log.warn("CustomException: {}", e.getErrorMsg());
+	public Result<Void> error(BizException e) {
+		log.warn("BizException: {}", e.getErrorMsg());
 		return Result.fail(e.getErrorCode(), e.getErrorMsg());
 	}
 

@@ -1,8 +1,7 @@
 package com.eyes.eyesspace.controller;
 
-import com.eyes.eyesAuth.limiter.Limiter;
 import com.eyes.eyesAuth.permission.Permission;
-import com.eyes.eyesspace.exception.CustomException;
+import com.eyes.eyesspace.exception.BizException;
 import com.eyes.eyesspace.result.PageBind;
 import com.eyes.eyesspace.result.Result;
 import com.eyes.eyesspace.model.vo.BookInfoVO;
@@ -31,23 +30,20 @@ public class BookController {
 	private IBookService bookService;
 
 	@Permission
-	@Limiter
 	@GetMapping("/getBookListInfo")
 	public Result<BookListInfoVO> getBookListInfo() {
 		return Result.success(bookService.getBookListInfo());
 	}
 
 	@Permission
-	@Limiter
 	@GetMapping("/getBookList")
 	public Result<PageBind<BookListVO>> getBookList(Integer page) {
 		return Result.success(bookService.getBookList(page));
 	}
 
 	@Permission
-	@Limiter
 	@GetMapping("/getBookInfo/{id}")
-	public Result<BookInfoVO> getBookInfo(@PathVariable Integer id) throws CustomException {
+	public Result<BookInfoVO> getBookInfo(@PathVariable Integer id) throws BizException {
 		return Result.success(bookService.getBookInfo(id));
 	}
 }

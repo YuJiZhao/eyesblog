@@ -3,7 +3,7 @@ package com.eyes.eyesspace.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.eyes.eyesAuth.constant.AuthConfigConstant;
 import com.eyes.eyesAuth.context.UserInfoHolder;
-import com.eyes.eyesspace.exception.CustomException;
+import com.eyes.eyesspace.exception.BizException;
 import com.eyes.eyesspace.result.PageBind;
 import com.eyes.eyesspace.constant.MediaConstant;
 import com.eyes.eyesspace.constant.StatusEnum;
@@ -52,14 +52,14 @@ public class AnimeServiceImpl extends ServiceImpl<AnimeMapper, Anime> implements
 	private FileUtils fileUtils;
 
 	@Override
-	public FileUploadVO uploadAnimePic(MultipartFile multipartFile) throws CustomException {
+	public FileUploadVO uploadAnimePic(MultipartFile multipartFile) throws BizException {
 		String originalFilename = multipartFile.getOriginalFilename();
 		if (Objects.isNull(originalFilename)) {
-			throw new CustomException("文件错误");
+			throw new BizException("文件错误");
 		}
 		String fileType = originalFilename.substring(originalFilename.lastIndexOf("."));
 		if (!MediaConstant.imgContain(fileType)) {
-			throw new CustomException("图片格式不支持");
+			throw new BizException("图片格式不支持");
 		}
 
 		String url = fileUtils.putObject(multipartFile, animePath);
@@ -97,22 +97,17 @@ public class AnimeServiceImpl extends ServiceImpl<AnimeMapper, Anime> implements
 	}
 
 	@Override
-	public AnimeInfoVO getAnimeInfo(Integer id) throws CustomException {
+	public AnimeInfoVO getAnimeInfo(Integer id) throws BizException {
 		String role = UserInfoHolder.getRole();
 		String statusCondition = AuthUtils.statusSqlCondition(role);
 		AnimeInfoVO result = animeMapper.getAnimeInfo(id, statusCondition);
 		if (Objects.isNull(result)) {
-			throw new CustomException("该动漫不存在");
+			throw new BizException("该动漫不存在");
 		}
 		// 更新点击量
 		if (!animeMapper.addView(id)) {
 			log.error("动漫点击量更新失败");
 		}
 		return result;
-	}
-
-	@Override
-	public List<AnimeListVO> getAnimeListByIds(List<Integer> ids) {
-		return animeMapper.getAnimeListByIds(ids);
 	}
 }

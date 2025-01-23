@@ -10,18 +10,23 @@ import com.xxl.job.core.handler.annotation.XxlJob;
 import io.github.eyesyeager.eyesStorageStarter.entity.ObjectUploadModel;
 import io.github.eyesyeager.eyesStorageStarter.exception.EyesStorageException;
 import io.github.eyesyeager.eyesStorageStarter.service.storage.MinioOssStorage;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
 import java.util.Map;
 
+@RefreshScope
 @Component
 public class UploadMusic extends AbstractTask {
 
-    private static final String MUSIC_PATH = "music";
+    @Value("${path.folder.music}")
+    private String musicPath;
 
-    private static final String MUSIC_COVER_PATH = "musicCover";
+    @Value("${path.folder.music-cover}")
+    private String musicCoverPath;
 
     @Resource
     private MinioOssStorage minioOssStorage;
@@ -49,10 +54,10 @@ public class UploadMusic extends AbstractTask {
         Music music = new Music();
         music.setTitle(title);
         music.setAuthor(author);
-        music.setUrl(musicUrl);
-        music.setPic(coverUrl);
+        music.setMusicUrl(musicUrl);
+        music.setCoverUrl(coverUrl);
         music.setLrc(lrc);
-        music.setOwnerComment(ownerComment);
+        music.setComment(ownerComment);
         music.setStatus(status);
         LocalDateTime now = LocalDateTime.now();
         music.setCreateTime(now);
@@ -61,8 +66,8 @@ public class UploadMusic extends AbstractTask {
         // 上传文件，构建 music 实体
         XxlJobHelper.log("--------------- start processing audio: {} ---------------", music.getTitle());
         try {
-            String newCoverUrl = uploadFile(music.getPic(), coverUrlType, MUSIC_COVER_PATH, ".png");
-            music.setPic(newCoverUrl);
+            String newCoverUrl = uploadFile(music.getCoverUrl(), coverUrlType, musicCoverPath, ".png");
+            music.setCoverUrl(newCoverUrl);
             XxlJobHelper.log("successfully uploaded audio cover: {}", newCoverUrl);
         } catch (Exception e) {
             XxlJobHelper.log("upload audio cover failed! error: {}", e.getMessage());
@@ -70,8 +75,8 @@ public class UploadMusic extends AbstractTask {
             return;
         }
         try {
-            String newMusicUrl = uploadFile(music.getUrl(), musicUrlType, MUSIC_PATH, musicExtension);
-            music.setUrl(newMusicUrl);
+            String newMusicUrl = uploadFile(music.getMusicUrl(), musicUrlType, musicPath, musicExtension);
+            music.setMusicUrl(newMusicUrl);
             XxlJobHelper.log("successfully uploaded audio file: {}", newMusicUrl);
         } catch (Exception e) {
             XxlJobHelper.log("upload audio file failed! error: {}", e.getMessage());

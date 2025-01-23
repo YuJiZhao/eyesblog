@@ -4,15 +4,13 @@ import lombok.Data;
 
 @Data
 public class MusicInfoVO {
-	private String id;
+	private Integer id;
 
 	private String title;
 
 	private String author;
 
-	private String url;
+	private String musicUrl;
 
-	private String pic;
-
-	private Integer views;
+	private String coverUrl;
 }

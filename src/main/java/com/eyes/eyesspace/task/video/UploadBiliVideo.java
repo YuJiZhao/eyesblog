@@ -13,6 +13,8 @@ import io.github.eyesyeager.eyesStorageStarter.entity.ObjectUploadModel;
 import io.github.eyesyeager.eyesStorageStarter.service.storage.MinioOssStorage;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -23,12 +25,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+@RefreshScope
 @Component
 public class UploadBiliVideo extends AbstractTask {
 
-    private static final String VIDEO_PATH = "video";
+    @Value("${path.folder.video}")
+    private String videoPath;
 
-    private static final String VIDEO_COVER_PATH = "videoCover";
+    @Value("${path.folder.video-cover}")
+    private String videoCoverPath;
 
     @Resource
     private MinioOssStorage minioOssStorage;
@@ -102,8 +107,8 @@ public class UploadBiliVideo extends AbstractTask {
         String coverUrl;
         try {
             String coverName = RandomUtils.getUUid() + ".png";
-            ObjectUploadModel model = minioOssStorage.putObjectByNetUrl(entity.getCover(), coverName, VIDEO_COVER_PATH);
-            coverUrl = minioOssStorage.getSimpleUrl(model.getObjectName(), VIDEO_COVER_PATH);
+            ObjectUploadModel model = minioOssStorage.putObjectByNetUrl(entity.getCover(), coverName, videoCoverPath);
+            coverUrl = minioOssStorage.getSimpleUrl(model.getObjectName(), videoCoverPath);
         } catch (Exception e) {
             XxlJobHelper.log("fail to upload video cover! error: {}", e);
             return;
@@ -114,20 +119,20 @@ public class UploadBiliVideo extends AbstractTask {
             FileInputStream fis = new FileInputStream(item);
             byte[] data = IOUtils.inputStreamToBytes(fis);
             String videoName = RandomUtils.getUUid() + ".mp4";
-            ObjectUploadModel model = minioOssStorage.putObject(data, videoName, VIDEO_PATH);
-            videoUrl = minioOssStorage.getSimpleUrl(model.getObjectName(), VIDEO_PATH);
+            ObjectUploadModel model = minioOssStorage.putObject(data, videoName, videoPath);
+            videoUrl = minioOssStorage.getSimpleUrl(model.getObjectName(), videoPath);
         } catch (Exception e) {
             XxlJobHelper.log("fail to read file! error: {}", e);
             return;
         }
         // 写入数据库
         Video video = new Video();
-        video.setPictureUrl(coverUrl);
-        video.setVideoUrl(videoUrl);
-        video.setOriginalAuthor(entity.getUpper().getName());
         video.setTitle(entity.title);
+        video.setAuthor(entity.getUpper().getName());
+        video.setVideoUrl(videoUrl);
+        video.setCoverUrl(coverUrl);
         video.setOriginalUrl("https://www.bilibili.com/video/" + entity.getBvid());
-        video.setOwnerComment("暂无");
+        video.setComment("暂无");
         LocalDateTime localDateTime = DateUtils.timestampToDatetime(entity.fav_time * 1000);
         video.setCreateTime(localDateTime);
         video.setUpdateTime(localDateTime);

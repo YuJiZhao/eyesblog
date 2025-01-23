@@ -1,6 +1,5 @@
 package com.eyes.eyesspace.model.dto;
 
-import com.eyes.eyesspace.model.bean.HomeListBean;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.List;
@@ -13,7 +12,7 @@ import lombok.Data;
  */
 
 @Data
-public class VersionListDTO implements HomeListBean {
+public class VersionListDTO {
 	@JsonIgnore
 	private Integer id;
 

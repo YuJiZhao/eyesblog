@@ -1,9 +1,9 @@
 package com.eyes.eyesspace.model.vo;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-
+import java.time.LocalDateTime;
 import java.util.List;
-
+import com.eyes.eyesspace.utils.DateUtils;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 @Data
@@ -12,8 +12,6 @@ public class ShuoListVO {
 
 	private List<String> picList;
 
-	@JsonInclude(JsonInclude.Include.NON_NULL)
-	private Integer status;
-
-	private String createTime;
+	@JsonFormat(pattern = DateUtils.TIME_FORMAT)
+	private LocalDateTime createTime;
 }

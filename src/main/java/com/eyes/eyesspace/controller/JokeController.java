@@ -28,7 +28,6 @@ public class JokeController {
 	private IJokeService jokeService;
 
 	@Permission
-	@Limiter
 	@GetMapping("/getJokeList")
 	public Result<PageBind<JokeListDTO>> getJokeList(Integer page) {
 		return Result.success(jokeService.getJokeList(page));

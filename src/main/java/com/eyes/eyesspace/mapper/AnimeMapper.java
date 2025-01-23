@@ -34,13 +34,4 @@ public interface AnimeMapper extends BaseMapper<Anime> {
 
 	@Update("update anime set view=view+1 where id=#{id}")
 	Boolean addView(Integer id);
-
-	@Select("<script>"
-			+ "select id, title, type, period, introduce, cover, view, create_time from anime "
-			+ "where id in "
-			+ "<foreach collection='ids' item='item' index='index' open='(' separator=',' close=')'>"
-			+ "#{item}"
-			+ "</foreach>"
-			+ "</script>")
-	List<AnimeListVO> getAnimeListByIds(List<Integer> ids);
 }

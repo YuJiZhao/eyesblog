@@ -1,9 +1,8 @@
 package com.eyes.eyesspace.controller;
 
-import com.eyes.eyesAuth.limiter.Limiter;
 import com.eyes.eyesAuth.permission.Permission;
 import com.eyes.eyesAuth.permission.PermissionEnum;
-import com.eyes.eyesspace.exception.CustomException;
+import com.eyes.eyesspace.exception.BizException;
 import com.eyes.eyesspace.result.Result;
 import com.eyes.eyesspace.model.vo.UserInfoVO;
 import com.eyes.eyesspace.service.UserService;
@@ -27,10 +26,9 @@ public class UserController {
 	@Resource
 	private UserService userService;
 
-	@Limiter
 	@Permission(PermissionEnum.USER)
 	@GetMapping("/getUserInfo")
-	public Result<UserInfoVO> getUserInfo() throws CustomException {
+	public Result<UserInfoVO> getUserInfo() throws BizException {
 		return Result.success(userService.getUserInfo());
 	}
 }

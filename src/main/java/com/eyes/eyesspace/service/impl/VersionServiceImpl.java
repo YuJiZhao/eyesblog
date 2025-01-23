@@ -1,7 +1,7 @@
 package com.eyes.eyesspace.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.eyes.eyesspace.exception.CustomException;
+import com.eyes.eyesspace.exception.BizException;
 import com.eyes.eyesspace.result.PageBind;
 import com.eyes.eyesspace.constant.VersionTypeConstant;
 import com.eyes.eyesspace.mapper.VersionMapper;
@@ -35,7 +35,7 @@ public class VersionServiceImpl extends ServiceImpl<VersionMapper, Version> impl
 	private VersionMapper versionMapper;
 
 	@Override
-	public VersionInfoVO getVersionInfo() throws CustomException {
+	public VersionInfoVO getVersionInfo() throws BizException {
 		VersionInfoVO result = new VersionInfoVO();
 		// 组装版本信息
 		List<VersionInfoPO> versionInfo = versionMapper.getVersionInfo();
@@ -51,7 +51,7 @@ public class VersionServiceImpl extends ServiceImpl<VersionMapper, Version> impl
 					result.setBackendVersion(item.getVersion());
 					break;
 				default:
-					throw new CustomException("unknown version type: " + item.getType());
+					throw new BizException("unknown version type: " + item.getType());
 			}
 		}
 		// 获取版本总数

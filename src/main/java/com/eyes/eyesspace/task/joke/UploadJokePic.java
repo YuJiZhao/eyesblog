@@ -12,6 +12,8 @@ import io.github.eyesyeager.eyesStorageStarter.entity.ObjectUploadModel;
 import io.github.eyesyeager.eyesStorageStarter.service.storage.MinioOssStorage;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -19,12 +21,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.*;
 
+@RefreshScope
 @Component
 public class UploadJokePic extends AbstractTask {
 
-    private static final String JOKE_PATH = "joke";
-
     private static final String JOKE_PIC_NAME_SPLIT = "-";
+
+    @Value("${path.folder.joke}")
+    private String jokePath;
 
     @Resource
     private MinioOssStorage minioOssStorage;
@@ -72,8 +76,8 @@ public class UploadJokePic extends AbstractTask {
             String url;
             try {
                 String objectName = RandomUtils.getUUid() + fileName.substring(fileName.lastIndexOf("."));
-                ObjectUploadModel model = minioOssStorage.putObject(data, objectName, JOKE_PATH);
-                url = minioOssStorage.getSimpleUrl(model.getObjectName(), JOKE_PATH);
+                ObjectUploadModel model = minioOssStorage.putObject(data, objectName, jokePath);
+                url = minioOssStorage.getSimpleUrl(model.getObjectName(), jokePath);
             } catch (Exception e) {
                 XxlJobHelper.log("上传文件到 minio 失败! fileName: {}, err: {}", fileName, e.getMessage());
                 continue;

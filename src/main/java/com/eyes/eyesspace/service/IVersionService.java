@@ -1,7 +1,7 @@
 package com.eyes.eyesspace.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.eyes.eyesspace.exception.CustomException;
+import com.eyes.eyesspace.exception.BizException;
 import com.eyes.eyesspace.result.PageBind;
 import com.eyes.eyesspace.model.dto.VersionListDTO;
 import com.eyes.eyesspace.model.entity.Version;
@@ -16,7 +16,7 @@ import java.util.List;
 
 public interface IVersionService extends IService<Version> {
 
-	VersionInfoVO getVersionInfo() throws CustomException;
+	VersionInfoVO getVersionInfo() throws BizException;
 
 	PageBind<VersionListDTO> getVersionList(Integer page);
 

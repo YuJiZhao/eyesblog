@@ -12,36 +12,36 @@ import lombok.ToString;
  */
 @ToString
 @Getter
-public class CustomException extends Exception {
+public class BizException extends Exception {
 	protected Integer errorCode;
 
 	protected String errorMsg;
 
-	public CustomException() {
+	public BizException() {
 		this.errorCode = DefaultResultCode.FAILURE.getCode();
 		this.errorMsg = DefaultResultCode.FAILURE.getMessage();
 	}
 
-	public CustomException(String errorMsg) {
+	public BizException(String errorMsg) {
 		this.errorCode = DefaultResultCode.FAILURE.getCode();
 		this.errorMsg = errorMsg;
 	}
 
-	public CustomException(Integer errorCode, String errorMsg) {
+	public BizException(Integer errorCode, String errorMsg) {
 		this.errorCode = errorCode;
 		this.errorMsg = errorMsg;
 	}
 
-	public CustomException(ResultCodeInterface resultCode) {
+	public BizException(ResultCodeInterface resultCode) {
 		this.errorCode = resultCode.getCode();
 		this.errorMsg = resultCode.getMessage();
 	}
 
-	public CustomException(Exception e) {
+	public BizException(Exception e) {
 		super(e);
 	}
 
-	public CustomException(String errorMsg, Exception e) {
+	public BizException(String errorMsg, Exception e) {
 		super(errorMsg, e);
 	}
 }

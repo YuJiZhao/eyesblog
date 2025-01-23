@@ -1,28 +1,25 @@
 package com.eyes.eyesspace.model.vo;
 
+import com.eyes.eyesspace.utils.DateUtils;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 public class VideoInfoVO {
-	private String id;
-
 	private String title;
 
-	private String originalAuthor;
-
-	private String pictureUrl;
-
-	private String originalUrl;
-
-	private String ownerComment;
+	private String author;
 
 	private String videoUrl;
 
-	private Integer views;
+	private String coverUrl;
 
-	@JsonFormat(pattern = "yyyy-MM-dd")
-	private Date createTime;
+	private String originalUrl;
+
+	private String comment;
+
+	@JsonFormat(pattern = DateUtils.DATE_FORMAT)
+	private LocalDateTime createTime;
 }
