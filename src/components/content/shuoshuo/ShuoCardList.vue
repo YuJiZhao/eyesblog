@@ -2,19 +2,22 @@
   <div class="shuoCard">
     <owner-card class="card" />
     <announce-card class="card" />
-    <shuo-data-card class="card" />
+    <data-card class="card" :title="dataTitle" :api="dataApi" :cardConfig="dataCardConfig" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import ShuoDataCard from "@/components/content/shuoshuo/components/cards/ShuoDataCard.vue";
-import { OwnerCard, AnnounceCard } from "@/components/general/card";
+import { OwnerCard, AnnounceCard, DataCard } from "@/components/general/card";
+import { dataCardConfig } from "./config";
 
 export default defineComponent({
-  components: { OwnerCard, ShuoDataCard, AnnounceCard },
+  components: { OwnerCard, DataCard, AnnounceCard },
   setup() {
     return {
+      dataTitle: "说说数据",
+      dataApi: "getShuoshuoListInfo",
+      dataCardConfig
     };
   },
 });
@@ -26,5 +29,4 @@ export default defineComponent({
     margin-bottom: 20px;
   }
 }
-
 </style>

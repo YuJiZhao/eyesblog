@@ -1,7 +1,7 @@
 <template>
     <div class="footprintItem">
         <div class="content">
-            <footprint-md :content="props.content" :mdId="props.id" />
+            <common-md :content="props.content" :mdId="props.id" />
         </div>
         <div class="foot">
             <div class="type">{{ props.type }}</div>
@@ -12,10 +12,10 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import FootprintMd from "./FootprintMd.vue";
+import CommonMd from "@/components/general/md/CommonMd.vue";
 
 export default defineComponent({
-    components: { FootprintMd },
+    components: { CommonMd },
     props: {
         id: Number,
         type: String,

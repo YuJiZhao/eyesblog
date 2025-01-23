@@ -4,7 +4,7 @@
         {{type + "版本更新 v" + version}}
     </div>
     <div class="content">
-      <version-md :content="content" :commentId="commentId" />
+      <common-md :content="content" :commentId="commentId" />
     </div>
     <div class="imgList" v-if="picList.length">
       <div class="versionImg" v-for="item in picList" :key="item">
@@ -18,18 +18,18 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import Image from "@/components/general/image/Image.vue";
-import VersionMd from "./VersionMd.vue";
 import { versionTypeConvert } from "../config";
+import CommonMd from "@/components/general/md/CommonMd.vue";
 
 export default defineComponent({
-  components: { Image, VersionMd },
+  components: { Image, CommonMd },
   props: ["data"],
   setup(props) {
     return {
         type: versionTypeConvert[props.data.type],
         version: props.data.version,
         content: props.data.description,
-        commentId: props.data.type + "-" + props.data.version,
+        commentId: (props.data.type + "-" + props.data.version).replace(/\./g, "-"),
         picList: props.data.picList,
         createTime: props.data.createTime
     };

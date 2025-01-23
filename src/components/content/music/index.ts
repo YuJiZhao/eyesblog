@@ -1,3 +1,3 @@
-import MusicPlayer from "./Aplayer.vue";
+import MusicPlayer from "./MusicPlayer.vue";
 
 export { MusicPlayer };

@@ -1,11 +1,11 @@
 <template>
-    <standard-card title="我曾走过" :icon="icon">
+    <standard-card :title="title" :icon="icon">
         <Wait :show="show" :fail="isFail" height="100px">
-            <div class="card footprintDataCard">
+            <div class="card dataCard">
                 <ul>
-                    <li v-for="item in footprintDataCardConfig" :key="item.name">
+                    <li v-for="item in cardConfig" :key="item.name">
                         <div>{{ item.title }} :</div>
-                        <div>{{ footprintData[item.name] }}</div>
+                        <div>{{ cardData[item.name] }}</div>
                     </li>
                 </ul>
             </div>
@@ -15,45 +15,42 @@
 
 <script lang="ts">
 import { defineComponent, ref, inject, onMounted } from "vue";
-import { ProcessInterface, ApiObject } from "@/d.ts/plugin";
+import { ProcessInterface } from "@/d.ts/plugin";
 import { codeConfig } from "@/config/program";
 import StandardCard from "@/components/general/card/components/StandardCard.vue";
 import resource from "@/config/resource";
-import { footprintDataCardConfig } from "../config";
 import { Wait } from "@/components/general/popup";
 
 export default defineComponent({
     components: { StandardCard, Wait },
-    setup() {
+    props: ["title", "api", "cardConfig"],
+    setup(props) {
         const $process = inject<ProcessInterface>("$process")!;
-        const $api = inject<ApiObject>("$api")!;
+        const $api = inject<any>("$api")!;
 
         let show = ref(true);
         let isFail = ref(false);
-        let footprintData: any = ref({});
+        let cardData: any = ref({});
 
-        async function getFootprintListInfo() {
+        onMounted(() => {
             show.value = true;
             isFail.value = false;
-            await $api.getFootprintListInfo().then(({ code, data }) => {
-                if (code == codeConfig.success) {
-                    footprintData.value = data;
+            $api[props.api]().then((data: any) => {
+                if (data.code == codeConfig.success) {
+                    cardData.value = data.data;
                     show.value = false;
                 } else {
-                    $process.tipShow.error("足迹数据获取失败");
+                    $process.tipShow.error(data.msg);
                     isFail.value = true;
                 }
             });
-        }
-
-        onMounted(() => {
-            getFootprintListInfo();
         })
 
         return {
+            title: props.title,
+            cardConfig: props.cardConfig,
             icon: resource.data,
-            footprintDataCardConfig,
-            footprintData,
+            cardData,
             show,
             isFail
         };
@@ -64,7 +61,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import "@/assets/scss/index.scss";
 
-.footprintDataCard {
+.dataCard {
     li {
         display: flex;
         justify-content: space-between;

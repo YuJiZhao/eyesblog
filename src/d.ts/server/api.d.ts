@@ -6,20 +6,20 @@ export declare interface RespInterface {
 }
 
 // 统一api管理
-export declare interface ApiObject extends 
-    SiteInterface, 
-    UserInterface, 
+export declare interface ApiObject extends
+    SiteInterface,
+    UserInterface,
     BlogInterface,
     ShuoshuoInterface,
-    MusicInterface, 
+    ProductInterface,
+    MusicInterface,
     VideoInterface,
     JokeInterface,
     BookInterface,
     FootprintInterface,
     AnimeInterface,
     FriendInterface,
-    VersionInterface
-{}
+    VersionInterface { }
 
 /*
  ***************************************************************************************
@@ -29,7 +29,7 @@ export declare interface ApiObject extends
 export declare interface SiteInterface {
     getContext: () => Promise<RespInterface>;
     getContextItem: (req: any) => Promise<RespInterface>;
-    getHomeList: (req: any) => Promise<RespInterface>;
+    getBatchContextItem: (req: any) => Promise<RespInterface>;
 }
 
 /*
@@ -48,7 +48,7 @@ export declare interface UserInterface {
  */
 export declare interface BlogInterface {
     getBlogListInfo: () => Promise<RespInterface>;
-    getBlogList:(req: any) => Promise<RespInterface>;
+    getBlogList: (req: any) => Promise<RespInterface>;
     getBlogInfo: (req: Array<any>) => Promise<RespInterface>;
     getBlogCategory: () => Promise<RespInterface>;
     getBlogLabel: () => Promise<RespInterface>;
@@ -64,7 +64,20 @@ export declare interface ShuoshuoInterface {
     getShuoshuoListInfo: () => Promise<RespInterface>;
 }
 
-interface ShuoshuoListReqInterface extends PageInterface {}
+interface ShuoshuoListReqInterface extends PageInterface { }
+
+/*
+ ***************************************************************************************
+ *                                    footprint
+ ***************************************************************************************
+ */
+
+
+export declare interface FootprintInterface {
+    getFootprintList: () => Promise<RespInterface>;
+    getFootprintListInfo: () => Promise<RespInterface>;
+    getFootprintContentList: (req: any) => Promise<RespInterface>;
+}
 
 /*
  ***************************************************************************************
@@ -72,7 +85,7 @@ interface ShuoshuoListReqInterface extends PageInterface {}
  ***************************************************************************************
  */
 export declare interface MusicInterface {
-    getMusicInfo: () => Promise<RespInterface>;
+    getMusicList: () => Promise<RespInterface>;
 }
 
 /*
@@ -119,16 +132,15 @@ export declare interface BookInterface {
 
 /*
  ***************************************************************************************
- *                                    footprint
+ *                                    book
  ***************************************************************************************
  */
 
-
-export declare interface FootprintInterface {
-    getFootprintList: () => Promise<RespInterface>;
-    getFootprintListInfo: () => Promise<RespInterface>;
-    getFootprintContentList: (req: any) => Promise<RespInterface>;
+export declare interface ProductInterface {
+    getProductListInfo: () => Promise<RespInterface>;
+    getProductPage: (req: any) => Promise<RespInterface>;
 }
+
 
 /*
  ***************************************************************************************

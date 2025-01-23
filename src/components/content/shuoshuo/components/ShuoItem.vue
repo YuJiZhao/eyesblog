@@ -1,7 +1,7 @@
 <template>
   <div class="shuoItem">
     <div class="content">
-      <shuo-md :content="props.content" :mdId="props.id" />
+      <common-md :content="props.content" :mdId="props.id" />
     </div>
     <div class="imgList" v-if="props.picList?.length">
       <div class="shuoImg" v-for="item in props.picList" :key="item">
@@ -17,10 +17,10 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import Image from "@/components/general/image/Image.vue";
-import ShuoMd from "./ShuoMd.vue";
+import CommonMd from "@/components/general/md/CommonMd.vue";
 
 export default defineComponent({
-  components: { Image, ShuoMd },
+  components: { Image, CommonMd },
   props: {
     id: Number,
     content: String,

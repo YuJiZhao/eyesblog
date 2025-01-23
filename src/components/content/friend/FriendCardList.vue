@@ -1,21 +1,29 @@
 <template>
   <div class="friendCard">
     <owner-card class="card" />
-    <announce-card class="card" />
-    <friend-data-card class="card" />
+    <notice-card class="card" :id="noticeId" :title="noticeTitle" :icon="noticeIcon"/>
+    <data-card class="card" :title="dataTitle" :api="dataApi" :cardConfig="dataCardConfig" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { OwnerCard, AnnounceCard } from "@/components/general/card";
-import FriendDataCard from "./components/FriendDataCard.vue";
+import { OwnerCard, NoticeCard, DataCard } from "@/components/general/card";
+import { contextConfig } from "@/config/program";
+import resource from "@/config/resource";
+import { dataCardConfig } from "./config";
 
 export default defineComponent({
-  components: { OwnerCard, FriendDataCard, AnnounceCard },
+  components: { OwnerCard, NoticeCard, DataCard },
   setup() {
     return {
-    };
+            noticeId: contextConfig.friendNotice,
+            noticeTitle: "站长说",
+            noticeIcon: resource.announce,
+            dataTitle: "友链数据",
+            dataApi: "getFriendListData",
+            dataCardConfig
+        };
   },
 });
 </script>

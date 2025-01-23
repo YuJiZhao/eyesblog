@@ -1,4 +1,4 @@
-const friendDataCardConfig = [
+const dataCardConfig = [
     {
         title: "有效友链",
         name: "validChain"
@@ -21,4 +21,4 @@ const statusConvert: any = {
     4: "暂存"
 }
 
-export { friendDataCardConfig, statusConvert };
+export { dataCardConfig, statusConvert };

@@ -1,13 +1,6 @@
-import { siteConfig } from "@/config/program";
-import CryptoJS from 'crypto-js';
 import { SimplifyNumType } from "@/constant";
 
 const utils = {
-    // 检测Email是否规范
-    checkEmail: (email: string) => {
-        return /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(email);
-    },
-
     // 防抖
     debounce: (fn: () => void, delay = 300) => {
         let timer: NodeJS.Timeout | null = null;
@@ -54,30 +47,6 @@ const utils = {
         document.cookie = name + "="+ cval + ";expires=" + exp.toUTCString() + ";path=/;";
     },
 
-    // 加密字符串
-    encryption: (str: string) => {
-        return CryptoJS.AES.encrypt(
-            CryptoJS.enc.Utf8.parse(str), 
-            CryptoJS.enc.Utf8.parse(siteConfig.aesKey), 
-            {
-                mode: CryptoJS.mode.CBC,
-                padding: CryptoJS.pad.Pkcs7,
-                iv: CryptoJS.enc.Utf8.parse(siteConfig.aesIV)
-            }
-        ).toString();
-    },
-
-    // 获取时间差
-    getTimeDisff: (t1: Date, t2: Date) => {
-        let millisecond = t1.valueOf() - t2.valueOf();
-        let miscod2d = 1000 * 60 * 60 * 24;
-        // let miscod2h = 1000 * 60 * 60;
-        let day = Math.floor(millisecond / miscod2d);
-        // let hour = Math.floor((millisecond - day * miscod2d) / miscod2h);
-        // return day + "天" + hour + "小时";
-        return day + "天";
-    },
-
     // 复制内容到剪贴板
     doCopy: (message: string) => {
         if (utils.iosAgent()) {
@@ -110,19 +79,6 @@ const utils = {
         return Math.floor(h) + "h" + Math.floor((words - Math.floor(h) * 60 * 400) / 400) + "min";
     },
 
-    // 文本框聚焦
-    cursorMove: (el: any, spos: number) => {
-        setTimeout(function() {
-            el.setSelectionRange(spos, spos);
-            el.focus();
-        }, 0);
-    },
-
-    // 字节转Mb
-    byte2MB: (size: number) => {
-        return size / (1024 * 1024);
-    },
-
     // 检测是否iOS端
     iosAgent: () => {
         return navigator.userAgent.match(/(iPhone|iPod|iPad);?/i);
@@ -135,12 +91,16 @@ const utils = {
         return (num / 10000).toFixed(1) + "M";
     },
 
-    // 获取uuid
-    getUUid: () => {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-            var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
-            return v.toString(16);
-        });
+    // 对象加密
+    encryptionObj: (o: object) => {
+        let text = JSON.stringify(o);
+        return text.split("").reverse().join("");
+    },
+
+    // 对象解密
+    decryptObj: (text: string) => {
+        let objStr = text.split("").reverse().join("");
+        return JSON.parse(objStr);
     }
 };
 

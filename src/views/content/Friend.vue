@@ -3,7 +3,6 @@
     <Wait :show="show" :fail="isFail" height="400px">
       <friend-chain-list :key="friendSentry" :data="friendListData"/>
     </Wait>
-    <friend-preamble />
   </div>
 </template>
 
@@ -16,11 +15,11 @@ import { codeConfig } from "@/config/program";
 import { goBoth, GoBothType } from "@/hooks/useGoBoth";
 import { Wait } from "@/components/general/popup";
 import Pagination from "@/components/general/Pagination/pagination.vue";
-import { FriendPreamble, FriendChainList } from "@/components/content/friend";
+import { FriendChainList } from "@/components/content/friend";
 
 export default defineComponent({
   name: "Friend",
-  components: { Pagination, Wait, FriendPreamble, FriendChainList },
+  components: { Pagination, Wait, FriendChainList },
   setup() {
     const $api = inject<ApiObject>("$api")!;
     const $process = inject<ProcessInterface>("$process")!;
@@ -39,7 +38,7 @@ export default defineComponent({
           friendSentry.value++;
           goBoth(GoBothType.TopSpeed);
         } else {
-          $process.tipShow.error("获取数据失败");
+          $process.tipShow.error(msg);
           isFail.value = true;
         }
       });

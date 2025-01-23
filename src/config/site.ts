@@ -3,21 +3,6 @@ import { pathConfig } from "@/config/program";
 
 /*
  ***************************************************************************************
- *                                    site
- ***************************************************************************************
- */
-const siteContext = {
-    clientId: 198344,
-    siteName: "耶瞳空间",
-    siteNameEn: "eyesSpace",
-    spaceVersion: "3.7.0",
-    ownerEmail: "eyesyeager@163.com",
-    siteVideoBV: "BV1fg411b7sF",
-    commentMaxLen: 1000
-};
-
-/*
- ***************************************************************************************
  *                                    UserCenter
  ***************************************************************************************
  */
@@ -41,35 +26,12 @@ const tipType = [
     resource.error
 ];
 
-// 联系站长弹窗配置
-const contactMeConfig = [
-    {
-        title: "可以发邮件",
-        content: siteContext.ownerEmail,
-        btnIcon: resource.copy,
-        btnWord: "点击复制",
-        clickFunc: "copy"
-    },
-    {
-        title: "也可以去B站",
-        content: siteContext.siteVideoBV,
-        btnIcon: resource.bilibili,
-        btnWord: "点击前往",
-        clickFunc: "goBilibli"
-    },
-]
-
 /*
  ***************************************************************************************
  *                                    header
  ***************************************************************************************
  */
 const headerConfig = [
-    {
-        path: pathConfig.home,
-        icon: resource.home,
-        word: "主页"
-    },
     {
         path: pathConfig.blog,
         icon: resource.blog,
@@ -79,6 +41,11 @@ const headerConfig = [
         path: pathConfig.shuoshuo,
         icon: resource.shuoshuo,
         word: "说说"
+    },
+    {
+        path: pathConfig.footprint,
+        icon: resource.footprint,
+        word: "足迹"
     },
     {
         icon: resource.entertainment,
@@ -97,7 +64,7 @@ const headerConfig = [
             {
                 path: pathConfig.joke,
                 icon: resource.joke,
-                word: "梗图"
+                word: "趣图"
             }
         ]
     },
@@ -116,9 +83,9 @@ const headerConfig = [
                 word: "书单"
             },
             {
-                path: pathConfig.footprint,
-                icon: resource.footprint,
-                word: "足迹"
+                path: pathConfig.product,
+                icon: resource.product,
+                word: "作品"
             }
         ]
     },
@@ -144,16 +111,6 @@ const headerConfig = [
         ]
     }
 ];
-
-/*
- ***************************************************************************************
- *                                    footer
- ***************************************************************************************
- */
-const footerConfig = {
-    copyright: "©2022-至今 By 耶瞳",
-    zwfwCode: "赣ICP备2022006255号"
-}
 
 /*
  ***************************************************************************************
@@ -189,21 +146,10 @@ const errorConfig = {
         process: []
     },
     errorContext: {
-        title: "服务器好像宕机了 <br> 请稍后重试，或者联系站长",
-        items: [
-            {
-                icon: resource.refresh,
-                word: "刷新页面",
-                clickFunc: "refreshPage"
-            },
-            {
-                icon: resource.email,
-                word: "联系站长",
-                clickFunc: "contactMe"
-            }
-        ],
+        title: "服务器好像宕机了 <br> 可刷新页面，或稍后重试",
+        items: [],
         process: [false]
     }
 }
 
-export { siteContext, userCenterContext, tipType, contactMeConfig, headerConfig, footerConfig, preloadList, errorPath, errorConfig };
+export { userCenterContext, tipType, headerConfig, preloadList, errorPath, errorConfig };

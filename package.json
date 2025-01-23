@@ -1,7 +1,7 @@
 {
   "name": "eyesspace",
   "private": true,
-  "version": "0.0.0",
+  "version": "3.8.0",
   "type": "module",
   "scripts": {
     "dev": "vite --mode development",
@@ -15,9 +15,8 @@
     "@types/node": "^16.11.10",
     "@types/nprogress": "^0.2.0",
     "animate.css": "^4.1.1",
+    "aplayer": "^1.10.1",
     "axios": "^0.24.0",
-    "crypto-js": "^4.1.1",
-    "emot": "^1.0.0-beta.3",
     "jquery": "^3.6.0",
     "leaflet": "^1.9.4",
     "md-editor-v3": "^2.2.1",
@@ -26,7 +25,6 @@
     "sass": "1.66.1",
     "v3-img-preview": "^1.1.16",
     "vue": "^3.2.37",
-    "vue-image-crop-upload": "^3.0.3",
     "vue-router": "^4.0.12",
     "vue3-lazy": "^1.0.0-alpha.1",
     "xgplayer": "^2.31.7"

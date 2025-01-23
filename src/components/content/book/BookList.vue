@@ -1,8 +1,6 @@
 <template>
     <div class="bookList">
-        <template v-for="item in bookListData" :key="item">
-            <book-item class="bookItem" :data="item" @click="jumpDetail(item.id)"/>
-        </template>
+        <book-item class="bookItem" v-for="item in bookListData" :key="item" :data="item" @click="jumpDetail(item.id)"/>
     </div>
 </template>
 
@@ -32,7 +30,6 @@ export default defineComponent({
 <style lang="scss" scoped>
 .bookList {
     width: 100%;
-    min-width: 340px;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;

@@ -1,11 +1,11 @@
 const dataCardConfig = [
     {
-        title: "动漫总数",
+        title: "作品总数",
         name: "totalNum"
     },
     {
-        title: "总点击量",
-        name: "clickNum"
+        title: "作品类型",
+        name: "typeNum"
     },
 ];
 

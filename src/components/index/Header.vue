@@ -14,7 +14,7 @@ import { defineComponent, inject, onMounted, ref, watch } from "vue";
 import { ContextInterface, WindowInterface, UserInterface, ProcessInterface } from "@/d.ts/plugin";
 import { useRouter } from "vue-router";
 import { siteConfig } from "@/config/program";
-import { headerConfig, userCenterContext, siteContext } from "@/config/site";
+import { headerConfig, userCenterContext } from "@/config/site";
 import resource from "@/config/resource";
 import jQuery from "jquery";
 import useMouseWheel from "@/hooks/useMouseWheel";
@@ -44,9 +44,9 @@ export default defineComponent({
 
     function avatarClick() {
       if($user.status) {
-        window.open(`${userCenterContext.info}?clientId=${siteContext.clientId}`);
+        window.open(`${userCenterContext.info}?clientId=${$context.data.spaceClientId}`);
       } else {
-        window.open(`${userCenterContext.auth}?clientId=${siteContext.clientId}&redirectUrl=${process.env.VITE_SITE_URL + userCenterContext.redirectUrl}`);
+        window.open(`${userCenterContext.auth}?clientId=${$context.data.spaceClientId}&redirectUrl=${process.env.VITE_SITE_URL + userCenterContext.redirectUrl}`);
       }
     }
 

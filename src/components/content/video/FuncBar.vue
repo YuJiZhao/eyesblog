@@ -1,85 +1,67 @@
 <template>
   <div class="funcBar">
-      <div v-for="item in videoFuncBar" :key="item.name" @click="funcObject[item.clickFunc]">
-        <Wait class="btn" :class="item.name" :show="show" :fail="isFail" size="20px" failSize="30px">
-          <img :src="item.icon" />
-          <div class="word">{{(typeof item.word == 'string') ? item.word : item.word[isChangeClearWord ? 1 : 0]}}</div>
-        </Wait>
-      </div>
+    <icon-btn class="btn" 
+      v-for="item in btnList" :key="item.word" 
+      :icon="item.icon" :word="item.word" 
+      @click="item.clickFunc"
+    />
   </div>
+  <base-dialog title="站长说" :close="false" @close="close" v-if="showComment">
+  {{ props.comment }}
+  </base-dialog>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, inject, watch, nextTick, onActivated, onDeactivated, WatchStopHandle } from "vue";
-import { WindowInterface } from "@/d.ts/plugin";
-import videoProcess from "@/components/content/video/businessTs/videoProcess";
-import { videoFuncBar } from "@/components/content/video/config";
-import useProcessControl from "@/hooks/useProcessControl";
-import { Wait } from "@/components/general/popup";
-import { videoSideCards } from "@/components/content/video/config";
-import { siteConfig } from "@/config/program";
+import { defineComponent, inject, ref } from "vue";
+import { ProcessInterface } from "@/d.ts/plugin";
+import IconBtn from "@/components/general/button/IconBtn.vue";
+import resource from "@/config/resource";
+import config from "./config";
+import { BaseDialog } from "@/components/general/popup/dialogComponent";
 
 export default defineComponent({
-  components: { Wait },
-  setup() {
-    const $window = inject<WindowInterface>("$window")!;
-    let isShowSideBar = true;
-    let isChangeClearWord = ref(false);
-    let watchSwatch: WatchStopHandle;
-    let changeSwatch: WatchStopHandle;
+  components: { IconBtn, BaseDialog },
+  props: ["comment"],
+  setup(props) {
+    const $process = inject<ProcessInterface>("$process")!;
 
+    let showComment = ref(false);
     let funcObject: any = {
-      changeVideo: () => {
-        if(!videoProcess.videoVariable.value) return;
-        videoProcess.doChangeVideo();
-        videoProcess.videoVariable.value = false;
-      },
-      doFullScreen: () => {
-        videoProcess.doFullScreen();
-      },
-      doClear: () => {
-        if(document.querySelector(".clearBtn")!.classList.contains("btn_disabled")) return;
-        isShowSideBar = !isShowSideBar;
-        isChangeClearWord.value = !isChangeClearWord.value;
-        useProcessControl(true, isShowSideBar ? videoSideCards : false, false);
-      },
-    }
-
-    function btnControl(selector: string, flag: boolean) {
-      nextTick(() => {
-        if(flag) {
-          document.querySelector(selector)!.classList.add("btn_disabled");
+      switchVideo: () => {
+        let info = localStorage.getItem(config.videoStorageKey);
+        if (info == null) {
+          location.reload();
         } else {
-          document.querySelector(selector)!.classList.remove("btn_disabled")
+          $process.tipShow.warn("视频未完播，无法切换");
         }
-      })
+      },
+      viewComment: () => {
+        showComment.value = true;
+      }
     }
 
-    onActivated(() => {
-      watchSwatch = watch(
-        () => $window.width.value,
-        (value) => { btnControl(".clearBtn", value < siteConfig.mpThreshold); },
-        { immediate: true }
-      );
+    let btnList = [
+      {
+        icon: resource.switch,
+        word: "切换视频",
+        clickFunc: funcObject.switchVideo
+      },
+      {
+        icon: resource.comment,
+        word: "站长说",
+        clickFunc: funcObject.viewComment
+      }
+    ];
 
-      changeSwatch = watch(
-        () => videoProcess.videoVariable.value,
-        (value) => { btnControl(".changeBtn", !value); },
-        { immediate: true }
-      );
-    })
-
-    onDeactivated(() => {
-      watchSwatch();
-      changeSwatch();
-    })
+    function close() {
+      showComment.value = false;
+    }
 
     return {
-      show: videoProcess.cardInitLoad,
-      isFail: videoProcess.cardInitFail,
-      funcObject,
-      videoFuncBar,
-      isChangeClearWord,
+      props,
+      showComment,
+      btnList,
+      close
     };
   },
 });
@@ -89,35 +71,12 @@ export default defineComponent({
 @import "@/assets/scss/index.scss";
 
 .funcBar {
+  margin: 20px 0;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: start;
-  .btn {
-    box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-    -webkit-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-    -moz-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100px;
-    height: 40px;
-    margin: 20px 20px 10px 0;
-    cursor: pointer;
-    img {
-      display: block;
-      width: 25px;
-      height: 25px;
-      margin-right: 5px;
-    }
-    .word {
-      font-size: 15px;
-      text-align: center;
-    }
-  }
-}
+  justify-content: right;
 
-.btn_disabled {
-  cursor: default !important;
-  opacity: 0.6;
+  .btn {
+    margin: 0 3px 0 15px;
+  }
 }
 </style>

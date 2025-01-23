@@ -1,4 +1,4 @@
-const bookDataCardConfig = [
+const dataCardConfig = [
     {
         title: "书籍总数",
         name: "totalNum"
@@ -9,4 +9,4 @@ const bookDataCardConfig = [
     },
 ];
 
-export { bookDataCardConfig };
+export { dataCardConfig };

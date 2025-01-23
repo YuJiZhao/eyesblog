@@ -3,7 +3,8 @@ import { codeConfig, siteConfig } from "@/config/program";
 import { AxiosResponse } from "axios";
 import utils from "@/utils/helper";
 import $process from "@/modules/process";
-import { userCenterContext, siteContext } from "@/config/site";
+import { context } from "@/modules/context";
+import { userCenterContext } from "@/config/site";
 
 export default (response: AxiosResponse<any, any>) => {
     progress.close();
@@ -22,7 +23,7 @@ export default (response: AxiosResponse<any, any>) => {
         $process.tipShow.warn(response.data.msg);
         utils.delCookie(siteConfig.tokenHeader.sToken);
         utils.delCookie(siteConfig.tokenHeader.lToken);
-        location.replace(`${userCenterContext.auth}?clientId=${siteContext.clientId}&redirectUrl=${process.env.VITE_SITE_URL + userCenterContext.redirectUrl}`);
+        location.replace(`${userCenterContext.auth}?clientId=${context.data.spaceClientId}&redirectUrl=${process.env.VITE_SITE_URL + userCenterContext.redirectUrl}`);
     }
     // TODO: 限流
 }

@@ -10,8 +10,7 @@ declare module "*.vue" {
 }
 
 declare module "crypto-js";
-declare module "emot";
-declare module "vue-image-crop-upload";
+declare module "APlayer";
 declare module 'xgplayer/dist/core_player';
 declare module 'xgplayer/dist/controls/fullscreen';
 declare module 'xgplayer/dist/controls/loading';

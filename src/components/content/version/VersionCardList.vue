@@ -2,19 +2,22 @@
   <div class="versionCardList">
     <owner-card class="card" />
     <announce-card class="card" />
-    <version-data-card class="card" />
+    <data-card class="card" :title="dataTitle" :api="dataApi" :cardConfig="dataCardConfig" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import VersionDataCard from "@/components/content/version/components/cards/VersionDataCard.vue";
-import { OwnerCard, AnnounceCard } from "@/components/general/card";
+import { OwnerCard, AnnounceCard, DataCard } from "@/components/general/card";
+import { dataCardConfig } from "./config";
 
 export default defineComponent({
-  components: { OwnerCard, AnnounceCard, VersionDataCard },
+  components: { OwnerCard, AnnounceCard, DataCard },
   setup() {
     return {
+      dataTitle: "版本数据",
+      dataApi: "getVersionInfo",
+      dataCardConfig
     };
   },
 });

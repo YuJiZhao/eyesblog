@@ -60,7 +60,7 @@ export default defineComponent({
   -moz-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
   position: fixed;
   z-index: 1000;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   .close {

@@ -4,12 +4,13 @@ const publicPath = {
     home: "/",
     blog: "/blog",
     shuoshuo: "/shuoshuo",
+    footprint: "/footprint",
     music: "/music",
     video: "/video",
     joke: "/joke",
     anime: "/anime",
     book: "/book",
-    footprint: "/footprint",
+    product: "/product",
     friend: "/friend",
     version: "version",
     about: "/about",
@@ -64,6 +65,21 @@ const content: Array<RouteRecordRaw> = [
         component: () => import("@/views/content/Shuoshuo.vue"),
     },
     {
+        path: publicPath.footprint,
+        children: [
+            {
+                path: "",
+                name: "footprint",
+                component: () => import("@/views/content/Footprint.vue"),
+            },
+            {
+                path: "details/:id",
+                name: "footprintDetails",
+                component: () => import("@/views/content/footprint/Details.vue"),
+            }
+        ]
+    },
+    {
         path: publicPath.music,
         name: "music",
         component: () => import("@/views/content/Music.vue"),
@@ -109,19 +125,9 @@ const content: Array<RouteRecordRaw> = [
         ]
     },
     {
-        path: publicPath.footprint,
-        children: [
-            {
-                path: "",
-                name: "footprint",
-                component: () => import("@/views/content/Footprint.vue"),
-            },
-            {
-                path: "details/:id",
-                name: "footprintDetails",
-                component: () => import("@/views/content/footprint/Details.vue"),
-            }
-        ]
+        path: publicPath.product,
+        name: "product",
+        component: () => import("@/views/content/Product.vue"),
     },
     {
         path: publicPath.friend,

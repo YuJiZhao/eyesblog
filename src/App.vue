@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, onMounted, ref } from "vue";
+import { defineComponent, inject, ref } from "vue";
 
 import {
   ApiObject,
@@ -28,7 +28,7 @@ import { useRouter } from "vue-router";
 import { siteConfig, codeConfig } from "@/config/program";
 import { Mask, Load, Tip, Alert, Dialog } from "@/components/general/popup";
 import resource from "@/config/resource";
-import { preloadList, siteContext, errorPath } from "@/config/site";
+import { preloadList, errorPath } from "@/config/site";
 import preload from "@/utils/preLoad";
 import utils from "@/utils/helper";
 
@@ -56,10 +56,10 @@ export default defineComponent({
         initUser(userData);
         doPreload();
       }).catch(() => {
-        jumpPath(errorPath.context)
+        jumpPath(errorPath.context);
       }).finally(() => {
         listenWindow.initAll();
-      })
+      });
     });
     async function context() {
       return await $api.getContext();
@@ -119,13 +119,6 @@ export default defineComponent({
       isShow.value = true;
       $process.loadHide();
     }
-
-    onMounted(() => {
-      console.log(
-        '\n' + ` %c ${siteContext.siteNameEn} v${siteContext.spaceVersion}` + ` %c ${process.env.VITE_SITE_URL} ` + '\n', 
-        'color: #fadfa3; background: #030307; padding:5px 0;', 'background: rgb(127,200,248); padding:5px 0;'
-      );
-    })
 
     return {
       isShow,

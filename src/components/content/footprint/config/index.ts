@@ -1,4 +1,4 @@
-const footprintDataCardConfig = [
+const dataCardConfig = [
     {
         title: "国家",
         name: "country"
@@ -13,4 +13,4 @@ const footprintDataCardConfig = [
     },
 ];
 
-export { footprintDataCardConfig };
+export { dataCardConfig };

@@ -28,11 +28,11 @@ export default defineComponent({
   emits: ["closeSideBar"],
   components: { OwnerCard },
   setup(prop, ctx) {
-    const $router = useRouter();
+    const router = useRouter();
     const $window = inject<WindowInterface>("$window")!;
 
     function pageJump(path: string) {
-      $router.push(path);
+      router.push(path);
       ctx.emit("closeSideBar");
     }
 

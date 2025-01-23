@@ -1,4 +1,4 @@
-import Reward from "./Reward.vue";
+import BaseDialog from "./BaseDialog.vue";
 import ContactMe from "./ContactMe.vue";
 
-export { Reward, ContactMe };
+export { BaseDialog, ContactMe };

@@ -1,5 +1,5 @@
 <template>
-    <div class="footprintMd">
+    <div class="md">
         <md-editor v-model="content" :editor-id="id" preview-theme="vuepress" previewOnly showCodeRowNumber />
     </div>
 </template>
@@ -15,14 +15,14 @@ export default defineComponent({
     setup(props) {
         return {
             content: props.content,
-            id: "footprintId" + props.mdId
+            id: "common-" + props.mdId
         };
     },
 });
 </script>
 
 <style lang="scss" scoped>
-:deep.footprintMd {
+:deep.md {
     .md-editor-content .md-editor-preview-wrapper {
         padding: 0;
     }

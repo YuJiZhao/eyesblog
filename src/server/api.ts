@@ -3,13 +3,14 @@ import {
     ApiObject, 
     SiteInterface,
     UserInterface,
-    ShuoshuoInterface,
     BlogInterface,
+    ShuoshuoInterface,
+    FootprintInterface,
     MusicInterface,
     VideoInterface,
     JokeInterface,
     BookInterface,
-    FootprintInterface,
+    ProductInterface,
     AnimeInterface,
     FriendInterface,
     VersionInterface
@@ -23,9 +24,9 @@ const site: SiteInterface = {
     getContextItem: async (req) => {
         return await get("/context/getContextItem", req, UrlReqType.path);
     },
-    getHomeList: async (req) => {
-        return await get("/home/getHomeList", req);
-    },
+    getBatchContextItem: async (req) => {
+        return await post("/context/getBatchContextItem", req);
+    }
 }
 
 const user: UserInterface = {
@@ -61,9 +62,21 @@ const shuoshuo: ShuoshuoInterface = {
     },
 }
 
+const footprint: FootprintInterface = {
+    getFootprintList: async () => {
+        return await get("/footprint/getFootprintList");
+    },
+    getFootprintListInfo: async () => {
+        return await get("/footprint/getFootprintListInfo");
+    },
+    getFootprintContentList: async (req) => {
+        return await get("/footprint/getFootprintContentList", req);
+    },
+}
+
 const music: MusicInterface = {
-    getMusicInfo: async () => {
-        return await get("/music/getMusicInfo");
+    getMusicList: async () => {
+        return await get("/music/getMusicList");
     },
 }
 
@@ -103,16 +116,13 @@ const book: BookInterface = {
     }
 }
 
-const footprint: FootprintInterface = {
-    getFootprintList: async () => {
-        return await get("/footprint/getFootprintList");
+const product: ProductInterface = {
+    getProductListInfo: async () => {
+        return await get("/product/getProductListInfo");
     },
-    getFootprintListInfo: async () => {
-        return await get("/footprint/getFootprintListInfo");
-    },
-    getFootprintContentList: async (req) => {
-        return await get("/footprint/getFootprintContentList", req);
-    },
+    getProductPage: async (req) => {
+        return await get("/product/getProductPage", req);
+    }
 }
 
 const friend: FriendInterface = {
@@ -139,11 +149,12 @@ const api: ApiObject = {
     ...user,
     ...blog,
     ...shuoshuo,
+    ...footprint,
     ...music,
     ...video,
     ...joke,
     ...book,
-    ...footprint,
+    ...product,
     ...anime,
     ...friend,
     ...version

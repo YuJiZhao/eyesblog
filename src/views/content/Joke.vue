@@ -31,7 +31,7 @@ export default defineComponent({
     const $api = inject<ApiObject>("$api")!;
     const $process = inject<ProcessInterface>("$process")!;
 
-    let show = ref(false);
+    let show = ref(true);
     let isFail = ref(false);
     let page = ref(1);
     let pageSize = ref(20);

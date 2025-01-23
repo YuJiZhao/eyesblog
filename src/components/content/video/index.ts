@@ -1,5 +1,5 @@
-import VideoPlayer from "./Xgplayer.vue";
+import VideoInfo from "./VideoInfo.vue";
+import VideoPlayer from "./VideoPlayer.vue";
 import FuncBar from "./FuncBar.vue";
-import VideoCardList from "./VideoCardList.vue";
 
-export { VideoPlayer, FuncBar, VideoCardList };
+export { VideoInfo, VideoPlayer, FuncBar };

@@ -1,15 +1,22 @@
 <template>
     <div class="home">
-        <Wait :show="show" :fail="isFail" height="400px">
-            <home-list :key="homeSentry" :homeListData="homeListData" />
-        </Wait>
-        <Pagination
-            :key="homeSentry"
-            :total="total"
-            :size="pageSize"
-            :initPage="page"
-            @pageChange="pageChange"
-        />
+        <div class="content">
+            <div class="avatar" :style="{ backgroundImage: 'url(' + context.avatar + ')' }"></div>
+            <div class="words">
+                <p class="name">{{ context.name }}</p>
+                <p class="motto">{{ context.motto }}</p>
+            </div>
+            <div class="link">
+                <template v-for="item in headerConfig" :key="item.word">
+                    <div class="option" v-if="!item.children">
+                        <span @click="pageJump(item.path)">{{ item.word }}</span>
+                    </div>
+                    <div class="option" v-for="child in item.children" :key="child.word" v-else>
+                        <span @click="pageJump(child.path)">{{ child.word }}</span>
+                    </div>
+                </template>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -17,107 +24,105 @@
 import {
     defineComponent,
     inject,
-    ref,
-    onBeforeMount,
-    watch,
     onActivated,
 } from "vue";
-import { ProcessInterface, ApiObject } from "@/d.ts/plugin";
+import { ContextInterface } from "@/d.ts/plugin";
 import useProcessControl from "@/hooks/useProcessControl";
-import { CardDirection, Cards } from "@/constant";
-import { codeConfig } from "@/config/program";
 import { useRouter } from "vue-router";
-import Pagination from "@/components/general/Pagination/pagination.vue";
-import { goBoth, GoBothType } from "@/hooks/useGoBoth";
-import HomeList from "@/components/content/home/HomeList.vue";
-import { Wait } from "@/components/general/popup";
+import { headerConfig } from "@/config/site";
 
 export default defineComponent({
     name: "Home",
-    components: { HomeList, Pagination, Wait },
+    components: {},
     setup() {
         const router = useRouter();
-        const $api = inject<ApiObject>("$api")!;
-        const $process = inject<ProcessInterface>("$process")!;
+        const $context = inject<ContextInterface>("$context")!;
 
-        let show = ref(true);
-        let isFail = ref(false);
-        let page = ref(1);
-        let pageSize = ref(6);
-        let total = ref(0);
-        let homeListData = ref([]);
-        let homeSentry = ref(0);
+        let context = {
+            avatar: $context.data.ownerAvatar,
+            name: $context.data.ownerName,
+            motto: $context.data.ownerMotto,
+        };
 
-        async function getHomeList() {
-            await $api
-                .getHomeList({
-                    page: page.value,
-                    pageSize: pageSize.value,
-                })
-                .then(({ code, msg, data }) => {
-                    if (code == codeConfig.success) {
-                        homeListData.value = data.data;
-                        total.value = data.total;
-                        show.value = false;
-                        homeSentry.value++;
-                        goBoth(GoBothType.TopSpeed);
-                    } else {
-                        $process.tipShow.error("获取数据失败");
-                        isFail.value = true;
-                    }
-                });
+        function pageJump(path: string) {
+            router.push(path);
         }
 
-        async function pageChange(target: number) {
-            router.push({
-                path: "/",
-                query: {
-                    page: target,
-                },
-            });
-        }
-
-        watch(
-            () => router.currentRoute.value.query,
-            () => {
-                if (router.currentRoute.value.path != "/") return;
-                page.value = router.currentRoute.value.query.page
-                    ? Number(router.currentRoute.value.query.page)
-                    : 1;
-                getHomeList();
-            }
-        );
 
         onActivated(() => {
-            useProcessControl(true, {
-                direction: CardDirection.row,
-                cards: [Cards.OwnerCard, Cards.AnnounceCard],
-            });
-        });
-
-        onBeforeMount(() => {
-            page.value = router.currentRoute.value.query.page
-                ? Number(router.currentRoute.value.query.page)
-                : 1;
-            getHomeList();
+            useProcessControl(false, false, false);
         });
 
         return {
-            homeListData,
-            total,
-            show,
-            isFail,
-            page,
-            pageSize,
-            homeSentry,
-            pageChange,
+            context,
+            headerConfig,
+            pageJump
         };
     },
 });
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/scss/index.scss";
+
 .home {
     width: 100%;
+
+    .content {
+        width: 370px;
+        position: fixed;
+        top: 15%;
+        left: calc(50% - 185px);
+
+        .avatar {
+            width: 110px;
+            height: 110px;
+            background-size: 100% 100%;
+            border-radius: 50%;
+            margin: 0px auto;
+            margin-bottom: 20px;
+        }
+
+        .words {
+            margin-bottom: 20px;
+
+            .name {
+                font-size: 20px;
+                color: $title;
+                text-align: center;
+                margin-bottom: 10px;
+            }
+
+            .motto {
+                color: $normal;
+                text-align: center;
+            }
+        }
+
+        .link {
+            color: $normal;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 0 50px;
+            margin-top: 30px;
+
+            .option {
+                width: 55px;
+                height: 30px;
+                text-align: center;
+                line-height: 30px;
+
+                span {
+                    cursor: pointer;
+
+                    &:hover {
+                        color: rgb(127, 200, 248);
+                        transition: 0.3s;
+                    }
+                }
+            }
+        }
+    }
 }
 </style>

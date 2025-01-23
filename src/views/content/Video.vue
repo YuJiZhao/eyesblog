@@ -1,78 +1,87 @@
 <template>
   <div class="video">
-    <div class="playBox">
-      <div class="title">{{title}}</div>
-      <Wait :show="show" :fail="isFail" color="#000" width="100%" height="400px" failColor="#000">
-        <video-player />
-      </Wait>
-      <func-bar />
-    </div>
+    <video-info :data="videoData" :key="videoSlave" />
+    <Wait :show="show" :fail="isFail" color="#000" width="100%" height="400px" failColor="#000">
+      <video-player :video="videoData.videoUrl" :cover="videoData.coverUrl"/>
+    </Wait>
+    <func-bar :comment="videoData.comment"/>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, onActivated, onMounted, ref, watch } from 'vue';
-import { ProcessInterface, ApiObject, UserInterface } from "@/d.ts/plugin";
+import { defineComponent, inject, onActivated, onMounted, ref } from 'vue';
+import { ProcessInterface, ApiObject, UserInterface, ContextInterface } from "@/d.ts/plugin";
 import useProcessControl from "@/hooks/useProcessControl";
-import { VideoPlayer, FuncBar } from "@/components/content/video";
-import { codeConfig } from "@/config/program";
-import { videoContext } from "@/components/content/video/businessTs/videoContext";
-import videoProcess from "@/components/content/video/businessTs/videoProcess";
 import { Wait } from "@/components/general/popup";
-import { videoSideCards } from "@/components/content/video/config";
-import { userCenterContext, siteContext } from "@/config/site";
+import { VideoInfo, VideoPlayer, FuncBar } from "@/components/content/video";
+import { codeConfig } from "@/config/program";
+import { userCenterContext } from "@/config/site";
+import videoConfig from "@/components/content/video/config";
+import utils from "@/utils/helper";
 
 export default defineComponent({
   name: "Video",
-  components: { VideoPlayer, Wait, FuncBar },
+  components: { Wait, VideoInfo, VideoPlayer, FuncBar },
   setup() {
     const $process = inject<ProcessInterface>("$process")!;
+    const $context = inject<ContextInterface>("$context")!;
     const $api = inject<ApiObject>("$api")!;
     const $user = inject<UserInterface>("$user")!;
 
-    let title = ref("");
     let show = ref(true);
     let isFail = ref(false);
+    let videoData = ref<any>({});
+    let videoSlave = ref(0);
 
-    async function initData() {
-      videoProcess.cardInitLoad.value = true;
+    function initData() {
       show.value = true;
       isFail.value = false;
-      await $api.getVideoInfo().then(({code, msg, data}) => {
-        if(code == codeConfig.success) {
-          title.value = data.title;
-          videoContext.init(data);
-          videoProcess.cardInitLoad.value = false;
-          show.value = false;
+      let videoInfo = localStorage.getItem(videoConfig.videoStorageKey);
+      if (videoInfo == null) {
+        getVideoInfo();
+      } else {
+        // 从本地解析出未播放完的视频信息
+        videoData.value = utils.decryptObj(videoInfo);
+        refresh();
+      }
+    }
+
+    async function getVideoInfo() {
+      await $api.getVideoInfo().then(({ code, msg, data }) => {
+        if (code == codeConfig.success) {
+          videoData.value = data;
+          // 将视频信息存入本地
+          localStorage.setItem(videoConfig.videoStorageKey, utils.encryptionObj(data));
+          refresh();
           return;
         } else {
           $process.tipShow.error(msg);
         }
         isFail.value = true;
-        videoProcess.cardInitFail.value = true;
-      })
+      });
     }
 
-    watch(
-      () => videoProcess.videoEndSentry.value,
-      () => initData()
-    )
+    function refresh() {
+      videoSlave.value++;
+      show.value = false;
+    }
 
     onMounted(() => {
       if (!$user.isLogin()) {
-        location.href = `${userCenterContext.auth}?clientId=${siteContext.clientId}&redirectUrl=${process.env.VITE_SITE_URL + userCenterContext.redirectUrl}`;
+        location.href = `${userCenterContext.auth}?clientId=${$context.data.spaceClientId}&redirectUrl=${process.env.VITE_SITE_URL + userCenterContext.redirectUrl}`;
       }
       initData();
     })
 
     onActivated(() => {
-      useProcessControl(true, videoSideCards, false);
+      useProcessControl(true, false, true);
     })
 
     return {
-      title,
       show,
       isFail,
+      videoData,
+      videoSlave
     };
   },
 });
@@ -83,20 +92,5 @@ export default defineComponent({
 
 .video {
   width: 100%;
-  padding: 0 !important;
-  .playBox {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    .title {
-      font-size: 20px;
-      min-height: 50px;
-      line-height: 50px;
-      color: $title;
-      white-space:normal; 
-      word-break:break-all;
-      overflow:hidden;
-    }
-  }
 }
 </style>

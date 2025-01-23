@@ -5,8 +5,6 @@ const urlConfig = {
     resourceUrl: "http://oss.eyescode.top/eyesspace/",
     userResourceUrl: "http://oss.eyescode.top/eyesuser/",
     warehouseUrl: "https://github.com/eyesyeager/eyesspace",
-    zwfwUrl: "https://beian.miit.gov.cn",
-    avatarUploadUrl: `${process.env.VITE_API_DOMAIN}/user/info/updateUserAvatar`
 };
 
 const siteConfig = {
@@ -16,12 +14,8 @@ const siteConfig = {
     },
     tokenExpireTime: 30,
     mpThreshold: 800,
-    aesKey: "ar4qwer4qre47qw7",
-    aesIV: "a4e4w54eq869e45q",
     enterURL: "enterURL",
-    keepAliveRoute: ["Home", "Blog", "Shuoshuo", "Music", "Video", "Joke", "Anime", "Book", "Footprint", "Friend", "Version", "About"],
-    avatarMaxSize: 5,
-    avatarImgType: ["image/png", "image/jpg", "image/jpeg"],
+    keepAliveRoute: ["Home", "Blog", "Shuoshuo", "Footprint", "Music", "Video", "Joke", "Anime", "Book", "Product", "Friend", "Version", "About"],
 }
 
 const codeConfig = {
@@ -44,6 +38,9 @@ const contextConfig = {
     bookNotice: 12,
     footprintInit: 13,
     footprintNotice: 14,
+    footContext: [16, 17, 19],
+    productNotice: 20,
+    friendNotice: 21
 }
 
 const pathConfig = publicPath;

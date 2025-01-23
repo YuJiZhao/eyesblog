@@ -1,4 +1,4 @@
-const blogDataCardConfig = [
+const dataCardConfig = [
     {
         title: "博客总数",
         name: "totalNum"
@@ -13,4 +13,4 @@ const blogDataCardConfig = [
     }
 ]
 
-export { blogDataCardConfig };
+export { dataCardConfig };

@@ -1,7 +1,7 @@
 <template>
-    <div class="footprintCard">
+    <div class="productCard">
         <owner-card class="card" />
-        <notice-card class="card" :id="noticeId" :title="noticeTitle" :icon="noticeIcon"/>
+        <notice-card class="card" :id="noticeId" :title="noticeTitle" :icon="noticeIcon" />
         <data-card class="card" :title="dataTitle" :api="dataApi" :cardConfig="dataCardConfig" />
     </div>
 </template>
@@ -17,11 +17,11 @@ export default defineComponent({
     components: { OwnerCard, NoticeCard, DataCard },
     setup() {
         return {
-            noticeId: contextConfig.footprintNotice,
+            noticeId: contextConfig.productNotice,
             noticeTitle: "站长说",
             noticeIcon: resource.announce,
-            dataTitle: "我曾走过",
-            dataApi: "getFootprintListInfo",
+            dataTitle: "作品数据",
+            dataApi: "getProductListInfo",
             dataCardConfig
         };
     },
@@ -29,7 +29,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.footprintCard {
+.productCard {
     .card {
         margin-bottom: 20px;
     }

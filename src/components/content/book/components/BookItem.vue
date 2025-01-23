@@ -21,7 +21,6 @@ import { defineComponent } from "vue";
 import utils from "@/utils/helper";
 
 export default defineComponent({
-  components: {},
   props: ["data"],
   setup(props) {
     return {

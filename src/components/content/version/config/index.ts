@@ -1,4 +1,4 @@
-const versionDataCardConfig = [
+const dataCardConfig = [
     {
         title: "整站版本",
         name: "siteVersion"
@@ -19,4 +19,4 @@ const versionDataCardConfig = [
 
 const versionTypeConvert: Array<string> = ["整站", "前端", "后端"];
 
-export { versionDataCardConfig, versionTypeConvert };
+export { dataCardConfig, versionTypeConvert };

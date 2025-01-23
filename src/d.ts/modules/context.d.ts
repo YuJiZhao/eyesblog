@@ -5,10 +5,11 @@ export declare interface ContextInterface {
 
 export declare interface ContextType {
     spaceName: string;
+    spaceClientId: string;
     ownerName: string;
     ownerAvatar: string;
     ownerMotto: string;
-    footprint: Partial<IconLinkType>;
+    ownerEmail: string;
 }
 
 export declare interface IconLinkType {

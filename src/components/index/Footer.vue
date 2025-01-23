@@ -1,29 +1,52 @@
 <template>
   <div class="footer" :class="{ static: positionSwitch, fixed: !positionSwitch }">
-    <div>{{footerConfig.copyright}}</div>
-    <div><span class="zwfw" @click="jumpPage(zwfwUrl)">{{footerConfig.zwfwCode}}</span></div>
+    <div>{{context.copyright}}</div>
+    <div><span class="zwfw" @click="jumpPage">{{context.zwfwCode}}</span></div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, inject } from 'vue';
-import { ProcessInterface } from "@/d.ts/plugin";
-import { footerConfig } from "@/config/site";
-import { urlConfig } from "@/config/program";
+import { defineComponent, inject, reactive, onBeforeMount } from 'vue';
+import { ProcessInterface, ApiObject } from "@/d.ts/plugin";
+import { urlConfig, codeConfig, contextConfig } from "@/config/program";
 
 export default defineComponent({
   setup() {
     const $process = inject<ProcessInterface>("$process")!;
+    const $api = inject<ApiObject>("$api")!;
 
-    function jumpPage(path: string) {
-      window.open(path);
+    let context = reactive({
+      copyright: "",
+      zwfwCode: "",
+      zwfwUrl: ""
+    });
+
+    function jumpPage() {
+      window.open(context.zwfwUrl);
     }
 
+    async function getContextList() {
+      $api.getBatchContextItem({
+        idList: contextConfig.footContext
+      }).then(({code, msg, data}) => {
+        if (codeConfig.success == code) {
+          context.copyright = data.copyright;
+          context.zwfwCode = data.zwfwCode;
+          context.zwfwUrl = data.zwfwUrl;
+        } else {
+          $process.tipShow.error("foot数据获取失败：" + msg);
+        }
+      });
+    }
+
+    onBeforeMount(() => {
+      getContextList();
+    });
+
     return {
-      footerConfig,
+      context,
       positionSwitch: $process.footerPosition,
       warehouseUrl: urlConfig.warehouseUrl,
-      zwfwUrl: urlConfig.zwfwUrl,
       jumpPage
     };
   },

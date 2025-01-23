@@ -97,6 +97,7 @@ export default defineComponent({
   color: $normal;
   .label {
     height: 30px;
+    line-height: 20px;
     padding: 5px;
     box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
     -webkit-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);

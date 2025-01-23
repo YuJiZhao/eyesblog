@@ -25,7 +25,6 @@ export enum Cards {
 }
 
 export enum CardList {
-    "VideoCardList",
     "ShuoCardList",
     "BlogCardList",
     "BlogDetailCardList",
@@ -34,11 +33,11 @@ export enum CardList {
     "VersionCardList",
     "JokeCardList",
     "BookCardList",
-    "FootprintCardList"
+    "FootprintCardList",
+    "ProductCardList"
 }
 
 export enum Dialogs {
-    "Reward",
     "ContactMe"
 }
 
