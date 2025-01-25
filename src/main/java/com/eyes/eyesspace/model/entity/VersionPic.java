@@ -36,7 +36,5 @@ public class VersionPic implements Serializable {
 
     private LocalDateTime createTime;
 
-    private LocalDateTime updateTime;
-
     private LocalDateTime deleteTime;
 }
